@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="icon" type="image/png" href="assests/iit/iitj_logo_o.png">
+<title>Aqib Fayaz — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F4F6FB;--bg2:#FFFFFF;--bg3:#EEF1F8;
+  --navy:#0A1628;--navy2:#142240;
+  --blue:#1C4ED8;--blue2:#2563EB;--blue-light:#EFF6FF;--blue-mid:#BFDBFE;
+  --teal:#0D9488;--teal-light:#F0FDFA;
+  --gold:#B45309;--gold-light:#FFFBEB;--gold-mid:#FDE68A;
+  --text:#1E2A3B;--text2:#475569;--text3:#94A3B8;
+  --border:#E2E8F0;--border2:#CBD5E1;
+  --shadow:0 1px 3px rgba(0,0,0,0.08),0 4px 16px rgba(0,0,0,0.06);
+  --shadow2:0 8px 32px rgba(0,0,0,0.1),0 2px 8px rgba(0,0,0,0.06);
+  --radius:14px;--radius2:20px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:400;line-height:1.7;overflow-x:hidden;padding-top:66px;}
+
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 6vw;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);box-shadow:0 1px 12px rgba(0,0,0,0.06);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--navy);display:flex;align-items:center;gap:10px;}
+.nav-logo-dot{width:8px;height:8px;border-radius:50%;background:var(--blue2);display:inline-block;}
+.nav-links{list-style:none;display:flex;align-items:center;gap:0.2rem;}
+.nav-link{text-decoration:none;font-size:13px;font-weight:500;color:var(--text2);padding:6px 14px;border-radius:8px;transition:all 0.2s;}
+.nav-link:hover,.nav-link.active{color:var(--blue2);background:var(--blue-light);}
+.nav-cta{background:var(--blue2);color:#fff;padding:7px 18px;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;transition:all 0.2s;margin-left:8px;}
+.nav-cta:hover{background:var(--blue);transform:translateY(-1px);}
+
+/* HERO */
+.hero{position:relative;min-height:calc(100vh - 66px);display:flex;align-items:center;padding:5rem 6vw 4rem;overflow:hidden;background:linear-gradient(135deg,#F8FAFF 0%,#EEF2FF 40%,#F0FDF9 100%);}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(28,78,216,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(28,78,216,0.04) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%);}
+.hero-orb1{position:absolute;right:-5vw;top:-10vh;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,0.12) 0%,transparent 70%);pointer-events:none;animation:floatOrb 8s ease-in-out infinite;}
+.hero-orb2{position:absolute;left:30%;bottom:-15vh;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(13,148,136,0.1) 0%,transparent 70%);pointer-events:none;animation:floatOrb 10s ease-in-out 2s infinite reverse;}
+@keyframes floatOrb{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-30px) scale(1.05);}}
+
+.hero-content{position:relative;z-index:2;flex:1;max-width:640px;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border);padding:6px 14px;border-radius:100px;font-size:12px;font-weight:500;color:var(--blue2);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:1.8rem;box-shadow:0 2px 8px rgba(37,99,235,0.1);animation:fadeUp 0.6s ease both;}
+.hero-eyebrow-pulse{width:6px;height:6px;border-radius:50%;background:var(--blue2);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.7);}}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:700;line-height:1.05;color:var(--navy);margin-bottom:0.3rem;animation:fadeUp 0.7s ease 0.1s both;}
+.hero h1 .accent{color:var(--blue2);}
+.hero-role{font-size:1rem;font-weight:500;color:var(--teal);letter-spacing:0.04em;margin-bottom:1.2rem;animation:fadeUp 0.7s ease 0.2s both;}
+.hero-desc{font-size:0.98rem;color:var(--text2);max-width:520px;margin-bottom:2rem;line-height:1.75;animation:fadeUp 0.7s ease 0.3s both;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2.5rem;animation:fadeUp 0.7s ease 0.4s both;}
+.htag{padding:5px 13px;border-radius:100px;font-size:12px;font-weight:500;background:var(--blue-light);color:var(--blue2);border:1px solid var(--blue-mid);}
+.htag.teal{background:var(--teal-light);color:var(--teal);border-color:#99F6E4;}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;animation:fadeUp 0.7s ease 0.5s both;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:10px;font-size:14px;font-weight:500;text-decoration:none;transition:all 0.22s;cursor:pointer;border:none;font-family:'Outfit',sans-serif;}
+.btn-primary{background:var(--blue2);color:#fff;}
+.btn-primary:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,99,235,0.3);}
+.btn-outline{background:#fff;color:var(--text2);border:1px solid var(--border2);}
+.btn-outline:hover{border-color:var(--blue2);color:var(--blue2);transform:translateY(-2px);}
+
+/* Hero Card */
+.hero-card-wrap{position:relative;z-index:2;margin-left:auto;perspective:1500px;animation:fadeUp 0.8s ease 0.3s both;}
+.hero-card{width:340px;background:#fff;border:1px solid var(--border);border-radius:var(--radius2);overflow:hidden;box-shadow:var(--shadow2),0 30px 60px rgba(28,78,216,0.12);transition:transform 0.3s ease,box-shadow 0.3s ease;}
+.hero-card:hover{transform:scale(1.04);box-shadow:0 40px 80px rgba(37,99,235,0.2),0 0 40px rgba(37,99,235,0.15);}
+.hero-card-img{width:100%;height:220px;background:linear-gradient(135deg,#EEF2FF 0%,#DBEAFE 50%,#E0F2FE 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.avatar-circle{width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:700;color:#fff;border:3px solid rgba(255,255,255,0.5);box-shadow:0 8px 32px rgba(0,0,0,0.2);}
+.hero-card-body{padding:1.2rem 1.4rem;}
+.hcb-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--navy);margin-bottom:2px;}
+.hcb-role{font-size:12px;color:var(--teal);font-weight:500;margin-bottom:14px;}
+.hcb-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.hcb-stat{text-align:center;padding:8px 4px;background:var(--bg);border-radius:10px;border:1px solid var(--border);}
+.hcb-stat-val{display:block;font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:500;color:var(--blue2);}
+.hcb-stat-lbl{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;}
+
+.scroll-hint{position:absolute;bottom:2.5rem;left:6vw;z-index:2;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text3);animation:fadeUp 1s ease 0.9s both;}
+.scroll-dot{width:30px;height:30px;border-radius:50%;border:1px solid var(--border2);background:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text3);animation:bounceDown 2s ease-in-out infinite;}
+@keyframes bounceDown{0%,100%{transform:translateY(0);}50%{transform:translateY(5px);}}
+
+/* MAIN */
+main{max-width:1300px;margin:0 auto;padding:0 6vw;}
+section{padding:5rem 0;border-top:1px solid var(--border);}
+.section-eyebrow{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue2);font-weight:600;margin-bottom:1rem;}
+.section-eyebrow::before{content:'';width:24px;height:2px;background:var(--blue2);border-radius:2px;}
+h2.stitle{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:700;color:var(--navy);margin-bottom:2.5rem;line-height:1.15;}
+
+/* Metrics */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;}
+.metric{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem 1rem;text-align:center;box-shadow:var(--shadow);transition:all 0.25s;position:relative;overflow:hidden;}
+.metric::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue2),var(--teal));transform:scaleX(0);transform-origin:left;transition:transform 0.3s ease;}
+.metric:hover::before{transform:scaleX(1);}
+.metric:hover{transform:translateY(-4px);box-shadow:var(--shadow2);}
+.metric-val{display:block;font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;color:var(--blue2);line-height:1;margin-bottom:6px;}
+.metric-lbl{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;font-weight:500;}
+
+/* Cards */
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;box-shadow:var(--shadow);transition:all 0.25s;}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow2);border-color:var(--blue-mid);}
+
+/* Timeline */
+.timeline{display:flex;flex-direction:column;}
+.tl-item{display:grid;grid-template-columns:190px 1fr;gap:0 2.5rem;position:relative;}
+.tl-left{text-align:right;padding-top:2px;padding-bottom:2.5rem;}
+.tl-date{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--blue2);font-weight:500;}
+.tl-org{font-size:12px;color:var(--text3);margin-top:2px;}
+.tl-right{border-left:2px solid var(--border2);padding-left:2.5rem;padding-bottom:2.5rem;position:relative;}
+.tl-right::before{content:'';position:absolute;left:-7px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--blue2);border:3px solid var(--bg);box-shadow:0 0 0 3px rgba(37,99,235,0.2);}
+.tl-right h3{font-weight:600;font-size:1.05rem;color:var(--navy);margin-bottom:3px;}
+.tl-sub{font-size:13px;color:var(--teal);font-weight:500;margin-bottom:0.5rem;}
+.tl-right p{font-size:14px;color:var(--text2);line-height:1.6;}
+.tl-right ul{list-style:none;margin-top:0.6rem;}
+.tl-right ul li{font-size:13px;color:var(--text2);padding:3px 0 3px 18px;position:relative;line-height:1.5;}
+.tl-right ul li::before{content:'›';position:absolute;left:0;color:var(--blue2);font-weight:600;}
+
+/* Publications */
+.pub-list{display:flex;flex-direction:column;gap:0.8rem;}
+.pub-item{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem 1.4rem;display:grid;grid-template-columns:44px 1fr;gap:1rem;box-shadow:var(--shadow);transition:all 0.22s;}
+.pub-item:hover{border-color:var(--blue-mid);transform:translateX(4px);box-shadow:var(--shadow2);}
+.pub-num{width:36px;height:36px;border-radius:10px;background:var(--blue-light);border:1px solid var(--blue-mid);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue2);font-weight:500;flex-shrink:0;}
+.pub-title{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:4px;line-height:1.45;}
+.pub-meta{font-size:12px;color:var(--text3);}
+.pub-meta em{font-style:italic;color:var(--text2);}
+.pub-badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;}
+.pb{padding:2px 10px;border-radius:100px;font-size:11px;font-weight:600;background:var(--bg3);border:1px solid var(--border);color:var(--text3);}
+.pb.q1{background:var(--blue-light);border-color:var(--blue-mid);color:var(--blue2);}
+.pb.q2{background:var(--gold-light);border-color:var(--gold-mid);color:var(--gold);}
+.pb.accent{background:var(--teal-light);border-color:#99F6E4;color:var(--teal);}
+
+/* Skills */
+.skills-group{margin-bottom:2rem;}
+.skills-group-label{font-size:12px;font-weight:600;color:var(--blue2);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
+.skills-group-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:0.75rem;}
+.skill-chip{background:#fff;border:1px solid var(--border);border-radius:12px;padding:0.85rem 1rem;display:flex;align-items:center;gap:12px;font-size:13px;color:var(--text);font-weight:500;box-shadow:var(--shadow);transition:all 0.22s;}
+.skill-chip:hover{border-color:var(--blue-mid);transform:translateY(-2px);box-shadow:var(--shadow2);color:var(--blue2);}
+.skill-icon-wrap{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--blue-light);}
+.skill-icon-wrap.teal{background:var(--teal-light);}
+.skill-icon-wrap.gold{background:var(--gold-light);}
+
+/* Education */
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;}
+.edu-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius2);padding:1.6rem;box-shadow:var(--shadow);transition:all 0.25s;position:relative;overflow:hidden;}
+.edu-card:hover{transform:translateY(-4px);box-shadow:var(--shadow2);border-color:var(--blue-mid);}
+.edu-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--blue2),var(--teal));border-radius:4px 0 0 4px;}
+.edu-degree{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--blue2);margin-bottom:2px;}
+.edu-year{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3);margin-bottom:8px;}
+.edu-uni{font-weight:600;color:var(--navy);font-size:14px;margin-bottom:3px;}
+.edu-dept{font-size:13px;color:var(--text2);margin-bottom:12px;}
+.edu-grade{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);background:var(--gold-light);border:1px solid var(--gold-mid);padding:4px 12px;border-radius:100px;font-weight:600;}
+
+/* Awards */
+.award-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;}
+.award-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem 1.4rem;box-shadow:var(--shadow);transition:all 0.25s;position:relative;overflow:hidden;}
+.award-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue2),var(--teal));transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+.award-card:hover{transform:translateY(-4px);box-shadow:var(--shadow2);border-color:var(--blue-mid);}
+.award-card:hover::after{transform:scaleX(1);}
+.award-icon{width:36px;height:36px;border-radius:10px;background:var(--gold-light);border:1px solid var(--gold-mid);display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.award-title{font-size:13.5px;font-weight:500;color:var(--navy);line-height:1.45;margin-bottom:5px;}
+.award-sub{font-size:12px;color:var(--text3);}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem;}
+.contact-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem 1.3rem;display:flex;align-items:center;gap:14px;text-decoration:none;box-shadow:var(--shadow);transition:all 0.22s;}
+.contact-card:hover{transform:translateY(-3px);box-shadow:var(--shadow2);border-color:var(--blue-mid);}
+.contact-icon-wrap{width:42px;height:42px;border-radius:11px;background:var(--blue-light);border:1px solid var(--blue-mid);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.contact-lbl{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;font-weight:500;margin-bottom:1px;}
+.contact-val{font-size:13px;color:var(--navy);font-weight:500;}
+
+/* Research card */
+.res-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius2);padding:1.8rem;box-shadow:var(--shadow);margin-bottom:1.2rem;transition:all 0.25s;}
+.res-card:hover{box-shadow:var(--shadow2);border-color:var(--blue-mid);}
+.res-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--blue2);background:var(--blue-light);border:1px solid var(--blue-mid);padding:4px 12px;border-radius:100px;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.06em;}
+.res-tag.gold{color:var(--gold);background:var(--gold-light);border-color:var(--gold-mid);}
+.res-tag.teal{color:var(--teal);background:var(--teal-light);border-color:#99F6E4;}
+
+/* Footer */
+footer{text-align:center;padding:3rem 2rem;border-top:1px solid var(--border);background:#fff;}
+.footer-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--navy);margin-bottom:4px;}
+.footer-sub{font-size:13px;color:var(--text3);}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.tilt{transform-style:preserve-3d;transition:transform 0.15s ease;}
+
+@media(max-width:960px){.hero-card-wrap{display:none;}.tl-item{grid-template-columns:1fr;}.tl-left{text-align:left;padding-bottom:0.3rem;}.tl-right{margin-left:12px;}}
+@media(max-width:600px){.hero{padding:3rem 5vw;}main{padding:0 5vw;}.hero h1{font-size:2.6rem;}.nav-links{display:none;}}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-dot"></div>
+    Aqib Fayaz
+  </div>
+  <ul class="nav-links">
+    <li><a href="#research"      class="nav-link">Research</a></li>
+    <li><a href="#education"     class="nav-link">Education</a></li>
+    <li><a href="#publications"  class="nav-link">Publications</a></li>
+    <li><a href="#experience"    class="nav-link">Experience</a></li>
+    <li><a href="#skills"        class="nav-link">Skills</a></li>
+    <li><a href="#awards"        class="nav-link">Awards</a></li>
+    <li><a href="#contact"       class="nav-link nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-orb1"></div>
+  <div class="hero-orb2"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-pulse"></span>
+      IIT Jammu &middot; Additive Manufacturing Research Laboratory
+    </div>
+    <h1>Aqib<br/><span class="accent">Fayaz</span></h1>
+    <div class="hero-role">PhD Research Scholar &middot; Department of Mechanical Engineering</div>
+    <p class="hero-desc">Developing advanced composite materials and additive manufacturing strategies for energy systems &mdash; particularly Polymer Electrolyte Membrane Fuel Cells (PEMFCs) &mdash; to enable lightweight, high-performance components for sustainable hydrogen mobility and UAV applications.</p>
+    <div class="hero-tags">
+      <span class="htag">Additive Manufacturing</span>
+      <span class="htag">PEMFC &amp; Fuel Cells</span>
+      <span class="htag">Advanced Composites</span>
+      <span class="htag teal">Hydrogen Energy</span>
+      <span class="htag teal">Sustainable Mobility</span>
+    </div>
+    <div class="hero-btns">
+      <a class="btn btn-primary" href="mailto:ahangeraqib600@gmail.com">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Get in Touch
+      </a>
+      <a class="btn btn-outline" href="mailto:2024rme1043@iitjammu.ac.in">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Institute Email
+      </a>
+    </div>
+  </div>
+
+  <!-- Profile Card -->
+  <div class="hero-card-wrap">
+    <div class="hero-card tilt">
+      <div class="hero-card-img">
+        <img src="assests/staff_pics/aqib.png" alt="Aqib Fayaz" style="width:200%;height:100%;object-fit:cover;object-position:top;">
+      </div>
+      <div class="hero-card-body">
+        <div class="hcb-name">Aqib Fayaz</div>
+        <div class="hcb-role">PhD Scholar &middot; AMRL, IIT Jammu</div>
+        <div class="hcb-stats">
+          <div class="hcb-stat"><span class="hcb-stat-val">2</span><span class="hcb-stat-lbl">Papers</span></div>
+          <div class="hcb-stat"><span class="hcb-stat-val">2</span><span class="hcb-stat-lbl">Internships</span></div>
+          <div class="hcb-stat"><span class="hcb-stat-val">3+</span><span class="hcb-stat-lbl">Certifications</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-dot">&#8595;</div>
+    Scroll to explore
+  </div>
+</header>
+
+<main>
+
+  <!-- METRICS -->
+  <section style="border-top:none;padding-top:3rem;" class="reveal">
+    <div class="metrics">
+      <div class="metric tilt"><span class="metric-val">2</span><span class="metric-lbl">Publications</span></div>
+      <div class="metric tilt"><span class="metric-val">2</span><span class="metric-lbl">Internships</span></div>
+      <div class="metric tilt"><span class="metric-val">5</span><span class="metric-lbl">AICTE Certifications</span></div>
+      <div class="metric tilt"><span class="metric-val">2</span><span class="metric-lbl">TA Courses</span></div>
+      <div class="metric tilt"><span class="metric-val">2024</span><span class="metric-lbl">PhD Start Year</span></div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section class="reveal" id="research">
+    <div class="section-eyebrow">Research Focus</div>
+    <h2 class="stitle">PhD Research</h2>
+
+    <div class="res-card tilt">
+      <div class="res-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+        PhD Dissertation &middot; August 2024 &ndash; Ongoing
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:1.5rem;flex-wrap:wrap;">
+        <div style="flex:1;min-width:260px;">
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:0.5rem;line-height:1.3;">Additive Manufacturing of Advanced Composites for Energy and Fuel Cell Applications</h3>
+          <p style="font-size:14px;color:var(--text2);margin-bottom:1rem;line-height:1.65;">Focused on the design and fabrication of flow field plates, gas diffusion layers (GDLs), and PEM membranes using advanced additive manufacturing techniques. The research enhances electrical conductivity, corrosion resistance, and gas distribution efficiency. Novel composite materials and printing strategies enable lightweight, high-performance components for hydrogen fuel cell vehicles and UAVs, integrating numerical simulation, material characterization, and electrochemical performance evaluation.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:7px;">
+            <span class="htag" style="font-size:11px;">PEMFC Flow Field Plates</span>
+            <span class="htag" style="font-size:11px;">GDL Fabrication</span>
+            <span class="htag" style="font-size:11px;">Conductive Composites</span>
+            <span class="htag teal" style="font-size:11px;">Hydrogen Mobility</span>
+            <span class="htag teal" style="font-size:11px;">Electrochemical Evaluation</span>
+          </div>
+        </div>
+        <div style="background:var(--blue-light);border:1px solid var(--blue-mid);border-radius:12px;padding:1rem 1.2rem;min-width:190px;">
+          <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;font-weight:600;margin-bottom:6px;">Supervisor</div>
+          <div style="font-size:14px;font-weight:600;color:var(--navy);">Dr. Rajkumar Velu</div>
+          <div style="font-size:12px;color:var(--text2);">Assistant Professor-I, IIT Jammu</div>
+          <div style="margin-top:10px;font-size:11px;font-weight:600;color:var(--blue2);">Lab: AMRL, Mech. Engg.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="res-card tilt">
+      <div class="res-tag gold">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14,2 14,8 20,8"/></svg>
+        M.Tech Dissertation &middot; University of Kashmir
+      </div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:0.4rem;">Experimental Investigation of Waste Frying Oil Biodiesel Blends on Compression Ignition Engines</h3>
+      <p style="font-size:14px;color:var(--text2);line-height:1.65;">Investigated the performance and emission characteristics of waste frying oil biodiesel blends as an alternative fuel for CI engines. Explored sustainable fuel strategies for reduced emissions and improved engine performance.</p>
+    </div>
+
+    <div class="res-card tilt">
+      <div class="res-tag teal">Areas of Interest</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:4px;">
+        <div style="padding:10px 14px;background:var(--bg);border-radius:10px;border:1px solid var(--border);font-size:13px;color:var(--text2);">&#9653; Additive Manufacturing of Advanced Composites</div>
+        <div style="padding:10px 14px;background:var(--bg);border-radius:10px;border:1px solid var(--border);font-size:13px;color:var(--text2);">&#9653; Hydrogen &amp; Fuel Cell Technologies</div>
+        <div style="padding:10px 14px;background:var(--bg);border-radius:10px;border:1px solid var(--border);font-size:13px;color:var(--text2);">&#9653; Polymer Electrolyte Membrane Fuel Cells (PEMFC)</div>
+        <div style="padding:10px 14px;background:var(--bg);border-radius:10px;border:1px solid var(--border);font-size:13px;color:var(--text2);">&#9653; Conductive Polymer Composites</div>
+        <div style="padding:10px 14px;background:var(--bg);border-radius:10px;border:1px solid var(--border);font-size:13px;color:var(--text2);">&#9653; Sustainable Energy Systems</div>
+        <div style="padding:10px 14px;background:var(--bg);border-radius:10px;border:1px solid var(--border);font-size:13px;color:var(--text2);">&#9653; Minimum Quantity Lubrication (MQL)</div>
+        <div style="padding:10px 14px;background:var(--bg);border-radius:10px;border:1px solid var(--border);font-size:13px;color:var(--text2);">&#9653; Internal Combustion Engines</div>
+        <div style="padding:10px 14px;background:var(--bg);border-radius:10px;border:1px solid var(--border);font-size:13px;color:var(--text2);">&#9653; Non-Destructive Testing (NDT)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="reveal" id="education">
+    <div class="section-eyebrow">Education</div>
+    <h2 class="stitle">Academic Qualifications</h2>
+    <div class="edu-grid">
+      <div class="edu-card tilt">
+        <div class="edu-degree">PhD</div>
+        <div class="edu-year">August 2024 &ndash; Ongoing</div>
+        <div class="edu-uni">Indian Institute of Technology Jammu</div>
+        <div class="edu-dept">Department of Mechanical Engineering</div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:12px;line-height:1.55;"><strong>Research Area:</strong> Additive Manufacturing of Advanced Composites for Energy and Fuel Cell Applications</p>
+        <span class="edu-grade">&#9733; Ongoing &middot; AMRL</span>
+      </div>
+      <div class="edu-card tilt">
+        <div class="edu-degree">M.Tech</div>
+        <div class="edu-year">2021 &ndash; 2023</div>
+        <div class="edu-uni">University of Kashmir</div>
+        <div class="edu-dept">Department of Mechanical Engineering</div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:12px;line-height:1.55;">Specialization in alternative fuels and IC engines. Dissertation on waste frying oil biodiesel blends for compression ignition engines.</p>
+        <span class="edu-grade">&#9733; Completed 2023</span>
+      </div>
+      <div class="edu-card tilt">
+        <div class="edu-degree">B.Tech</div>
+        <div class="edu-year">2016 &ndash; 2020</div>
+        <div class="edu-uni">University of Kashmir</div>
+        <div class="edu-dept">Mechanical Engineering</div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:12px;line-height:1.55;">Project: Numerical Investigation of Incompressible Fluid Flow Over a Cylinder Using ANSYS. Foundation in design, manufacturing, and computational fluid dynamics.</p>
+        <span class="edu-grade">&#9733; Completed 2020</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section class="reveal" id="publications">
+    <div class="section-eyebrow">Research Output</div>
+    <h2 class="stitle">Publications</h2>
+    <p style="font-size:13px;color:var(--text3);font-weight:500;margin-bottom:1.5rem;">Journal Articles &middot; Peer Reviewed</p>
+
+    <div class="pub-list">
+
+      <div class="pub-item">
+        <div class="pub-num">01</div>
+        <div>
+          <div class="pub-title">Additive manufacturing of flow field plates for polymer electrolyte membrane fuel cells: Scopes, challenges, and future prospects towards sustainable mobility</div>
+          <div class="pub-meta">Fayaz Aqib, Rajkumar Velu, Arunkumar Jayakumar, B. Mallikarjuna &middot; <em>Journal of Power Sources</em> 666 (2026): 239070, Elsevier</div>
+          <div class="pub-badges">
+            <span class="pb q1">Q1</span>
+            <a href="https://doi.org/10.1016/j.jpowsour.2025.239070" target="_blank" style="padding:2px 10px;border-radius:100px;font-size:11px;font-weight:600;background:var(--teal-light);border:1px solid #99F6E4;color:var(--teal);text-decoration:none;">DOI &#8599;</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-num">02</div>
+        <div>
+          <div class="pub-title">A comprehensive exploration of minimum quantity lubrication in machining process</div>
+          <div class="pub-meta">Parray M.A., Khan M.J., Aqib Fayaz, Gulzar A. &middot; <em>Journal of Mechanical Engineering and Sciences</em>, 2025: 10410&ndash;10430</div>
+          <div class="pub-badges">
+            <span class="pb q2">Q2</span>
+            <a href="https://doi.org/10.15282/jmes.19.1.2025.1.0818" target="_blank" style="padding:2px 10px;border-radius:100px;font-size:11px;font-weight:600;background:var(--teal-light);border:1px solid #99F6E4;color:var(--teal);text-decoration:none;">DOI &#8599;</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="reveal" id="experience">
+    <div class="section-eyebrow">Professional Experience</div>
+    <h2 class="stitle">Research &amp; Teaching</h2>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-date">2024 &ndash; Present</div>
+          <div class="tl-org">IIT Jammu</div>
+        </div>
+        <div class="tl-right">
+          <h3>Teaching Assistant &mdash; Research Methodology &amp; Software Tools</h3>
+          <div class="tl-sub">Department of Mechanical Engineering, IIT Jammu &middot; Current Semester</div>
+          <p>Supporting instruction in research methodology, data analysis tools, and software skills for mechanical engineering postgraduate students.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-date">Previous Semester</div>
+          <div class="tl-org">IIT Jammu</div>
+        </div>
+        <div class="tl-right">
+          <h3>Teaching Assistant &mdash; Manufacturing System Design</h3>
+          <div class="tl-sub">Department of Mechanical Engineering, IIT Jammu</div>
+          <p>Assisted in delivering lectures, tutorials, and lab sessions on manufacturing systems design and optimization for postgraduate students.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-date">Jan 2023 &ndash; Aug 2023</div>
+          <div class="tl-org">NIT Srinagar</div>
+        </div>
+        <div class="tl-right">
+          <h3>Research cum Project Intern</h3>
+          <div class="tl-sub">Renewable Energy, Alternative Fuels &amp; IC Engine Laboratory &middot; Mechanical Engineering Dept.</div>
+          <ul>
+            <li>Conducted experimental investigations on alternative fuels and renewable energy systems</li>
+            <li>Worked on IC engine performance and emission characterization using biodiesel blends</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-date">May &ndash; Jul 2021</div>
+          <div class="tl-org">NIT Srinagar</div>
+        </div>
+        <div class="tl-right">
+          <h3>Research Intern &mdash; Tribology Laboratory</h3>
+          <div class="tl-sub">SERB-Sponsored Project &middot; Government of India</div>
+          <ul>
+            <li>Investigated tribological properties of Al-Si alloy under nano-lubrication conditions</li>
+            <li>Research sponsored by the Science and Engineering Research Board (SERB), Govt. of India</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-date">2018 (2 Months)</div>
+          <div class="tl-org">JKSPDC</div>
+        </div>
+        <div class="tl-right">
+          <h3>Mechanical Trainee</h3>
+          <div class="tl-sub">J&amp;K State Power Development Corporation</div>
+          <p>Industrial training in power plant mechanical systems, equipment maintenance, and operational procedures.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="reveal" id="skills">
+    <div class="section-eyebrow">Expertise</div>
+    <h2 class="stitle">Technical Skills &amp; Tools</h2>
+
+    <div class="skills-group">
+      <div class="skills-group-label">Additive Manufacturing &amp; Fabrication</div>
+      <div class="skills-grid">
+        <div class="skill-chip"><div class="skill-icon-wrap teal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>3D Printing &amp; Additive Manufacturing</div>
+        <div class="skill-chip"><div class="skill-icon-wrap teal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16,3 21,3 21,8"/><line x1="4" y1="20" x2="21" y2="3"/></svg></div>Advanced Composite Fabrication</div>
+        <div class="skill-chip"><div class="skill-icon-wrap teal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/></svg></div>Conductive Polymer Composites</div>
+        <div class="skill-chip"><div class="skill-icon-wrap teal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11m0 0H5a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-4m-5 0h5"/></svg></div>Material Characterization Techniques</div>
+        <div class="skill-chip"><div class="skill-icon-wrap teal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg></div>Non-Destructive Testing (NDT)</div>
+        <div class="skill-chip"><div class="skill-icon-wrap teal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h.01M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/></svg></div>Nano-Tribology &amp; Surface Engineering</div>
+      </div>
+    </div>
+
+    <div class="skills-group">
+      <div class="skills-group-label">CAD, Simulation &amp; Software</div>
+      <div class="skills-grid">
+        <div class="skill-chip"><div class="skill-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1C4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12,2 2,7 12,12 22,7"/><polyline points="2,17 12,22 22,17"/><polyline points="2,12 12,17 22,12"/></svg></div>SolidWorks</div>
+        <div class="skill-chip"><div class="skill-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1C4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/></svg></div>Onshape (Cloud CAD)</div>
+        <div class="skill-chip"><div class="skill-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1C4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div>nTop (Lattice &amp; AM Design)</div>
+        <div class="skill-chip"><div class="skill-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1C4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></div>ANSYS (FEA &amp; CFD)</div>
+        <div class="skill-chip"><div class="skill-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1C4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>Minitab (Statistical Analysis)</div>
+        <div class="skill-chip"><div class="skill-icon-wrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1C4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>Origin (Data Visualization)</div>
+      </div>
+    </div>
+
+    <div class="skills-group">
+      <div class="skills-group-label">Energy Systems &amp; Applied Research</div>
+      <div class="skills-grid">
+        <div class="skill-chip"><div class="skill-icon-wrap gold"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>Fuel Cell Systems &amp; PEMFC</div>
+        <div class="skill-chip"><div class="skill-icon-wrap gold"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8,12 12,8 16,12"/><line x1="12" y1="16" x2="12" y2="8"/></svg></div>Hydrogen Energy Technologies</div>
+        <div class="skill-chip"><div class="skill-icon-wrap gold"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg></div>Internal Combustion Engines</div>
+        <div class="skill-chip"><div class="skill-icon-wrap gold"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>Minimum Quantity Lubrication</div>
+        <div class="skill-chip"><div class="skill-icon-wrap gold"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></div>Electrochemical Performance Eval.</div>
+        <div class="skill-chip"><div class="skill-icon-wrap gold"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/></svg></div>Numerical Simulation (CFD/FEA)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section class="reveal" id="awards">
+    <div class="section-eyebrow">Recognition &amp; Certifications</div>
+    <h2 class="stitle">Awards &amp; Achievements</h2>
+    <div class="award-grid">
+
+      <div class="award-card tilt">
+        <div class="award-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div class="award-title">AICTE ATAL Academy Certificate &mdash; Non-Destructive Testing &amp; Evaluation</div>
+        <div class="award-sub">National Institute of Technology Srinagar &middot; 2021</div>
+      </div>
+
+      <div class="award-card tilt">
+        <div class="award-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div class="award-title">AICTE ATAL Academy Certificate &mdash; Tribology in Design &amp; Manufacturing</div>
+        <div class="award-sub">Indian Institute of Technology Jammu &middot; 2020</div>
+      </div>
+
+      <div class="award-card tilt">
+        <div class="award-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div class="award-title">AICTE ATAL Academy Certificate &mdash; 3D Printing &amp; Design</div>
+        <div class="award-sub">Dr. NGP Institute of Technology &middot; 2020</div>
+      </div>
+
+      <div class="award-card tilt">
+        <div class="award-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <div class="award-title">High-End Workshop &mdash; 3D Printing, Nano-Tribology &amp; Characterization</div>
+        <div class="award-sub">NIT Srinagar &middot; Accelerate Vigyan Scheme &middot; Aug&ndash;Sep 2022</div>
+      </div>
+
+      <div class="award-card tilt">
+        <div class="award-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg></div>
+        <div class="award-title">Advanced E-SDP &mdash; Bio-Entrepreneurship: Cultivating India&rsquo;s Future</div>
+        <div class="award-sub">Indian Institute of Technology Jammu &middot; February 2026</div>
+      </div>
+
+      <div class="award-card tilt">
+        <div class="award-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg></div>
+        <div class="award-title">Advanced E-SDP &mdash; Empowering Make in India &amp; Entrepreneurial Excellence</div>
+        <div class="award-sub">Indian Institute of Technology Jammu &middot; March 2025</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="reveal" id="contact">
+    <div class="section-eyebrow">Get In Touch</div>
+    <h2 class="stitle">Contact &amp; Profiles</h2>
+    <div class="contact-grid">
+
+      <a class="contact-card" href="mailto:ahangeraqib600@gmail.com">
+        <div class="contact-icon-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div><div class="contact-lbl">Personal Email</div><div class="contact-val">ahangeraqib600@gmail.com</div></div>
+      </a>
+
+      <a class="contact-card" href="mailto:2024rme1043@iitjammu.ac.in">
+        <div class="contact-icon-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div><div class="contact-lbl">Institute Email</div><div class="contact-val">2024rme1043@iitjammu.ac.in</div></div>
+      </a>
+
+      <a class="contact-card" href="tel:+917006809304">
+        <div class="contact-icon-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div><div class="contact-lbl">Mobile</div><div class="contact-val">+91 70068 09304</div></div>
+      </a>
+
+      <div class="contact-card" style="cursor:default;">
+        <div class="contact-icon-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div><div class="contact-lbl">Location</div><div class="contact-val">IIT Jammu, J&amp;K &ndash; 181221, India</div></div>
+      </div>
+
+      <div class="contact-card" style="cursor:default;">
+        <div class="contact-icon-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div><div class="contact-lbl">Supervisor</div><div class="contact-val">Dr. Rajkumar Velu, IIT Jammu</div></div>
+      </div>
+
+      <div class="contact-card" style="cursor:default;">
+        <div class="contact-icon-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        </div>
+        <div><div class="contact-lbl">Lab</div><div class="contact-val">Additive Manufacturing Research Lab (AMRL)</div></div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-name">Aqib Fayaz</div>
+  <div class="footer-sub">PhD Research Scholar &middot; Additive Manufacturing Research Laboratory &middot; IIT Jammu</div>
+</footer>
+
+<script>
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+const navLinks = document.querySelectorAll('.nav-link:not(.nav-cta)');
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(sec => { if(window.scrollY >= sec.offsetTop - 120) current = sec.id; });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if(link.getAttribute('href') === '#' + current) link.classList.add('active');
+  });
+});
+
+document.querySelectorAll('.tilt').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = `perspective(600px) rotateY(${x*8}deg) rotateX(${-y*8}deg) translateY(-4px)`;
+  });
+  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+});
+
+const counters = document.querySelectorAll('.metric-val');
+const counterObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const el = e.target;
+      const raw = el.textContent;
+      const target = parseFloat(raw);
+      const isPlus = raw.includes('+');
+      if(isNaN(target)) return;
+      let start = 0; const dur = 1200; const step = 16;
+      const inc = target / (dur/step);
+      const timer = setInterval(() => {
+        start += inc;
+        if(start >= target){ start = target; clearInterval(timer); }
+        el.textContent = Number.isInteger(target)
+          ? Math.floor(start) + (isPlus?'+':'')
+          : start.toFixed(0);
+      }, step);
+      counterObs.unobserve(el);
+    }
+  });
+}, {threshold:0.5});
+counters.forEach(c => counterObs.observe(c));
+</script>
+</body>
+</html>

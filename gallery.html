@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="assests/iit/iitj_logo_o.png">
+  <title>AMRL Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── CSS Variables ── */
+    :root {
+      --white: #ffffff;
+      --sky-50: #f0f9ff;
+      --sky-100: #e0f2fe;
+      --sky-200: #bae6fd;
+      --sky-400: #38bdf8;
+      --sky-500: #0ea5e9;
+      --sky-600: #0284c7;
+      --sky-700: #0369a1;
+      --sky-900: #0c4a6e;
+      --text-dark: #0f2a3f;
+      --text-mid: #3a6080;
+      --shadow-soft: 0 8px 40px rgba(14, 165, 233, 0.12);
+      --shadow-float: 0 20px 60px rgba(14, 165, 233, 0.22);
+      --radius: 20px;
+      --card-h: 380px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--sky-50);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ── Page Intro Transition ── */
+    body { opacity: 0; }
+    body.loaded { animation: pageReveal 1s ease 0.2s forwards; }
+
+    @keyframes pageReveal {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── NAVBAR (same as main AMRL site) ── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: transparent;
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.3s ease;
+      animation: navSlideDown 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s both;
+    }
+
+    @keyframes navSlideDown {
+      from { opacity: 0; transform: translateY(-100%); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    #navbar.scrolled {
+      background: rgba(255,255,255,0.97);
+      box-shadow: 0 2px 20px rgba(10,34,64,0.10);
+      padding: 8px 40px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 60px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 2px 8px rgba(10,34,64,0.18));
+      transition: height 0.3s ease;
+    }
+
+    #navbar.scrolled .nav-logo img { height: 48px; }
+
+    .nav-logo-divider {
+      width: 1.5px;
+      height: 40px;
+      background: linear-gradient(to bottom, transparent, rgba(26,124,193,0.5), transparent);
+      flex-shrink: 0;
+    }
+
+    #navbar.scrolled .nav-logo-divider {
+      background: linear-gradient(to bottom, transparent, rgba(10,34,64,0.25), transparent);
+    }
+
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .nav-logo-text .lab-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.35);
+      transition: color 0.3s;
+    }
+
+    #navbar.scrolled .nav-logo-text .lab-name {
+      color: #0a2240;
+      text-shadow: none;
+    }
+
+    .nav-logo-text .dept-name {
+      font-size: 11px;
+      color: rgba(255,255,255,0.8);
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.3);
+      transition: color 0.3s;
+    }
+
+    #navbar.scrolled .nav-logo-text .dept-name {
+      color: #1a7cc1;
+      text-shadow: none;
+    }
+
+    /* back-to-home link on right */
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: rgba(255,255,255,0.85);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 7px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(6px);
+      transition: all 0.25s ease;
+      letter-spacing: 0.02em;
+      position: relative;
+  z-index: 99999;
+  pointer-events: auto;
+    }
+    #navbar{
+  z-index: 999999;
+}
+
+    #navbar.scrolled .nav-back {
+      color: #0a2240;
+      border-color: rgba(10,34,64,0.2);
+      background: rgba(10,34,64,0.05);
+    }
+
+    .nav-back:hover {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    #navbar.scrolled .nav-back:hover {
+      background: #0a2240;
+      color: white;
+      border-color: #0a2240;
+    }
+
+    /* push page content below fixed navbar */
+    .navbar-spacer { height: 90px; }
+
+    /* ── Animated Mesh Background ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 0%, rgba(186,230,253,0.55) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 90% 100%, rgba(56,189,248,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 50% 50%, rgba(240,249,255,0.9) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Hero Header ── */
+    header {
+      position: relative;
+      z-index: 10;
+      padding: 80px 40px 60px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 120px; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--sky-400), transparent);
+      border-radius: 2px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 20px;
+      background: linear-gradient(135deg, var(--sky-100), var(--sky-200));
+      color: var(--sky-700);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      border: 1px solid var(--sky-200);
+      margin-bottom: 20px;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      background: linear-gradient(135deg, var(--sky-900) 0%, var(--sky-500) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeDown 0.9s ease 0.1s both;
+    }
+
+    .subtitle {
+      margin-top: 14px;
+      font-size: 1rem;
+      color: var(--text-mid);
+      font-weight: 300;
+      max-width: 520px;
+      margin-left: auto; margin-right: auto;
+      animation: fadeDown 1s ease 0.2s both;
+    }
+
+    /* ── Filter Tabs ── */
+    .filters {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 0 20px 50px;
+      animation: fadeUp 1s ease 0.4s both;
+    }
+
+    .filter-btn {
+      padding: 9px 22px;
+      border: 1.5px solid var(--sky-200);
+      background: var(--white);
+      color: var(--text-mid);
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(14,165,233,0.06);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--sky-500), var(--sky-600));
+      color: var(--white);
+      border-color: transparent;
+      box-shadow: 0 6px 20px rgba(14,165,233,0.35);
+      transform: translateY(-2px);
+    }
+
+    /* ── Gallery Grid ── */
+    .gallery {
+      position: relative;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 28px;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px 80px;
+    }
+
+    /* ── Flip Card ── */
+    .card-wrap {
+      perspective: 1200px;
+      height: var(--card-h);
+      cursor: pointer;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .card-wrap:nth-child(1)  { animation-delay: 0.05s; }
+    .card-wrap:nth-child(2)  { animation-delay: 0.10s; }
+    .card-wrap:nth-child(3)  { animation-delay: 0.15s; }
+    .card-wrap:nth-child(4)  { animation-delay: 0.20s; }
+    .card-wrap:nth-child(5)  { animation-delay: 0.25s; }
+    .card-wrap:nth-child(6)  { animation-delay: 0.30s; }
+    .card-wrap:nth-child(7)  { animation-delay: 0.35s; }
+    .card-wrap:nth-child(8)  { animation-delay: 0.40s; }
+    .card-wrap:nth-child(9)  { animation-delay: 0.45s; }
+    .card-wrap:nth-child(10) { animation-delay: 0.50s; }
+
+    .card-inner {
+      position: relative;
+      width: 100%; height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.75s cubic-bezier(0.4, 0.2, 0.2, 1);
+      border-radius: var(--radius);
+    }
+
+    .card-wrap.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    /* Hover lift – only when NOT flipped */
+    .card-wrap:not(.flipped):hover .card-inner {
+      transform: translateY(-8px) rotateX(4deg) scale(1.02);
+      box-shadow: var(--shadow-float);
+    }
+
+    /* ── Front Face ── */
+    .card-front,
+    .card-back {
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      overflow: hidden;
+    }
+
+    .card-front {
+      background: var(--white);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card-front img {
+      width: 100%; height: 75%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .card-wrap:not(.flipped):hover .card-front img {
+      transform: scale(1.05);
+    }
+
+    .card-front-info {
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--white);
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .card-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: var(--sky-100);
+      color: var(--sky-600);
+      letter-spacing: 0.05em;
+    }
+
+    .flip-hint {
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--sky-400);
+      padding-bottom: 10px;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Back Face ── */
+    .card-back {
+      background: linear-gradient(145deg, var(--sky-700), var(--sky-900));
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 26px;
+      text-align: center;
+      box-shadow: var(--shadow-float);
+    }
+
+    .card-back::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.12) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(56,189,248,0.2) 0%, transparent 50%);
+    }
+
+    .back-icon {
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      position: relative;
+    }
+
+    .back-icon svg {
+      width: 24px; height: 24px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .back-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .back-divider {
+      width: 40px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--sky-400), transparent);
+      border-radius: 2px;
+      margin: 0 auto 14px;
+      position: relative;
+    }
+
+    .back-desc {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.85);
+      font-weight: 300;
+      position: relative;
+    }
+
+    .back-close {
+      margin-top: 22px;
+      padding: 8px 22px;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      border-radius: 100px;
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.9);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .back-close:hover {
+      background: rgba(255,255,255,0.22);
+    }
+
+    /* ── Floating orbs decoration ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(70px);
+      pointer-events: none;
+      z-index: 0;
+      animation: float 8s ease-in-out infinite alternate;
+    }
+    .orb-1 { width:350px; height:350px; background:rgba(186,230,253,0.45); top:-80px; right:-80px; animation-duration:9s; }
+    .orb-2 { width:250px; height:250px; background:rgba(56,189,248,0.2); bottom:10%; left:-60px; animation-duration:11s; animation-delay:-3s; }
+    .orb-3 { width:180px; height:180px; background:rgba(14,165,233,0.15); top:40%; right:5%; animation-duration:7s; animation-delay:-5s; }
+
+    /* ── Footer ── */
+    footer {
+      position: relative; z-index: 10;
+      text-align: center;
+      padding: 30px;
+      font-size: 0.8rem;
+      color: var(--text-mid);
+      border-top: 1px solid var(--sky-100);
+      background: var(--white);
+    }
+
+    /* ── Keyframes ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      from { transform: translateY(0) scale(1); }
+      to   { transform: translateY(-30px) scale(1.06); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .gallery { padding: 0 16px 60px; gap: 20px; }
+      header   { padding: 50px 20px 40px; }
+      :root    { --card-h: 340px; }
+    }
+
+    /* ── Lightbox ── */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(12, 74, 110, 0.85);
+      backdrop-filter: blur(10px);
+      align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 88vw; max-height: 85vh;
+      border-radius: 16px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+      animation: zoomIn 0.35s ease;
+    }
+    .lightbox-close {
+      position: absolute; top: 24px; right: 32px;
+      font-size: 2rem; color: #fff; cursor: pointer;
+      line-height: 1; opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .lightbox-close:hover { opacity: 1; }
+
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.85); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAVBAR (same as main INDEX site) ══ -->
+  <nav id="navbar">
+    <a class="nav-logo" href="index.html">
+      <img src="assests\iit\iitjlogo.png" alt="IIT Jammu Logo"
+           onerror="this.style.display='none'" />
+      <div class="nav-logo-divider"></div>
+      <div class="nav-logo-text">
+        <span class="lab-name" style="color:#104689">AMRL</span>
+        <span class="dept-name" style="color:#104689">IIT Jammu &nbsp;•&nbsp; MECHANICAL Department</span>
+      </div>
+    </a>
+    <a class="nav-back" href="index.html" style="color:#104689">
+      ← Back to Main Site
+    </a>
+  </nav>
+
+  <!-- spacer so content isn't hidden under fixed navbar -->
+  <div class="navbar-spacer"></div>
+
+  <!-- Decorative orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- ── Header ── -->
+  <header>
+    <div class="badge">✦ AMRL Life &amp; Beyond</div>
+    <h1>Our Gallery</h1>
+    <p class="subtitle">Moments that define excellence — click any photo to discover its story</p>
+  </header>
+
+  <!-- ── Filters ── -->
+   <!--
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="academics">Academics</button>
+    <button class="filter-btn" data-filter="events">Events</button>
+    <button class="filter-btn" data-filter="campus">Campus</button>
+    <button class="filter-btn" data-filter="sports">Sports</button>
+    <button class="filter-btn" data-filter="cultural">Cultural</button>
+  </div>
+  -->
+  <!-- ── Gallery ── -->
+  <div class="gallery" id="gallery">
+
+
+    <!-- Card 2 -->
+    <div class="card-wrap" data-category="events">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assests/gallery_pics/1.jpeg" alt="img2" />
+          <div class="card-front-info">
+            <span class="card-title">Research discussion session</span>
+            <!-- <span class="card-tag">Events</span> -->
+          </div>
+          <div class="flip-hint">↻ Click to explore</div>
+        </div>
+        <div class="card-back">
+          <div class="back-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 15l-2 5L9 9l11 4-5 2zm0 0l5-5"/></svg>
+          </div>
+          <div class="back-title">Research discussion session</div>
+          <div class="back-divider"></div>
+          <p class="back-desc">A collaborative group discussion in progress at the AMRL workspace, with team members gathered around laptops and research materials — reflecting the lab's culture of active knowledge-sharing and academic dialogue.</p>
+          <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card-wrap" data-category="campus">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assests/gallery_pics/3.jpeg" alt="Library" />
+          <div class="card-front-info">
+            <span class="card-title">International research visit (Taiwan)</span>
+            <!-- <span class="card-tag">Campus</span> -->
+          </div>
+          <div class="flip-hint">↻ Click to explore</div>
+        </div>
+        <div class="card-back">
+          <div class="back-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <div class="back-title">International Research Visit (Taiwan)</div>
+          <div class="back-divider"></div>
+          <p class="back-desc">AMRL researchers at the Chiang Kai-shek Memorial Hall, Taipei, during an international academic visit — a testament to the lab's growing global research footprint and cross-border scholarly engagement.</p>
+          <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card-wrap" data-category="sports">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assests/gallery_pics/4.jpeg" alt="Sports Ground" />
+          <div class="card-front-info">
+            <span class="card-title">AMRL core team</span>
+            <!-- <span class="card-tag">Sports</span> -->
+          </div>
+          <div class="flip-hint">↻ Click to explore</div>
+        </div>
+        <div class="card-back">
+          <div class="back-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div class="back-title">AMRL Core Team</div>
+          <div class="back-divider"></div>
+              <p class="back-desc">The core research team of AMRL assembled within the laboratory workspace — a dedicated group of scholars and technical staff driving innovation in additive manufacturing and composite materials at IIT Jammu.</p>
+              <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="card-wrap" data-category="cultural">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assests/gallery_pics/5.jpeg" alt="Cultural Fest" />
+          <div class="card-front-info">
+            <span class="card-title">Team dinner & celebration</span>
+            <!-- <span class="card-tag">Cultural</span> -->
+          </div>
+          <div class="flip-hint">↻ Click to explore</div>
+        </div>
+        <div class="card-back">
+          <div class="back-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+          </div>
+          <div class="back-title">Team Dinner & Celebration</div>
+          <div class="back-divider"></div>
+          <p class="back-desc">The AMRL family gathers for a celebratory team dinner, strengthening bonds beyond the lab — a warm reminder that great research thrives on great camaraderie, trust, and shared milestones.</p>
+          <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="card-wrap" data-category="academics">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assests/gallery_pics/6.jpeg" alt="Seminar Hall" />
+          <div class="card-front-info">
+            <span class="card-title"> Full lab group photo</span>
+            <!-- <span class="card-tag">Academics</span> -->
+          </div>
+          <div class="flip-hint">↻ Click to explore</div>
+        </div>
+        <div class="card-back">
+          <div class="back-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <div class="back-title">Full Lab Group Photo</div>
+          <div class="back-divider"></div>
+          <p class="back-desc">AMRL's full research contingent — faculty, PhD scholars, and technical staff — photographed in front of the lab's bioprinting research posters, representing the breadth and depth of the team's ongoing work.</p>
+          <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="card-wrap" data-category="campus">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assests/gallery_pics/7.jpeg" alt="Campus Garden" />
+          <div class="card-front-info">
+            <span class="card-title">Winter excursion (Kashmir/Gulmarg)</span>
+            <!-- <span class="card-tag">Campus</span> -->
+          </div>
+          <div class="flip-hint">↻ Click to explore</div>
+        </div>
+        <div class="card-back">
+          <div class="back-icon">
+            <svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+          </div>
+          <div class="back-title">Winter Excursion (Kashmir/Gulmarg)</div>
+          <div class="back-divider"></div>
+          <p class="back-desc">AMRL members enjoying a winter retreat amid the snow-covered meadows of Kashmir — a well-deserved break that rejuvenates the team's spirit and strengthens the bonds that make collaborative research thrive.</p>
+          <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 8 -->
+    <div class="card-wrap" data-category="events">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assests/gallery_pics/8.jpeg" alt="Tech Fest" />
+          <div class="card-front-info">
+            <span class="card-title">Media coverage: IIT Jammu outreach</span>
+            <!-- <span class="card-tag">Events</span> -->
+          </div>
+          <div class="flip-hint">↻ Click to explore</div>
+        </div>
+        <div class="card-back">
+          <div class="back-icon">
+            <svg viewBox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <div class="back-title">Media Coverage: IIT Jammu Outreach</div>
+          <div class="back-divider"></div>
+          <p class="back-desc">A newspaper feature highlighting IIT Jammu's outreach and skill development initiative, in which AMRL participated by hosting students from Jammu Sanskriti School for hands-on demonstrations in the 3D Additive Manufacturing Lab.</p>
+          <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 9 -->
+    <div class="card-wrap" data-category="sports">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assests/gallery_pics/9.jpeg" alt="Swimming Pool" />
+          <div class="card-front-info">
+            <span class="card-title">International collaboration (Europe)</span>
+            <!-- <span class="card-tag">Sports</span> -->
+          </div>
+          <div class="flip-hint">↻ Click to explore</div>
+        </div>
+        <div class="card-back">
+          <div class="back-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 18c.6.5 1.2 1 2.5 1s1.9-.5 2.5-1 1.2-1 2.5-1 1.9.5 2.5 1 1.2 1 2.5 1 1.9-.5 2.5-1 1.2-1 2.5-1M3 6l9-3 9 3M12 3v15"/></svg>
+          </div>
+          <div class="back-title">International Collaboration (Europe)</div>
+          <div class="back-divider"></div>
+          <p class="back-desc">Dr. Rajkumar Velu with European research partners in a university laboratory abroad — capturing AMRL's active pursuit of international collaborations that enrich research quality and expand global academic networks.</p>
+          <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 10 -->
+    <div class="card-wrap" data-category="cultural">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assests/gallery_pics/10.jpeg" alt="Annual Day" />
+          <div class="card-front-info">
+            <span class="card-title">Research collaboration meeting (Spain/Europe)</span>
+            <!-- <span class="card-tag">Cultural</span> -->
+          </div>
+          <div class="flip-hint">↻ Click to explore</div>
+        </div>
+        <div class="card-back">
+          <div class="back-icon">
+            <svg viewBox="0 0 24 24"><path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+          </div>
+          <div class="back-title">Research Collaboration Meeting (Spain/Europe)</div>
+          <div class="back-divider"></div>
+          <p class="back-desc">AMRL faculty in a formal collaborative meeting with international research partners on an overseas campus — reinforcing the lab's commitment to building meaningful cross-institutional partnerships in advanced manufacturing research.</p>
+          <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 11 -->
+    <div class="card-wrap" data-category="sports">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assests/gallery_pics/11.jpeg" alt="Swimming Pool" />
+          <div class="card-front-info">
+            <span class="card-title">AMRL research team</span>
+            <!-- <span class="card-tag">Sports</span> -->
+          </div>
+          <div class="flip-hint">↻ Click to explore</div>
+        </div>
+        <div class="card-back">
+          <div class="back-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 18c.6.5 1.2 1 2.5 1s1.9-.5 2.5-1 1.2-1 2.5-1 1.9.5 2.5 1 1.2 1 2.5 1 1.9-.5 2.5-1 1.2-1 2.5-1M3 6l9-3 9 3M12 3v15"/></svg>
+          </div>
+          <div class="back-title">AMRL Research Team</div>
+          <div class="back-divider"></div>
+          <p class="back-desc">A composed group portrait of AMRL researchers within the laboratory environment — united by a shared passion for advancing additive manufacturing science and delivering impactful engineering solutions.</p>
+          <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Card 12 -->
+    <div class="card-wrap" data-category="sports">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assests/gallery_pics/12.jpeg" alt="Swimming Pool" />
+          <div class="card-front-info">
+            <span class="card-title">3D Printing Showcase with Students</span>
+            <!-- <span class="card-tag">Sports</span> -->
+          </div>
+          <div class="flip-hint">↻ Click to explore</div>
+        </div>
+        <div class="card-back">
+          <div class="back-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 18c.6.5 1.2 1 2.5 1s1.9-.5 2.5-1 1.2-1 2.5-1 1.9.5 2.5 1 1.2 1 2.5 1 1.9-.5 2.5-1 1.2-1 2.5-1M3 6l9-3 9 3M12 3v15"/></svg>
+          </div>
+          <div class="back-title">3D Printing Showcase with Students</div>
+          <div class="back-divider"></div>
+          <p class="back-desc">AMRL researchers and visiting students proudly display a collection of 3D-printed figurines produced in the lab — a hands-on demonstration that inspires the next generation of engineers and showcases the lab's fabrication capabilities.</p>
+          <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Card 13 -->
+    <div class="card-wrap" data-category="sports">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assests/gallery_pics/13.jpeg" alt="Swimming Pool" />
+          <div class="card-front-info">
+            <span class="card-title">NAVA-PRAVARTAN 2025 exhibition</span>
+            <!-- <span class="card-tag">Sports</span> -->
+          </div>
+          <div class="flip-hint">↻ Click to explore</div>
+        </div>
+        <div class="card-back">
+          <div class="back-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 18c.6.5 1.2 1 2.5 1s1.9-.5 2.5-1 1.2-1 2.5-1 1.9.5 2.5 1 1.2 1 2.5 1 1.9-.5 2.5-1 1.2-1 2.5-1M3 6l9-3 9 3M12 3v15"/></svg>
+          </div>
+          <div class="back-title">NAVA-PRAVARTAN 2025 exhibition</div>
+          <div class="back-divider"></div>
+          <p class="back-desc">The AMRL stall at NAVA-PRAVARTAN 2025, IIT Jammu's innovation and technology exhibition, drawing visitors including defence personnel to its displays on functionally graded prosthetics, composite printing, and dental implant research.</p>
+          <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Card 14 -->
+    <div class="card-wrap" data-category="sports">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assests/gallery_pics/14.jpeg" alt="Swimming Pool" />
+          <div class="card-front-info">
+            <span class="card-title">Research team in the lab</span>
+            <!-- <span class="card-tag">Sports</span> -->
+          </div>
+          <div class="flip-hint">↻ Click to explore</div>
+        </div>
+        <div class="card-back">
+          <div class="back-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 18c.6.5 1.2 1 2.5 1s1.9-.5 2.5-1 1.2-1 2.5-1 1.9.5 2.5 1 1.2 1 2.5 1 1.9-.5 2.5-1 1.2-1 2.5-1M3 6l9-3 9 3M12 3v15"/></svg>
+          </div>
+          <div class="back-title">Olympic Pool</div>
+          <div class="back-divider"></div>
+          <p class="back-desc">A 50-metre Olympic-standard swimming pool open year-round for competitive training and recreation, producing state-level champions year after year.</p>
+          <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Card 15 -->
+    <div class="card-wrap" data-category="sports">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assests/gallery_pics/15.jpeg" alt="Swimming Pool" />
+          <div class="card-front-info">
+            <span class="card-title">Olympic Pool</span>
+            <!-- <span class="card-tag">Sports</span> -->
+          </div>
+          <div class="flip-hint">↻ Click to explore</div>
+        </div>
+        <div class="card-back">
+          <div class="back-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 18c.6.5 1.2 1 2.5 1s1.9-.5 2.5-1 1.2-1 2.5-1 1.9.5 2.5 1 1.2 1 2.5 1 1.9-.5 2.5-1 1.2-1 2.5-1M3 6l9-3 9 3M12 3v15"/></svg>
+          </div>
+          <div class="back-title">Olympic Pool</div>
+          <div class="back-divider"></div>
+          <p class="back-desc">A 50-metre Olympic-standard swimming pool open year-round for competitive training and recreation, producing state-level champions year after year.</p>
+          <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!--ALTER GALLERY-->
+
+    <!--TO INSERT THE NEW PHOTOS CARD START COPYING-->
+
+    <!-- Card 16 -->
+    <div class="card-wrap" data-category="sports">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="assests/gallery_pics/16.jpeg" alt="Swimming Pool" />
+          <div class="card-front-info">
+            <span class="card-title">Olympic Pool</span>
+            <!-- <span class="card-tag">Sports</span> -->
+          </div>
+          <div class="flip-hint">↻ Click to explore</div>
+        </div>
+        <div class="card-back">
+          <div class="back-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 18c.6.5 1.2 1 2.5 1s1.9-.5 2.5-1 1.2-1 2.5-1 1.9.5 2.5 1 1.2 1 2.5 1 1.9-.5 2.5-1 1.2-1 2.5-1M3 6l9-3 9 3M12 3v15"/></svg>
+          </div>
+          <div class="back-title">Olympic Pool</div>
+          <div class="back-divider"></div>
+          <p class="back-desc">A 50-metre Olympic-standard swimming pool open year-round for competitive training and recreation, producing state-level champions year after year.</p>
+          <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!--TO INSERT THE NEW PHOTOS CARD END COPYING-->
+
+    <!--PAST THE COPIED HERE AND MODIFY THE IMAGE SRC AND DESCRIPTION-->
+
+    
+    <!--WITHIN HERE-->
+
+
+
+  </div>
+
+  <!-- ── Lightbox ── -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">×</span>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer>
+    © 2025 IIT JAMMU &nbsp;|&nbsp; AMRL Gallery &nbsp;|&nbsp; All rights reserved
+  </footer>
+
+  <script>
+    /* ── Navbar scroll behaviour ── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    /* ── Page load reveal after 1 sec ── */
+    window.addEventListener('load', () => {
+      setTimeout(() => document.body.classList.add('loaded'), 100);
+    });
+
+    /* ── Flip cards on click ── */
+    document.querySelectorAll('.card-wrap').forEach(card => {
+      card.addEventListener('click', function (e) {
+        if (e.target.classList.contains('back-close')) return;
+        this.classList.toggle('flipped');
+      });
+    });
+
+    function flipBack(e) {
+      e.stopPropagation();
+      const card = e.target.closest('.card-wrap');
+      if (card) card.classList.remove('flipped');
+    }
+
+    /* ── Filter buttons ── */
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter;
+        document.querySelectorAll('.card-wrap').forEach(card => {
+          const match = filter === 'all' || card.dataset.category === filter;
+          card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+          if (match) {
+            card.style.opacity = '1';
+            card.style.transform = '';
+            card.style.pointerEvents = '';
+            card.style.display = '';
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.9)';
+            card.style.pointerEvents = 'none';
+            setTimeout(() => {
+              if (card.style.opacity === '0') card.style.display = 'none';
+            }, 400);
+          }
+        });
+        // Reshow matching after hiding others
+        document.querySelectorAll('.card-wrap').forEach(card => {
+          const match = filter === 'all' || card.dataset.category === filter;
+          if (match) card.style.display = '';
+        });
+      });
+    });
+
+    /* ── Lightbox on double-click ── */
+    document.querySelectorAll('.card-front img').forEach(img => {
+      img.addEventListener('dblclick', e => {
+        e.stopPropagation();
+        document.getElementById('lightbox-img').src = img.src;
+        document.getElementById('lightbox').classList.add('open');
+      });
+    });
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+</body>
+</html>
