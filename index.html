@@ -710,12 +710,34 @@
     .team-deco { position: absolute; border-radius: 50%; background: var(--sky); opacity: 0.06; animation: floatDot 7s ease-in-out infinite; }
     @keyframes floatDot { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-18px);} }
     .team-split-header { margin-bottom: 48px; }
-    .team-split-grid { display: grid; grid-template-columns: 420px 1fr; gap: 38px; align-items: start; }
-    .postdoc-label, .phd-label {
-      display: inline-flex; align-items: center; gap: 8px; background: var(--navy); color: white;
-      font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-      padding: 7px 16px; border-radius: 100px; margin-bottom: 22px;
-    }
+    .team-split-grid { 
+  display: flex;
+  flex-direction: column;
+  gap: 38px; 
+  align-items: start; 
+   }
+    .postdoc-label,
+.phd-label{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    width: fit-content;      /* important */
+    align-self: flex-start;  /* important */
+
+    background: var(--navy);
+    color: white;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+
+    padding: 7px 16px;
+    border-radius: 100px;
+
+    margin-bottom: 22px;
+}
     .postdoc-label::before, .phd-label::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #7ec8f5; }
     .postdoc-card {
       background: white; border-radius: 24px; overflow: hidden;
@@ -724,9 +746,15 @@
       transition: all .35s ease;
       transition: all 0.3s ease;
     }
+    .postdoc-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+  width: 100%;
+}
     .postdoc-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(10,34,64,0.14); }
     .postdoc-photo {
-      height: 370px; position: relative; overflow: hidden;
+      height: 220px; position: relative; overflow: hidden;
       background: linear-gradient(135deg,#0a2240 0%,#1a7cc1 100%);
       transform: translateY(-6px);
   box-shadow: 0 14px 30px rgba(0,0,0,0.12);
@@ -1843,7 +1871,7 @@
     <div class="container">
       <div class="people-header">
         <div class="section-tag">Our Team</div>
-        <h2 class="section-title">Professor</h2>
+        <h2 class="section-title">Faculty Incharge</h2>
         <p class="section-sub">A distinguished team of researchers advancing the frontiers of additive manufacturing and materials engineering.</p>
       </div>
 
@@ -1872,13 +1900,16 @@
               </div>
               <div class="prof-divider"></div>
               <div class="prof-links">
-                <a href="mailto:vraj.kumar@iitjammu.ac.in" class="prof-link">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email
-                </a>
+                <a href="https://www.linkedin.com/in/dr-rajkumar-velu-01798258/" target="_blank" class="prof-link">
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6S0 4.88 0 3.5 1.12 1 2.48 1s2.5 1.12 2.5 2.5zM0.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.1c.5-1 1.8-2.2 3.8-2.2 4.1 0 4.9 2.7 4.9 6.3V24h-4v-7.4c0-1.8 0-4.1-2.5-4.1s-2.9 1.9-2.9 4V24h-4V8z"/>
+  </svg>
+  LinkedIn
+</a>
                 <a href="https://iitjammu.ac.in/faculty/~vrajkumar" target="_blank" class="prof-link">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>Faculty Profile
                 </a>
-                <a href="https://scholar.google.com" target="_blank" class="prof-link">
+                <a href="https://scholar.google.com/citations?user=-0-3X28AAAAJ&hl=en&oi=ao" target="_blank" class="prof-link">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Google Scholar
                 </a>
               </div>
@@ -1908,7 +1939,7 @@
         <!-- ════ LEFT: POST DOC ════ -->
 <div class="postdoc-column reveal">
   <div class="postdoc-label">Post Doctorate</div>
-
+  <div class="postdoc-column reveal"></div>
   <!-- ADD onclick HERE -->
   <div class="postdoc-card" 
        onclick="window.location.href='bobby-tyagi-portfolio.html'"
@@ -1917,14 +1948,14 @@
     <div class="postdoc-photo">
       <img src="assests/staff_pics/bobby.png" alt="Bobby Tyagi">
       <div class="postdoc-photo-overlay"></div>
-      <div class="postdoc-photo-badge">Post Doctoral</div>
+      <div class="postdoc-photo-badge">Project Assistant</div>
     </div>
 
     <div class="postdoc-body">
       <div class="postdoc-name">Dr. Bobby Tyagi</div>
 
       <div class="postdoc-role">
-        Project Scientist · Additive Manufacturing Research Lab
+        Project Scientist
       </div>
 
       <div class="postdoc-speciality">
@@ -1935,11 +1966,77 @@
         PhD · Dayalbagh Educational Institute, Deemed University<br>
         Research Area:Additive Manufacturing
       </div>
-
       <div class="postdoc-tags">
         <span class="postdoc-tag">Metal Additive Manufacturing</span>
         <span class="postdoc-tag">Microstructure</span>
         <span class="postdoc-tag">SLM</span>
+      </div>
+      <br><br><br>
+      <div class="postdoc-divider"></div>
+
+      <div class="postdoc-links">
+
+        <!-- PROFILE BUTTON -->
+        <a href="bobby-tyagi-portfolio.html" class="postdoc-link">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round">
+            <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/>
+            <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
+          </svg>
+          Profile
+        </a>
+
+        <!-- SCHOLAR BUTTON -->
+        <a href="bobby-tyagi-portfolio.html" class="postdoc-link">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          Scholar
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Card 2-->
+
+  <!-- ADD onclick HERE -->
+  <div class="postdoc-card" 
+       onclick="window.location.href='jairam-raigar-portfolio.html'"
+       style="cursor: pointer;">
+
+    <div class="postdoc-photo">
+      <img src="assests/staff_pics/jairam_png.png" alt="Jairam Raigar">
+      <div class="postdoc-photo-overlay"></div>
+      <div class="postdoc-photo-badge">Post Doctoral Fellow</div>
+    </div>
+
+    <div class="postdoc-body">
+      <div class="postdoc-name">Dr. Jairam Raigar</div>
+
+      <div class="postdoc-role">
+        Post Doctoral Fellow
+      </div>
+
+      <div class="postdoc-speciality">
+        Smart Additive Manufacturing • Laser Powder Bed Fusion • AI-Driven Process Monitoring
+      </div>
+
+      <div class="postdoc-dept">
+        PhD in Mechanical Engineering · IIT Jammu<br>
+        Research Area: Smart Additive Manufacturing, Laser Powder Bed Fusion, Polymer Composites
+      </div>
+
+      <div class="postdoc-tags">
+        <span class="postdoc-tag">Laser Powder Bed Fusion</span>
+        <span class="postdoc-tag">Smart Manufacturing</span>
+        <span class="postdoc-tag">TPMS Lattices</span>
+        <span class="postdoc-tag">Polymer Composites</span>
       </div>
 
       <div class="postdoc-divider"></div>
@@ -1971,40 +2068,29 @@
       </div>
     </div>
   </div>
+
+
+
+
 </div>
         <!-- ════ RIGHT: PhD STUDENTS ════ -->
         <div class="phd-column reveal" style="transition-delay:0.15s;">
           <div class="phd-label">PhD Scholars</div>
-          <div class="phd-grid">
 
-            <!-- PhD Card 1 -->
-          <div class="postdoc-card" 
-       onclick="window.location.href='jairam-raigar-portfolio.html'"
-       style="cursor: pointer;">
-            <div class="phd-card">
-              <div class="phd-photo" style="background:linear-gradient(135deg,#0f3460 0%,#1a7cc1 100%);">
-                <!-- Replace src with actual student photo -->
-                <img src="assests/staff_pics/jayaram_1.png" alt="Aysha Farzana" style=" width:100%; height:100%; object-fit:contain; object-position:center top; background:#0f4c81;">
-                <div class="phd-photo-overlay"></div>
-              </div>
-              <div class="phd-body">
-                <div class="phd-name">Dr. Jairam Raigar</div>
-                <div class="phd-role">PhD Scholar · 2021 Batch</div>
-                <div class="phd-topic">Laser Powder Bed Fusion (L-PBF), Thermoset Polymer Composites, TPMS Lattice Structures, and Sustainable Additive Manufacturing for Aerospace & Biomedical Applications.</div>
-                <div class="phd-divider"></div>
-                <div class="phd-links">
-                  <a href="#" class="phd-link">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    Email
-                  </a>
-                  <a href="#" class="phd-link">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                    Scholar
-                  </a>
-                </div>
-              </div>
-            </div>
-            </div>
+          <!-- PhD Tab Buttons -->
+<div class="project-tabs" style="margin: 0 0 28px 0; justify-content: flex-start;">
+  <button class="tab-btn active" id="tab-phd-ongoing" onclick="switchPhdTab('ongoing')">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    Ongoing <span class="tab-count">5</span>
+  </button>
+  <button class="tab-btn" id="tab-phd-completed" onclick="switchPhdTab('completed')">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+    Completed <span class="tab-count">1</span>
+  </button>
+</div>
+
+<!-- Ongoing PhD Panel -->
+<div id="phd-panel-ongoing" class="phd-grid">
 
             <!-- PhD Card 2 -->
              <!-- ADD onclick HERE -->
@@ -2066,36 +2152,7 @@
             </div>
           </div>
 
-            <!-- PhD Card 4 -->
-            <div class="phd-card">
-
-              <!-- ADD onclick HERE -->
-  <div class="postdoc-card" 
-       onclick="window.location.href='aysha-farzana-portfolio.html'"
-       style="cursor: pointer;">
-
-              <div class="phd-photo" style="background:linear-gradient(135deg,#12294d 0%,#1a6ca1 100%);">
-                <img src="assests/staff_pics/aysha_!.png" alt="Aysha Farzana" style=" width:100%; height:100%; object-fit:contain; object-position:center top; background:#0f4c81;">
-                <div class="phd-photo-overlay"></div>
-              </div>
-              <div class="phd-body">
-                <div class="phd-name">Aysha Farzana</div>
-                <div class="phd-role">PhD Scholar · 2023 Batch</div>
-                <div class="phd-topic">3D Printed Polymer Composites, Carbon Fiber Reinforced Materials, Polymer Nanocomposites, Bio-Fabrication, Tissue Engineering Scaffolds, and Sustainable Additive Manufacturing for Biomedical Applications.</div>
-                <div class="phd-divider"></div>
-                <div class="phd-links">
-                  <a href="#" class="phd-link">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    Email
-                  </a>
-                  <a href="#" class="phd-link">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                    Scholar
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+            
 
             <!-- PhD Card 5 -->
             <div class="phd-card">
@@ -2129,7 +2186,37 @@
             </div>
 
           </div>
-          
+          <!-- PhD Card 4 -->
+            <div class="phd-card">
+
+              <!-- ADD onclick HERE -->
+  <div class="postdoc-card" 
+       onclick="window.location.href='aysha-farzana-portfolio.html'"
+       style="cursor: pointer;">
+
+              <div class="phd-photo" style="background:linear-gradient(135deg,#12294d 0%,#1a6ca1 100%);">
+                <img src="assests/staff_pics/aysha_!.png" alt="Aysha Farzana" style=" width:100%; height:100%; object-fit:contain; object-position:center top; background:#0f4c81;">
+                <div class="phd-photo-overlay"></div>
+              </div>
+              <div class="phd-body">
+                <div class="phd-name">Aysha Farzana</div>
+                <div class="phd-role">PhD Scholar · 2023 Batch</div>
+                <div class="phd-topic">3D Printed Polymer Composites, Carbon Fiber Reinforced Materials, Polymer Nanocomposites, Bio-Fabrication, Tissue Engineering Scaffolds, and Sustainable Additive Manufacturing for Biomedical Applications.</div>
+                <div class="phd-divider"></div>
+                <div class="phd-links">
+                  <a href="#" class="phd-link">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    Email
+                  </a>
+                  <a href="#" class="phd-link">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    Scholar
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- PhD Card 6 -->
              <!-- ADD onclick HERE -->
   <div class="postdoc-card" 
@@ -2159,10 +2246,41 @@
               </div>
             </div>
 
+</div>
+
+<!-- Completed PhD Panel -->
+<div id="phd-panel-completed" class="phd-grid" style="display:none;">
+
+  <!-- PhD Card 1 -->
+          <div class="postdoc-card" 
+       onclick="window.location.href='jairam-raigar-portfolio.html'"
+       style="cursor: pointer;">
+            <div class="phd-card">
+              <div class="phd-photo" style="background:linear-gradient(135deg,#0f3460 0%,#1a7cc1 100%);">
+                <!-- Replace src with actual student photo -->
+                <img src="assests/staff_pics/jayaram_1.png" alt="Aysha Farzana" style=" width:100%; height:100%; object-fit:contain; object-position:center top; background:#0f4c81;">
+                <div class="phd-photo-overlay"></div>
+              </div>
+              <div class="phd-body">
+                <div class="phd-name">Dr. Jairam Raigar</div>
+                <div class="phd-role">PhD Scholar · 2021 Batch</div>
+                <div class="phd-topic">Laser Powder Bed Fusion (L-PBF), Thermoset Polymer Composites, TPMS Lattice Structures, and Sustainable Additive Manufacturing for Aerospace & Biomedical Applications.</div>
+                <div class="phd-divider"></div>
+                <div class="phd-links">
+                  <a href="#" class="phd-link">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    Email
+                  </a>
+                  <a href="#" class="phd-link">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    Scholar
+                  </a>
+                </div>
+              </div>
+            </div>
+            </div>
+</div>
           
-          
-          <!-- /phd-grid -->
-        </div><!-- /phd-column -->
 
       </div><!-- /team-split-grid -->
     </div><!-- /container -->
@@ -2723,8 +2841,17 @@ function heroSlide(dir) {
 
     // ← NEW: start countdown to advance to the next slide automatically
     startImageTimer();
+
   }
 }
+
+    function switchPhdTab(tab) {
+  document.getElementById('tab-phd-ongoing').classList.toggle('active', tab === 'ongoing');
+  document.getElementById('tab-phd-completed').classList.toggle('active', tab === 'completed');
+  document.getElementById('phd-panel-ongoing').style.display = tab === 'ongoing' ? 'grid' : 'none';
+  document.getElementById('phd-panel-completed').style.display = tab === 'completed' ? 'grid' : 'none';
+}
+
   </script>
 
 </body>
