@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="assests/iit/iitj_logo_o.png">
+  <title>AMRL Collaborations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --white: #ffffff;
+      --sky-50: #f0f9ff;
+      --sky-100: #e0f2fe;
+      --sky-200: #bae6fd;
+      --sky-400: #38bdf8;
+      --sky-500: #0ea5e9;
+      --sky-600: #0284c7;
+      --sky-700: #0369a1;
+      --sky-900: #0c4a6e;
+      --text-dark: #0f2a3f;
+      --text-mid: #3a6080;
+      --shadow-soft: 0 8px 40px rgba(14,165,233,0.12);
+      --shadow-float: 0 20px 60px rgba(14,165,233,0.28);
+      --radius: 22px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--sky-50);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      opacity: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    body.loaded { animation: pageReveal 1s ease 0.2s forwards; }
+    @keyframes pageReveal {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 0%, rgba(186,230,253,0.55) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 90% 100%, rgba(56,189,248,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 50% 50%, rgba(240,249,255,0.9) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(70px);
+      pointer-events: none;
+      z-index: 0;
+      animation: float 8s ease-in-out infinite alternate;
+    }
+    .orb-1 { width:350px; height:350px; background:rgba(186,230,253,0.45); top:-80px; right:-80px; animation-duration:9s; }
+    .orb-2 { width:250px; height:250px; background:rgba(56,189,248,0.20); bottom:10%; left:-60px; animation-duration:11s; animation-delay:-3s; }
+    .orb-3 { width:180px; height:180px; background:rgba(14,165,233,0.15); top:40%; right:5%; animation-duration:7s; animation-delay:-5s; }
+    @keyframes float {
+      from { transform: translateY(0) scale(1); }
+      to   { transform: translateY(-30px) scale(1.06); }
+    }
+
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999999;
+      background: transparent;
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.3s ease;
+      animation: navSlideDown 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s both;
+    }
+    @keyframes navSlideDown {
+      from { opacity: 0; transform: translateY(-100%); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    #navbar.scrolled {
+      background: rgba(255,255,255,0.97);
+      box-shadow: 0 2px 20px rgba(10,34,64,0.10);
+      padding: 8px 40px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .nav-logo img { height: 60px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 8px rgba(10,34,64,0.18)); transition: height 0.3s ease; }
+    #navbar.scrolled .nav-logo img { height: 48px; }
+    .nav-logo-divider { width: 1.5px; height: 40px; background: linear-gradient(to bottom, transparent, rgba(26,124,193,0.5), transparent); flex-shrink: 0; }
+    .nav-logo-text { display: flex; flex-direction: column; gap: 1px; }
+    .nav-logo-text .lab-name { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: #104689; letter-spacing: 0.05em; line-height: 1.2; }
+    .nav-logo-text .dept-name { font-size: 11px; color: #104689; font-weight: 400; letter-spacing: 0.03em; }
+    .nav-back { display: flex; align-items: center; gap: 6px; text-decoration: none; color: #104689; font-size: 13px; font-weight: 500; padding: 7px 16px; border-radius: 8px; border: 1px solid rgba(16,70,137,0.3); backdrop-filter: blur(6px); transition: all 0.25s ease; }
+    .nav-back:hover { background: #104689; color: white; }
+    .navbar-spacer { height: 90px; }
+
+    /* Main content grows to fill */
+    .page-content { flex: 1; }
+
+    header { position: relative; z-index: 10; padding: 80px 40px 60px; text-align: center; overflow: hidden; }
+    header::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 3px; background: linear-gradient(90deg, transparent, var(--sky-400), transparent); border-radius: 2px; }
+    .badge { display: inline-block; padding: 6px 20px; background: linear-gradient(135deg, var(--sky-100), var(--sky-200)); color: var(--sky-700); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border-radius: 100px; border: 1px solid var(--sky-200); margin-bottom: 20px; animation: fadeDown 0.8s ease both; }
+    h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 700; line-height: 1.1; background: linear-gradient(135deg, var(--sky-900) 0%, var(--sky-500) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: fadeDown 0.9s ease 0.1s both; }
+    .subtitle { margin-top: 14px; font-size: 1rem; color: var(--text-mid); font-weight: 300; max-width: 520px; margin-left: auto; margin-right: auto; animation: fadeDown 1s ease 0.2s both; }
+
+    .stats-strip { position: relative; z-index: 10; display: flex; justify-content: center; gap: 60px; padding: 30px 40px 50px; animation: fadeUp 1s ease 0.35s both; }
+    .stat-item { text-align: center; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--sky-600); display: block; }
+    .stat-label { font-size: 0.75rem; font-weight: 500; color: var(--text-mid); letter-spacing: 0.1em; text-transform: uppercase; }
+
+    .tab-wrapper { position: relative; z-index: 10; display: flex; justify-content: center; padding: 0 20px 50px; animation: fadeUp 1s ease 0.45s both; }
+    .tab-pill { display: flex; background: var(--white); border-radius: 100px; border: 1.5px solid var(--sky-200); box-shadow: var(--shadow-soft); overflow: hidden; position: relative; }
+    .tab-pill::before { content: ''; position: absolute; top: 4px; bottom: 4px; width: calc(50% - 4px); left: 4px; background: linear-gradient(135deg, var(--sky-500), var(--sky-700)); border-radius: 100px; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); box-shadow: 0 4px 16px rgba(14,165,233,0.4); }
+    .tab-pill.international::before { transform: translateX(calc(100% + 4px)); }
+    .tab-btn { position: relative; z-index: 1; padding: 12px 40px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; border: none; background: transparent; cursor: pointer; color: var(--text-mid); letter-spacing: 0.04em; transition: color 0.3s ease; border-radius: 100px; white-space: nowrap; }
+    .tab-btn.active { color: var(--white); }
+
+    .section-heading { position: relative; z-index: 10; text-align: center; margin-bottom: 44px; animation: fadeUp 0.7s ease both; }
+    .section-heading h2 { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 700; color: var(--sky-900); position: relative; display: inline-block; }
+    .section-heading h2::after { content: ''; display: block; width: 60%; height: 3px; background: linear-gradient(90deg, var(--sky-400), var(--sky-600)); border-radius: 2px; margin: 8px auto 0; }
+
+    .section-panel { display: none; max-width: 1280px; margin: 0 auto; padding: 0 40px 100px; position: relative; z-index: 10; }
+    .section-panel.active { display: block; }
+
+    .collab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+
+    .collab-card { perspective: 1400px; height: 420px; cursor: pointer; animation: fadeUp 0.7s ease both; }
+    .collab-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.85s cubic-bezier(0.4,0.2,0.2,1); border-radius: var(--radius); }
+    .collab-card.flipped .collab-inner { transform: rotateY(180deg); }
+    .collab-card:not(.flipped):hover .collab-inner { transform: translateY(-10px) rotateX(4deg) rotateY(3deg) scale(1.02); box-shadow: var(--shadow-float); }
+
+    .card-front, .card-back { position: absolute; inset: 0; border-radius: var(--radius); backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden; }
+    .card-front { background: var(--white); box-shadow: var(--shadow-soft); display: flex; flex-direction: column; }
+
+    .card-photo-strip { height: 48%; position: relative; overflow: hidden; flex-shrink: 0; }
+    .card-photo-strip img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+    .collab-card:not(.flipped):hover .card-photo-strip img { transform: scale(1.07); }
+
+    /* Placeholder gradient for cards without a photo */
+    .card-photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 10px;
+    }
+    .placeholder-flag { font-size: 2.8rem; }
+    .placeholder-abbr { font-family: 'Playfair Display', serif; font-size: 0.85rem; font-weight: 700; color: rgba(255,255,255,0.85); letter-spacing: 0.12em; text-transform: uppercase; }
+
+    .location-ribbon { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 18px 10px; background: linear-gradient(to top, rgba(12,74,110,0.85) 0%, transparent 100%); display: flex; align-items: flex-end; gap: 8px; }
+    .location-flag { font-size: 1.4rem; line-height: 1; filter: drop-shadow(0 1px 4px rgba(0,0,0,0.3)); }
+    .location-text { font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.9); letter-spacing: 0.06em; text-transform: uppercase; }
+
+    .card-body { padding: 14px 18px 10px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .card-person { font-size: 0.78rem; font-weight: 500; color: var(--sky-600); letter-spacing: 0.03em; margin-bottom: 3px; }
+    .card-inst { font-family: 'Playfair Display', serif; font-size: 0.92rem; font-weight: 700; color: var(--text-dark); line-height: 1.3; }
+    .card-type-badge { display: inline-block; margin-top: 6px; padding: 3px 12px; border-radius: 100px; font-size: 0.68rem; font-weight: 500; background: var(--sky-100); color: var(--sky-700); letter-spacing: 0.06em; }
+    .flip-hint { text-align: center; font-size: 0.72rem; color: var(--sky-400); padding: 4px 0 8px; letter-spacing: 0.06em; }
+
+    .card-back { background: linear-gradient(145deg, var(--sky-700), var(--sky-900)); transform: rotateY(180deg); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 28px 26px; text-align: center; box-shadow: var(--shadow-float); }
+    .card-back::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.12) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(56,189,248,0.20) 0%, transparent 50%); }
+    .back-icon { width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; border: 1.5px solid rgba(255,255,255,0.25); position: relative; box-shadow: 0 0 0 8px rgba(255,255,255,0.06); }
+    .back-icon svg { width: 24px; height: 24px; fill: none; stroke: #fff; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .back-person { font-size: 0.82rem; font-weight: 500; color: rgba(255,255,255,0.75); position: relative; margin-bottom: 4px; }
+    .back-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 8px; position: relative; line-height: 1.3; }
+    .back-divider { width: 40px; height: 2px; background: linear-gradient(90deg, transparent, var(--sky-400), transparent); border-radius: 2px; margin: 0 auto 12px; position: relative; }
+    .back-desc { font-size: 0.82rem; line-height: 1.75; color: rgba(255,255,255,0.85); font-weight: 300; position: relative; }
+    .back-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 14px; position: relative; }
+    .back-tag { padding: 3px 12px; border: 1px solid rgba(255,255,255,0.3); border-radius: 100px; font-size: 0.67rem; color: rgba(255,255,255,0.8); letter-spacing: 0.06em; }
+    .back-close { margin-top: 16px; padding: 7px 22px; border: 1.5px solid rgba(255,255,255,0.4); border-radius: 100px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.9); font-family: 'DM Sans', sans-serif; font-size: 0.75rem; letter-spacing: 0.08em; cursor: pointer; transition: all 0.3s; position: relative; }
+    .back-close:hover { background: rgba(255,255,255,0.22); }
+
+    /* Gradient palettes per country for placeholder strips */
+    .grad-tw  { background: linear-gradient(135deg,#1a5f8a,#2d9cdb); }
+    .grad-it  { background: linear-gradient(135deg,#1d6b3e,#2e8b57); }
+    .grad-si  { background: linear-gradient(135deg,#1b3a6b,#2563a8); }
+    .grad-us  { background: linear-gradient(135deg,#8b1a1a,#c0392b); }
+    .grad-dk  { background: linear-gradient(135deg,#8b1a2b,#c73652); }
+    .grad-fr  { background: linear-gradient(135deg,#1a3a8b,#2962c7); }
+    .grad-de  { background: linear-gradient(135deg,#2b2b2b,#555555); }
+
+    .globe-bg { position: fixed; right: -120px; bottom: -120px; width: 500px; height: 500px; opacity: 0.06; pointer-events: none; z-index: 0; animation: spinSlow 40s linear infinite; }
+    @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    /* ── STICKY FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 24px 30px;
+      font-size: 0.8rem;
+      color: var(--text-mid);
+      border-top: 1px solid var(--sky-100);
+      background: var(--white);
+      margin-top: auto;
+    }
+
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 768px) {
+      .section-panel { padding: 0 16px 60px; }
+      header { padding: 50px 20px 40px; }
+      .stats-strip { gap: 30px; }
+      .collab-grid { grid-template-columns: 1fr; }
+      .tab-btn { padding: 12px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <svg class="globe-bg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="90" fill="none" stroke="#0ea5e9" stroke-width="1"/>
+    <ellipse cx="100" cy="100" rx="40" ry="90" fill="none" stroke="#0ea5e9" stroke-width="0.8"/>
+    <ellipse cx="100" cy="100" rx="90" ry="40" fill="none" stroke="#0ea5e9" stroke-width="0.8"/>
+    <line x1="10" y1="100" x2="190" y2="100" stroke="#0ea5e9" stroke-width="0.7"/>
+    <line x1="100" y1="10" x2="100" y2="190" stroke="#0ea5e9" stroke-width="0.7"/>
+    <circle cx="100" cy="100" r="3" fill="#0ea5e9"/>
+  </svg>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <nav id="navbar">
+    <a class="nav-logo" href="index.html">
+      <img src="assests/iit/iitjlogo.png" alt="IIT Jammu Logo" onerror="this.style.display='none'" />
+      <div class="nav-logo-divider"></div>
+      <div class="nav-logo-text">
+        <span class="lab-name">AMRL</span>
+        <span class="dept-name">IIT Jammu &nbsp;•&nbsp; MECHANICAL Department</span>
+      </div>
+    </a>
+    <a class="nav-back" href="index.html">← Back to Main Site</a>
+  </nav>
+  <div class="navbar-spacer"></div>
+
+  <div class="page-content">
+
+    <header>
+      <div class="badge">✦ Research Network</div>
+      <h1>Our Collaborations</h1>
+      <p class="subtitle">Bridging knowledge across institutions — click any card to discover the partnership</p>
+    </header>
+
+    <div class="stats-strip">
+      <div class="stat-item">
+        <span class="stat-num">15+</span>
+        <span class="stat-label">Partners</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">9</span>
+        <span class="stat-label">Countries</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">40+</span>
+        <span class="stat-label">Joint Papers</span>
+      </div>
+    </div>
+
+    <div class="tab-wrapper">
+      <div class="tab-pill" id="tabPill">
+        <button class="tab-btn active" data-tab="national" onclick="switchTab('national')">🇮🇳 &nbsp;National</button>
+        <button class="tab-btn" data-tab="international" onclick="switchTab('international')">🌍 &nbsp;International</button>
+      </div>
+    </div>
+
+    <!-- ══ NATIONAL PANEL ══ -->
+    <div class="section-panel active" id="panel-national">
+      <div class="section-heading"><h2>National Partners</h2></div>
+      <div class="collab-grid">
+
+        <!-- NAT 1 -->
+        <div class="collab-card" data-delay="0">
+          <div class="collab-inner">
+            <div class="card-front">
+              <div class="card-photo-strip">
+                <img src="assests/collab_pics/nat1.jpg" alt="IIT Delhi" onerror="this.src='https://placehold.co/600x300/e0f2fe/0369a1?text=IIT+Delhi'" />
+                <div class="location-ribbon"><span class="location-flag">🇮🇳</span><span class="location-text">New Delhi, India</span></div>
+              </div>
+              <div class="card-body">
+                <div>
+                  <div class="card-inst">Indian Institute of Technology Delhi</div>
+                  <span class="card-type-badge">Research Partner</span>
+                </div>
+                <div class="flip-hint">↻ Click to learn more</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+              <div class="back-title">IIT Delhi</div>
+              <div class="back-divider"></div>
+              <p class="back-desc">Joint research in additive manufacturing of high-performance alloys, with shared access to advanced characterization facilities and co-supervised PhD scholars driving breakthroughs in materials science.</p>
+              <div class="back-tags"><span class="back-tag">Metal AM</span><span class="back-tag">Alloys</span><span class="back-tag">PhD Exchange</span></div>
+              <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- NAT 2 -->
+        <div class="collab-card" data-delay="1">
+          <div class="collab-inner">
+            <div class="card-front">
+              <div class="card-photo-strip">
+                <img src="assests/collab_pics/nat2.jpg" alt="IISc Bangalore" onerror="this.src='https://placehold.co/600x300/e0f2fe/0369a1?text=IISc+Bangalore'" />
+                <div class="location-ribbon"><span class="location-flag">🇮🇳</span><span class="location-text">Bengaluru, Karnataka</span></div>
+              </div>
+              <div class="card-body">
+                <div>
+                  <div class="card-inst">Indian Institute of Science, Bangalore</div>
+                  <span class="card-type-badge">Academic Collaboration</span>
+                </div>
+                <div class="flip-hint">↻ Click to learn more</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-icon"><svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg></div>
+              <div class="back-title">IISc Bangalore</div>
+              <div class="back-divider"></div>
+              <p class="back-desc">Collaborative investigation into bio-inspired lattice structures and functionally graded materials for biomedical applications, combining AMRL's fabrication strengths with IISc's computational modelling expertise.</p>
+              <div class="back-tags"><span class="back-tag">Bio-inspired</span><span class="back-tag">FGM</span><span class="back-tag">Biomedical</span></div>
+              <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- NAT 3 -->
+        <div class="collab-card" data-delay="2">
+          <div class="collab-inner">
+            <div class="card-front">
+              <div class="card-photo-strip">
+                <img src="assests/collab_pics/nat3.jpg" alt="DRDO" onerror="this.src='https://placehold.co/600x300/e0f2fe/0369a1?text=DRDO'" />
+                <div class="location-ribbon"><span class="location-flag">🇮🇳</span><span class="location-text">Delhi, India</span></div>
+              </div>
+              <div class="card-body">
+                <div>
+                  <div class="card-inst">Defence Research &amp; Development Organisation</div>
+                  <span class="card-type-badge">Govt. / Defence Partner</span>
+                </div>
+                <div class="flip-hint">↻ Click to learn more</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div class="back-title">DRDO</div>
+              <div class="back-divider"></div>
+              <p class="back-desc">Strategic partnership focused on additive manufacturing of armour-grade composites and lightweight structural components for defence applications, with funded projects and personnel exchange programmes.</p>
+              <div class="back-tags"><span class="back-tag">Defence AM</span><span class="back-tag">Composites</span><span class="back-tag">Funded Project</span></div>
+              <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- NAT 4 -->
+        <div class="collab-card" data-delay="3">
+          <div class="collab-inner">
+            <div class="card-front">
+              <div class="card-photo-strip">
+                <img src="assests/collab_pics/nat4.jpg" alt="NIT Srinagar" onerror="this.src='https://placehold.co/600x300/e0f2fe/0369a1?text=NIT+Srinagar'" />
+                <div class="location-ribbon"><span class="location-flag">🇮🇳</span><span class="location-text">Srinagar, J&amp;K</span></div>
+              </div>
+              <div class="card-body">
+                <div>
+                  <div class="card-inst">National Institute of Technology, Srinagar</div>
+                  <span class="card-type-badge">MoU Partner</span>
+                </div>
+                <div class="flip-hint">↻ Click to learn more</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-icon"><svg viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+              <div class="back-title">NIT Srinagar</div>
+              <div class="back-divider"></div>
+              <p class="back-desc">Regional academic collaboration for student internships, faculty visits, and co-authored publications in polymer and composite 3D printing, fostering a strong research ecosystem in the J&amp;K region.</p>
+              <div class="back-tags"><span class="back-tag">Internships</span><span class="back-tag">Polymer AM</span><span class="back-tag">Regional</span></div>
+              <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ INTERNATIONAL PANEL ══ -->
+    <div class="section-panel" id="panel-international">
+      <div class="section-heading"><h2>International Partners</h2></div>
+      <div class="collab-grid">
+
+        <!-- INT 1 — Prof. Jeng-Ywan Jeng, NTUST Taiwan -->
+        <div class="collab-card" data-delay="0">
+          <div class="collab-inner">
+            <div class="card-front">
+              <div class="card-photo-strip">
+                <img src="assests/collab_pics/int_ntust.jpg" alt="NTUST Taiwan"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="card-photo-placeholder grad-tw" style="display:none;">
+                  <span class="placeholder-flag">🇹🇼</span>
+                  <span class="placeholder-abbr">NTUST · Taiwan</span>
+                </div>
+                <div class="location-ribbon"><span class="location-flag">🇹🇼</span><span class="location-text">Taipei, Taiwan</span></div>
+              </div>
+              <div class="card-body">
+                <div>
+                  <div class="card-person">Prof. Jeng-Ywan Jeng</div>
+                  <div class="card-inst">National Taiwan University of Science and Technology</div>
+                  <span class="card-type-badge">International Research Partner</span>
+                </div>
+                <div class="flip-hint">↻ Click to learn more</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+              <div class="back-person">Prof. Jeng-Ywan Jeng</div>
+              <div class="back-title">NTUST, Taipei, Taiwan</div>
+              <div class="back-divider"></div>
+              <p class="back-desc">Collaboration on advanced additive manufacturing processes, rapid prototyping technologies, and process optimisation for functional polymer and metallic components. Joint publications and researcher exchanges between AMRL and NTUST's AM laboratory.</p>
+              <div class="back-tags"><span class="back-tag">Rapid Prototyping</span><span class="back-tag">Process Optimisation</span><span class="back-tag">AM</span></div>
+              <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- INT 2 — Prof. Dario Ambrosini, Univ. L'Aquila Italy -->
+        <div class="collab-card" data-delay="1">
+          <div class="collab-inner">
+            <div class="card-front">
+              <div class="card-photo-strip">
+                <img src="assests/collab_pics/int1.jpg" alt="University of L'Aquila Italy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="card-photo-placeholder grad-it" style="display:none;">
+                  <span class="placeholder-flag">🇮🇹</span>
+                  <span class="placeholder-abbr">UnivAQ · Italy</span>
+                </div>
+                <div class="location-ribbon"><span class="location-flag">🇮🇹</span><span class="location-text">L'Aquila, Italy</span></div>
+              </div>
+              <div class="card-body">
+                <div>
+                  <div class="card-person">Prof. Dario Ambrosini</div>
+                  <div class="card-inst">University of L'Aquila, Italy</div>
+                  <span class="card-type-badge">International Research Partner</span>
+                </div>
+                <div class="flip-hint">↻ Click to learn more</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+              <div class="back-person">Prof. Dario Ambrosini</div>
+              <div class="back-title">University of L'Aquila, Italy</div>
+              <div class="back-divider"></div>
+              <p class="back-desc">A cornerstone international partnership spanning advanced composite printing, seismic-resilient structural materials, and co-authored publications in top-tier journals. Joint grant funding and delegate exchanges have cemented a multi-year research bond.</p>
+              <div class="back-tags"><span class="back-tag">Composites</span><span class="back-tag">Structural AM</span><span class="back-tag">Faculty Exchange</span></div>
+              <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- INT 3 — Dr. Gregor Harih, Univ. Maribor Slovenia -->
+        <div class="collab-card" data-delay="2">
+          <div class="collab-inner">
+            <div class="card-front">
+              <div class="card-photo-strip">
+                <img src="assests/collab_pics/int_maribor.jpg" alt="University of Maribor Slovenia"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="card-photo-placeholder grad-si" style="display:none;">
+                  <span class="placeholder-flag">🇸🇮</span>
+                  <span class="placeholder-abbr">UM · Slovenia</span>
+                </div>
+                <div class="location-ribbon"><span class="location-flag">🇸🇮</span><span class="location-text">Maribor, Slovenia</span></div>
+              </div>
+              <div class="card-body">
+                <div>
+                  <div class="card-person">Dr. Gregor Harih</div>
+                  <div class="card-inst">Faculty of Mechanical Engineering, University of Maribor</div>
+                  <span class="card-type-badge">Research Collaboration</span>
+                </div>
+                <div class="flip-hint">↻ Click to learn more</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-icon"><svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+              <div class="back-person">Dr. Gregor Harih</div>
+              <div class="back-title">University of Maribor, Slovenia</div>
+              <div class="back-divider"></div>
+              <p class="back-desc">Joint research on ergonomics-driven design and additive manufacturing of customised hand-tool handles and orthotic devices, integrating biomechanical modelling with AM fabrication to deliver patient-specific and user-optimised solutions.</p>
+              <div class="back-tags"><span class="back-tag">Ergonomics</span><span class="back-tag">Orthotics</span><span class="back-tag">Biomechanics</span></div>
+              <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- INT 4 — Prof. Mihaela Banu, Univ. Michigan USA -->
+        <div class="collab-card" data-delay="3">
+          <div class="collab-inner">
+            <div class="card-front">
+              <div class="card-photo-strip">
+                <img src="assests/collab_pics/int_umich.jpg" alt="University of Michigan USA"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="card-photo-placeholder grad-us" style="display:none;">
+                  <span class="placeholder-flag">🇺🇸</span>
+                  <span class="placeholder-abbr">UMich · USA</span>
+                </div>
+                <div class="location-ribbon"><span class="location-flag">🇺🇸</span><span class="location-text">Ann Arbor, Michigan, USA</span></div>
+              </div>
+              <div class="card-body">
+                <div>
+                  <div class="card-person">Prof. Mihaela Banu</div>
+                  <div class="card-inst">Mechanical Engineering, University of Michigan</div>
+                  <span class="card-type-badge">International Research Partner</span>
+                </div>
+                <div class="flip-hint">↻ Click to learn more</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+              <div class="back-person">Prof. Mihaela Banu</div>
+              <div class="back-title">University of Michigan, USA</div>
+              <div class="back-divider"></div>
+              <p class="back-desc">Collaboration on advanced manufacturing processes including sheet metal forming, incremental forming, and hybrid AM processes. Joint work explores material deformation mechanics, process modelling, and innovative manufacturing paradigms for automotive and aerospace sectors.</p>
+              <div class="back-tags"><span class="back-tag">Hybrid AM</span><span class="back-tag">Forming</span><span class="back-tag">Automotive</span></div>
+              <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- INT 5 — Prof. Jia-Yang Juang, NTU Taiwan -->
+        <div class="collab-card" data-delay="4">
+          <div class="collab-inner">
+            <div class="card-front">
+              <div class="card-photo-strip">
+                <img src="assests/collab_pics/int_ntu.jpg" alt="National Taiwan University"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="card-photo-placeholder grad-tw" style="display:none;">
+                  <span class="placeholder-flag">🇹🇼</span>
+                  <span class="placeholder-abbr">NTU · Taiwan</span>
+                </div>
+                <div class="location-ribbon"><span class="location-flag">🇹🇼</span><span class="location-text">Taipei, Taiwan</span></div>
+              </div>
+              <div class="card-body">
+                <div>
+                  <div class="card-person">Prof. Jia-Yang Juang</div>
+                  <div class="card-inst">Mechanical Engineering, National Taiwan University</div>
+                  <span class="card-type-badge">Research Exchange</span>
+                </div>
+                <div class="flip-hint">↻ Click to learn more</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+              <div class="back-person">Prof. Jia-Yang Juang</div>
+              <div class="back-title">National Taiwan University, Taiwan</div>
+              <div class="back-divider"></div>
+              <p class="back-desc">Research exchange focused on micro/nano-scale additive manufacturing, bio-printing, and soft robotics. Collaborative work on printing precision microstructures and flexible electronics for next-generation wearable and biomedical devices.</p>
+              <div class="back-tags"><span class="back-tag">Micro-AM</span><span class="back-tag">Bio-printing</span><span class="back-tag">Soft Robotics</span></div>
+              <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- INT 6 — Dr. Chi-Pin Hsu, Ming Chi Univ. of Tech. Taiwan -->
+        <div class="collab-card" data-delay="5">
+          <div class="collab-inner">
+            <div class="card-front">
+              <div class="card-photo-strip">
+                <img src="assests/collab_pics/int_mcut.jpg" alt="Ming Chi University of Technology"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="card-photo-placeholder grad-tw" style="display:none;">
+                  <span class="placeholder-flag">🇹🇼</span>
+                  <span class="placeholder-abbr">MCUT · Taiwan</span>
+                </div>
+                <div class="location-ribbon"><span class="location-flag">🇹🇼</span><span class="location-text">Taipei, Taiwan</span></div>
+              </div>
+              <div class="card-body">
+                <div>
+                  <div class="card-person">Dr. Chi-Pin Hsu</div>
+                  <div class="card-inst">Mechanical Engineering, Ming Chi University of Technology</div>
+                  <span class="card-type-badge">Research Collaboration</span>
+                </div>
+                <div class="flip-hint">↻ Click to learn more</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-icon"><svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg></div>
+              <div class="back-person">Dr. Chi-Pin Hsu</div>
+              <div class="back-title">Ming Chi University of Technology, Taiwan</div>
+              <div class="back-divider"></div>
+              <p class="back-desc">Joint investigations into material characterisation, surface engineering, and tribological behaviour of additively manufactured metallic parts. Shared datasets and co-authored papers have advanced understanding of wear mechanisms in AM components.</p>
+              <div class="back-tags"><span class="back-tag">Tribology</span><span class="back-tag">Surface Eng.</span><span class="back-tag">Metal AM</span></div>
+              <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- INT 7 — Prof. Subburaj Karuppasamy, Aarhus Univ. Denmark -->
+        <div class="collab-card" data-delay="6">
+          <div class="collab-inner">
+            <div class="card-front">
+              <div class="card-photo-strip">
+                <img src="assests/collab_pics/int_aarhus.jpg" alt="Aarhus University Denmark"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="card-photo-placeholder grad-dk" style="display:none;">
+                  <span class="placeholder-flag">🇩🇰</span>
+                  <span class="placeholder-abbr">AU · Denmark</span>
+                </div>
+                <div class="location-ribbon"><span class="location-flag">🇩🇰</span><span class="location-text">Aarhus, Denmark</span></div>
+              </div>
+              <div class="card-body">
+                <div>
+                  <div class="card-person">Prof. Subburaj Karuppasamy</div>
+                  <div class="card-inst">Mechanical &amp; Production Engineering, Aarhus University</div>
+                  <span class="card-type-badge">International Research Partner</span>
+                </div>
+                <div class="flip-hint">↻ Click to learn more</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+              <div class="back-person">Prof. Subburaj Karuppasamy</div>
+              <div class="back-title">Aarhus University, Denmark</div>
+              <div class="back-divider"></div>
+              <p class="back-desc">Collaborative research on patient-specific implants and medical devices fabricated via additive manufacturing. Joint exploration of biomechanics-driven design, CT-to-AM workflows, and regulatory pathways for 3D-printed orthopaedic implants.</p>
+              <div class="back-tags"><span class="back-tag">Medical Devices</span><span class="back-tag">Implants</span><span class="back-tag">Orthopaedics</span></div>
+              <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- INT 8 — Dr. Mayur Prajapati, NTUT Taiwan -->
+        <div class="collab-card" data-delay="7">
+          <div class="collab-inner">
+            <div class="card-front">
+              <div class="card-photo-strip">
+                <img src="assests/collab_pics/int_ntut.jpg" alt="National Taipei University of Technology"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="card-photo-placeholder grad-tw" style="display:none;">
+                  <span class="placeholder-flag">🇹🇼</span>
+                  <span class="placeholder-abbr">NTUT · Taiwan</span>
+                </div>
+                <div class="location-ribbon"><span class="location-flag">🇹🇼</span><span class="location-text">Taipei, Taiwan</span></div>
+              </div>
+              <div class="card-body">
+                <div>
+                  <div class="card-person">Dr. Mayur Jiyalal Prajapati</div>
+                  <div class="card-inst">National Taipei University of Technology</div>
+                  <span class="card-type-badge">Research Exchange</span>
+                </div>
+                <div class="flip-hint">↻ Click to learn more</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-icon"><svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+              <div class="back-person">Dr. Mayur Jiyalal Prajapati</div>
+              <div class="back-title">NTUT, Taipei, Taiwan</div>
+              <div class="back-divider"></div>
+              <p class="back-desc">Research on multi-material and graded lattice structures fabricated via vat photopolymerisation and FDM. Joint work covers infill optimisation, crashworthiness simulation, and experimental validation of lightweight cellular AM structures.</p>
+              <div class="back-tags"><span class="back-tag">Lattice Structures</span><span class="back-tag">FDM</span><span class="back-tag">Crashworthiness</span></div>
+              <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- INT 9 — Dr. Theo Calais, UTBM France -->
+        <div class="collab-card" data-delay="8">
+          <div class="collab-inner">
+            <div class="card-front">
+              <div class="card-photo-strip">
+                <img src="assests/collab_pics/int_utbm.jpg" alt="UTBM Belfort France"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="card-photo-placeholder grad-fr" style="display:none;">
+                  <span class="placeholder-flag">🇫🇷</span>
+                  <span class="placeholder-abbr">UTBM · France</span>
+                </div>
+                <div class="location-ribbon"><span class="location-flag">🇫🇷</span><span class="location-text">Belfort, France</span></div>
+              </div>
+              <div class="card-body">
+                <div>
+                  <div class="card-person">Dr. Theo Calais</div>
+                  <div class="card-inst">Mechanical Engineering, UTBM, Belfort</div>
+                  <span class="card-type-badge">Research Collaboration</span>
+                </div>
+                <div class="flip-hint">↻ Click to learn more</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+              <div class="back-person">Dr. Theo Calais</div>
+              <div class="back-title">UTBM, Belfort, France</div>
+              <div class="back-divider"></div>
+              <p class="back-desc">Collaborative work on sustainable and recycled-material-based additive manufacturing. Joint studies explore mechanical performance of recycled polymer filaments, circular-economy AM frameworks, and life-cycle assessment of 3D-printed components.</p>
+              <div class="back-tags"><span class="back-tag">Sustainability</span><span class="back-tag">Recycled AM</span><span class="back-tag">LCA</span></div>
+              <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- INT 10 — Dr. Hadi Bakhshi, Fraunhofer IAP Germany -->
+        <div class="collab-card" data-delay="9">
+          <div class="collab-inner">
+            <div class="card-front">
+              <div class="card-photo-strip">
+                <img src="assests/collab_pics/int_fraunhofer.jpg" alt="Fraunhofer IAP Germany"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="card-photo-placeholder grad-de" style="display:none;">
+                  <span class="placeholder-flag">🇩🇪</span>
+                  <span class="placeholder-abbr">Fraunhofer IAP · Germany</span>
+                </div>
+                <div class="location-ribbon"><span class="location-flag">🇩🇪</span><span class="location-text">Potsdam, Germany</span></div>
+              </div>
+              <div class="card-body">
+                <div>
+                  <div class="card-person">Dr. Hadi Bakhshi</div>
+                  <div class="card-inst">Fraunhofer Institute for Applied Polymer Research IAP</div>
+                  <span class="card-type-badge">Industry-Academia Link</span>
+                </div>
+                <div class="flip-hint">↻ Click to learn more</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-icon"><svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg></div>
+              <div class="back-person">Dr. Hadi Bakhshi</div>
+              <div class="back-title">Fraunhofer IAP, Potsdam, Germany</div>
+              <div class="back-divider"></div>
+              <p class="back-desc">Cutting-edge partnership in applied polymer research for AM feedstocks. Joint work on novel biocompatible and biodegradable polymer formulations, antimicrobial hydrogels, and functional coatings tailored for healthcare and bioprocessing applications.</p>
+              <div class="back-tags"><span class="back-tag">Polymer Research</span><span class="back-tag">Hydrogels</span><span class="back-tag">Biocompatibility</span></div>
+              <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- INT 11 — Prof. Vincenzo Stornelli, Univ. L'Aquila Italy -->
+        <div class="collab-card" data-delay="10">
+          <div class="collab-inner">
+            <div class="card-front">
+              <div class="card-photo-strip">
+                <img src="assests/collab_pics/int_stornelli.jpg" alt="University of L'Aquila Italy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="card-photo-placeholder grad-it" style="display:none;">
+                  <span class="placeholder-flag">🇮🇹</span>
+                  <span class="placeholder-abbr">UnivAQ · Italy</span>
+                </div>
+                <div class="location-ribbon"><span class="location-flag">🇮🇹</span><span class="location-text">L'Aquila, Italy</span></div>
+              </div>
+              <div class="card-body">
+                <div>
+                  <div class="card-person">Prof. Vincenzo Stornelli</div>
+                  <div class="card-inst">Dept. of Industrial &amp; Information Engineering, University of L'Aquila</div>
+                  <span class="card-type-badge">Industry-Academia Link</span>
+                </div>
+                <div class="flip-hint">↻ Click to learn more</div>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="back-icon"><svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
+              <div class="back-person">Prof. Vincenzo Stornelli</div>
+              <div class="back-title">University of L'Aquila, Italy</div>
+              <div class="back-divider"></div>
+              <p class="back-desc">Cross-disciplinary collaboration bridging industrial engineering and electronics with additive manufacturing. Joint work explores sensor-integrated AM structures, smart manufacturing systems, and embedded electronics for Industry 4.0 applications.</p>
+              <div class="back-tags"><span class="back-tag">Smart Manufacturing</span><span class="back-tag">Embedded Electronics</span><span class="back-tag">Industry 4.0</span></div>
+              <button class="back-close" onclick="flipBack(event)">✕ Close</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /page-content -->
+
+  <footer>
+    © 2025 IIT JAMMU &nbsp;|&nbsp; AMRL Collaborations &nbsp;|&nbsp; All rights reserved
+  </footer>
+
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => document.body.classList.add('loaded'), 100);
+    });
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    function switchTab(tab) {
+      const pill = document.getElementById('tabPill');
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+      pill.classList.toggle('international', tab === 'international');
+      document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById(`panel-${tab}`).classList.add('active');
+      document.querySelectorAll(`#panel-${tab} .collab-card`).forEach((card, i) => {
+        card.style.animation = 'none';
+        card.offsetHeight;
+        card.style.animation = `fadeUp 0.6s ease ${i * 0.08}s both`;
+      });
+    }
+
+    document.querySelectorAll('.collab-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        if (e.target.classList.contains('back-close')) return;
+        this.classList.toggle('flipped');
+      });
+    });
+
+    function flipBack(e) {
+      e.stopPropagation();
+      const card = e.target.closest('.collab-card');
+      if (card) card.classList.remove('flipped');
+    }
+
+    document.querySelectorAll('.collab-card').forEach(card => {
+      const delay = parseInt(card.dataset.delay || 0);
+      card.style.animationDelay = `${0.1 + delay * 0.1}s`;
+    });
+
+    /* Fix placeholder display: show placeholder div if img fails */
+    document.querySelectorAll('.card-photo-strip img').forEach(img => {
+      img.addEventListener('error', function() {
+        this.style.display = 'none';
+        const placeholder = this.parentElement.querySelector('.card-photo-placeholder');
+        if (placeholder) placeholder.style.display = 'flex';
+      });
+    });
+  </script>
+</body>
+</html>

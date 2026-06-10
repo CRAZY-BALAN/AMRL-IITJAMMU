@@ -415,6 +415,52 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
 .pub-card,.conf-card,.book-card,.chap-card{
   animation:none;
 }
+
+
+<!---->
+
+.book-content{
+    display:flex;
+    gap:22px;
+    align-items:flex-start;
+    margin-top:15px;
+}
+.book-cover-side{
+    flex-shrink:0;
+}
+
+.book-cover-side img{
+    width:150px;
+    height:210px;
+    object-fit:cover;
+    border-radius:10px;
+    box-shadow:0 15px 30px rgba(0,0,0,.35);
+}
+
+.book-details{
+    flex:1;
+}
+
+.book-details .book-title{
+    margin-top:8px;
+    line-height:1.35;
+}
+
+.book-details .book-editors{
+    margin-top:8px;
+}
+
+.book-details .book-publisher{
+    margin-top:10px;
+}
+
+.book-details .book-doi-link{
+    margin-top:10px;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+}
+
 </style>
 </head>
 <body>
@@ -532,7 +578,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
   <div class="journal-grid" id="journal-grid">
 
 
-    
+   
     <!-- 1 -->
 <div class="pub-card reveal tilt-wrap">
   <div class="if-bar high"></div>
@@ -548,6 +594,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
       </div>
       <div class="pub-chips">
         <span class="chip chip-year">2026</span>
+        <a class="chip chip-doi" href="https://www.emerald.com/rpj/article/doi/10.1108/RPJ-05-2025-0170/1357566/Design-and-3D-printing-of-high-frequency-micro" target="_blank">DOI →</a>
       </div>
     </div>
   </div>
@@ -568,6 +615,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
       </div>
       <div class="pub-chips">
         <span class="chip chip-year">2026</span>
+        <a class="chip chip-doi" href="https://journals.sagepub.com/doi/10.1177/09544119261427641
+" target="_blank">DOI →</a>
       </div>
     </div>
   </div>
@@ -588,6 +637,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
       </div>
       <div class="pub-chips">
         <span class="chip chip-year">2026</span>
+        <a class="chip chip-doi" href="https://www.researchgate.net/publication/398448301_Quantitative_Evaluation_and_Machine_Learning-Based_Prediction_of_Linear_Density_and_Tensile_Strength_in_Glass_Fiber-Reinforced_Tapes_for_Enhanced_Quality_Control" target="_blank">DOI →</a>
       </div>
     </div>
   </div>
@@ -608,6 +658,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
       </div>
       <div class="pub-chips">
         <span class="chip chip-year">2026</span>
+        <a class="chip chip-doi" href="https://www.sciencedirect.com/science/article/pii/S0378775325029076
+
+" target="_blank">DOI →</a>
       </div>
     </div>
   </div>
@@ -628,6 +681,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
       </div>
       <div class="pub-chips">
         <span class="chip chip-year">2026</span>
+        <a class="chip chip-doi" href="https://link.springer.com/article/10.1007/s40964-025-01451-4
+
+" target="_blank">DOI →</a>
       </div>
     </div>
   </div>
@@ -648,6 +704,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
       </div>
       <div class="pub-chips">
         <span class="chip chip-year">2025</span>
+        <a class="chip chip-doi" href="https://www.sciencedirect.com/science/article/pii/S2212827125000502" target="_blank">DOI →</a>
       </div>
     </div>
   </div>
@@ -1083,6 +1140,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
           <div class="pub-authors">Velu R., Fernyhough A., Smith D. A., Le Guen M. J., Singamneni S. · <em>Journal of Laser in Engineering</em>, 35(1–4), 173–186</div>
           <div class="pub-chips">
             <span class="chip chip-year">2016</span>
+            <a class="chip chip-doi" href="https://www.researchgate.net/publication/310512069_Selective_laser_sintering_of_biocomposite_materials
+" target="_blank">DOI →</a>
           </div>
         </div>
       </div>
@@ -1149,6 +1208,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
           <div class="pub-authors">RajKumar V., Srimaan G., Senthil Kumar M., Sundaram M. · <em>International Journal of Applied Engineering Research</em>, 6(5), 769–776</div>
           <div class="pub-chips">
             <span class="chip chip-year">2011</span>
+            <a class="chip chip-doi" href="https://www.sciencedirect.com/science/article/pii/S2214785320394785
+" target="_blank">DOI →</a>
           </div>
         </div>
       </div>
@@ -1306,7 +1367,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
       <div class="pub-chips" style="margin-top:10px;"><span class="chip chip-year">2022</span></div>
     </div>
 
-    
+   
 
     <div class="conf-card reveal" data-text="thermoplastics thermosets additive manufacturing ACMS Indian Institute Chemical Engineers">
       <div class="conf-header">
@@ -1495,7 +1556,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
       <div class="pub-chips" style="margin-top:10px;"><span class="chip chip-year">2010</span></div>
     </div>
 
-    
+   
 
   </div><!-- /conf-grid -->
 </div>
@@ -1517,86 +1578,256 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
   <div class="book-grid" id="book-grid">
 
     <div class="book-card reveal">
-      <div class="book-spine" style="background:linear-gradient(90deg,#7c3aed,#4f46e5);"></div>
-      <div class="book-inner">
-        <div class="book-year-badge">2025</div>
-        <div class="book-pub-type">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
-          Edited Volume · Under Progress
-        </div>
-        <div class="book-title">Additively Manufactured Smart Materials and Structures</div>
-        <div class="book-editors">Eds: Velu R., Deshmukh K., Flores Ituarte I., Anand Kumar S. · Fundamentals in Biotechnology Series</div>
-        <div class="book-publisher">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          Elsevier · Planned 2025
-        </div>
-      </div>
-    </div>
-
-    <div class="book-card reveal">
-      <div class="book-spine" style="background:linear-gradient(90deg,#0891b2,#0e7490);"></div>
-      <div class="book-inner">
-        <div class="book-year-badge">2024</div>
-        <div class="book-pub-type">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
-          Edited Volume · Published
-        </div>
-        <div class="book-title">Digital Design, Manufacturing and Monitoring Techniques for Biomedicine</div>
-        <div class="book-editors">Eds: Velu R., Karuppasamy S., Anand Kumar S. · Fundamentals in Biotechnology Series</div>
-        <div class="book-publisher">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          Springer Nature · Feb 2024
-        </div>
-        <a class="book-doi-link" href="https://doi.org/10.1007/978-981-99-7100-8" target="_blank">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          10.1007/978-981-99-7100-8
-        </a>
-      </div>
-    </div>
-
-    <div class="book-card reveal">
-      <div class="book-spine" style="background:linear-gradient(90deg,var(--accent),#c96a00);"></div>
-      <div class="book-inner">
-        <div class="book-year-badge">2012</div>
-        <div class="book-pub-type">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
-          Monograph · Published
-        </div>
-        <div class="book-title">Mechanical Vibration Control using Smart Material</div>
-        <div class="book-editors">Velu R.</div>
-        <div class="book-publisher">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          LAP Lambert Academic Publishing · ISBN 978-3-659-26551-8
-        </div>
-      </div>
-    </div>
-
-    <div class="book-card reveal tilt-wrap">
-  <div class="book-spine"></div>
+  <div class="book-spine" style="background:linear-gradient(90deg,#7c3aed,#4f46e5);"></div>
 
   <div class="book-inner">
+   
     <div class="book-year-badge">2025</div>
 
-    <div class="book-pub-type">
-      Elsevier Book
+    <div class="book-content">
+
+      <!-- Book Cover -->
+      <div class="book-cover-side">
+        <img src="assests/book/book1.jpg" alt="Book Cover">
+      </div>
+
+      <!-- Book Details -->
+      <div class="book-details">
+
+        <div class="book-pub-type">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+          </svg>
+          Edited Volume · Under Progress
+        </div>
+
+        <div class="book-title">
+          Additively Manufactured Smart Materials and Structures
+        </div>
+
+        <div class="book-editors">
+          Eds: Velu R., Deshmukh K., Flores Ituarte I., Anand Kumar S. · Fundamentals in Biotechnology Series
+        </div>
+
+        <div class="book-publisher">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <path d="M8 21h8M12 17v4"/>
+          </svg>
+          Elsevier · Planned 2025
+        </div>
+
+        <a class="book-doi-link"
+           href="https://www.sciencedirect.com/book/edited-volume/9780443161445/additively-manufactured-smart-materials-and-structures"
+           target="_blank">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          DOI
+        </a>
+
+      </div>
+
     </div>
 
-    <div class="book-title">
-      Additively Manufactured Smart Materials and Structures:
-      Design, Processing, and Applications
-    </div>
-
-    <div class="book-editors">
-      Rajkumar Velu, Kalim Deshmukh,
-      Inigo Flores Ituarte,
-      Anand Kumar
-    </div>
-
-    <div class="book-publisher">
-      Elsevier
-    </div>
   </div>
 </div>
+
+
+    <div class="book-card reveal">
+  <div class="book-spine" style="background:linear-gradient(90deg,#7c3aed,#4f46e5);"></div>
+
+  <div class="book-inner">
+   
+    <div class="book-year-badge">2025</div>
+
+    <div class="book-content">
+
+      <!-- Book Cover -->
+      <div class="book-cover-side">
+        <img src="assests/book/book1.jpg" alt="Book Cover">
+      </div>
+
+      <!-- Book Details -->
+      <div class="book-details">
+
+  <div class="book-pub-type">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+    </svg>
+    Elsevier Book
+  </div>
+
+  <div class="book-title">
+    Additively Manufactured Smart Materials and Structures:
+    Design, Processing, and Applications
+  </div>
+
+  <div class="book-editors">
+    Rajkumar Velu, Kalim Deshmukh,
+    Inigo Flores Ituarte,
+    Anand Kumar
+  </div>
+
+  <div class="book-publisher">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <rect x="2" y="3" width="20" height="14" rx="2"/>
+      <path d="M8 21h8M12 17v4"/>
+    </svg>
+    Elsevier
+  </div>
+
+  <a class="book-doi-link"
+     href="https://www.sciencedirect.com/book/edited-volume/9780443161445/additively-manufactured-smart-materials-and-structures"
+     target="_blank">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+      <polyline points="15 3 21 3 21 9"/>
+      <line x1="10" y1="14" x2="21" y2="3"/>
+    </svg>
+    DOI
+  </a>
+
+</div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+   <div class="book-card reveal">
+  <div class="book-spine" style="background:linear-gradient(90deg,#0891b2,#0e7490);"></div>
+
+  <div class="book-inner">
+
+    <div class="book-year-badge">2024</div>
+
+    <div class="book-content">
+
+      <!-- Book Cover -->
+      <div class="book-cover-side">
+        <img src="assests/book/book3.png" alt="Digital Design, Manufacturing and Monitoring Techniques for Biomedicine">
+      </div>
+
+      <!-- Book Details -->
+      <div class="book-details">
+
+        <div class="book-pub-type">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+          </svg>
+          Edited Volume · Published
+        </div>
+
+        <div class="book-title">
+          Digital Design, Manufacturing and Monitoring Techniques for Biomedicine
+        </div>
+
+        <div class="book-editors">
+          Eds: Velu R., Karuppasamy S., Anand Kumar S. · Fundamentals in Biotechnology Series
+        </div>
+
+        <div class="book-publisher">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <path d="M8 21h8M12 17v4"/>
+          </svg>
+          Springer Nature · Feb 2024
+        </div>
+
+        <a class="book-doi-link"
+           href="https://doi.org/10.1007/978-981-99-7100-8"
+           target="_blank">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          DOI
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+    <div class="book-card reveal">
+  <div class="book-spine" style="background:linear-gradient(90deg,var(--accent),#c96a00);"></div>
+
+  <div class="book-inner">
+
+    <div class="book-year-badge">2012</div>
+
+    <div class="book-content">
+
+      <!-- Book Cover -->
+      <div class="book-cover-side">
+        <img src="assests/book/book4.jpg" alt="Mechanical Vibration Control using Smart Material">
+      </div>
+
+      <!-- Book Details -->
+      <div class="book-details">
+
+        <div class="book-pub-type">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+          </svg>
+          Monograph · Published
+        </div>
+
+        <div class="book-title">
+          Mechanical Vibration Control using Smart Material
+        </div>
+
+        <div class="book-editors">
+          Velu R.
+        </div>
+
+        <div class="book-publisher">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <path d="M8 21h8M12 17v4"/>
+          </svg>
+          LAP Lambert Academic Publishing
+        </div>
+        <div class="book-publisher">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <path d="M8 21h8M12 17v4"/>
+          </svg>
+          ISBN 978-3-659-26551-8
+        </div>
+
+        <a class="book-doi-link"
+           href="https://www.researchgate.net/publication/325709895_Mechanical_Vibration_Control_using_Smart_Material"
+           target="_blank">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2 2V8a2 2 0 012-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          DOI
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+   
 
   </div>
 </div>
@@ -1617,178 +1848,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
   </div>
   <div class="chapter-grid" id="chap-grid">
 
-    <div class="chap-card reveal" data-text="metal additive manufacturing PEM fuel cell nanomaterials flow field plates Wiley">
-      <div class="chap-accent"></div>
-      <div class="chap-num">01</div>
-      <div class="chap-body">
-        <div class="chap-title">Metal Additive Manufacturing of PEM Fuel Cell Flow Field Plates and the Scope of Nanomaterials for Its Fabrication</div>
-        <div class="chap-book">in: Nanotechnology-Based Additive Manufacturing: Product Design, Properties and Applications</div>
-        <div class="chap-publisher">Wiley · Vol. 1, pp. 103–129 · 2023</div>
-        <div class="chap-chips">
-          <span class="chip chip-book">Wiley</span>
-          <a class="chip chip-doi" href="https://doi.org/10.1002/9783527835478.ch4" target="_blank">DOI →</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="chap-card reveal" data-text="additive manufacturing overview trends opportunities limitations market Wiley nanotechnology">
-      <div class="chap-accent"></div>
-      <div class="chap-num">02</div>
-      <div class="chap-body">
-        <div class="chap-title">State of the Art Overview and Recent Trends in Additive Manufacturing: Opportunities, Limitations and Current Market</div>
-        <div class="chap-book">in: Nanotechnology Based Additive Manufacturing: Product Design, Properties and Applications</div>
-        <div class="chap-publisher">Wiley · Vol. 1, pp. 1–25 · 2023</div>
-        <div class="chap-chips">
-          <span class="chip chip-book">Wiley</span>
-          <a class="chip chip-doi" href="https://doi.org/10.1002/9783527835478.ch1" target="_blank">DOI →</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="chap-card reveal" data-text="environmental impact industrial applications future perspectives additive manufacturing Wiley">
-      <div class="chap-accent"></div>
-      <div class="chap-num">03</div>
-      <div class="chap-body">
-        <div class="chap-title">Environmental Impact, Challenges for Industrial Applications and Future Perspectives of Additive Manufacturing</div>
-        <div class="chap-book">in: Nanotechnology Based Additive Manufacturing: Product Design, Properties and Applications</div>
-        <div class="chap-publisher">Wiley · Vol. 2, pp. 691–709 · 2023</div>
-        <div class="chap-chips">
-          <span class="chip chip-book">Wiley</span>
-          <a class="chip chip-doi" href="https://doi.org/10.1002/9783527835478.ch24" target="_blank">DOI →</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="chap-card reveal" data-text="3D printing nanocomposites smart nanoprinting CRC Press">
-      <div class="chap-accent"></div>
-      <div class="chap-num">04</div>
-      <div class="chap-body">
-        <div class="chap-title">3D printing of Nanocomposites</div>
-        <div class="chap-book">in: Smart 3D Nanoprinting</div>
-        <div class="chap-publisher">CRC Press · pp. 149–164 · 2023</div>
-        <div class="chap-chips">
-          <span class="chip chip-book">CRC Press</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="chap-card reveal" data-text="single crystal alloys additive manufacturing process structure property challenges Elsevier">
-      <div class="chap-accent"></div>
-      <div class="chap-num">05</div>
-      <div class="chap-body">
-        <div class="chap-title">Processing Challenges in additively manufactured single crystal alloys: a process-structure-property relationship approach</div>
-        <div class="chap-book">in: Advances in Additive Manufacturing: Artificial Intelligence, Nature-Inspired, and Biomanufacturing</div>
-        <div class="chap-publisher">Elsevier · pp. 253–264 · 2023</div>
-        <div class="chap-chips">
-          <span class="chip chip-book">Elsevier</span>
-          <a class="chip chip-doi" href="https://doi.org/10.1016/B978-0-323-91834-3.00017-X" target="_blank">DOI →</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="chap-card reveal" data-text="bio-inspired advancements additive manufacturing nature-inspired Elsevier biomanufacturing">
-      <div class="chap-accent"></div>
-      <div class="chap-num">06</div>
-      <div class="chap-body">
-        <div class="chap-title">Bio-inspired advancements in Additive Manufacturing</div>
-        <div class="chap-book">in: Advances in Additive Manufacturing: Artificial Intelligence, Nature-Inspired, and Biomanufacturing</div>
-        <div class="chap-publisher">Elsevier · pp. 313–324 · 2023</div>
-        <div class="chap-chips">
-          <span class="chip chip-book">Elsevier</span>
-          <a class="chip chip-doi" href="https://doi.org/10.1016/B978-0-323-91834-3.00008-9" target="_blank">DOI →</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="chap-card reveal" data-text="multi-material 3D printing engineering applications IntechOpen">
-      <div class="chap-accent"></div>
-      <div class="chap-num">07</div>
-      <div class="chap-body">
-        <div class="chap-title">Multi-Material in 3D Printing for Engineering Applications</div>
-        <div class="chap-book">in: Advanced Additive Manufacturing</div>
-        <div class="chap-publisher">IntechOpen · 2022</div>
-        <div class="chap-chips">
-          <span class="chip chip-book">IntechOpen</span>
-          <a class="chip chip-doi" href="https://doi.org/10.5772/intechopen.102564" target="_blank">DOI →</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="chap-card reveal" data-text="chitosan bio-polymer additive manufacturing characterization properties natural polymers CRC">
-      <div class="chap-accent"></div>
-      <div class="chap-num">08</div>
-      <div class="chap-body">
-        <div class="chap-title">Characterization and properties of Chitosan bio-polymer for Additive Manufacturing: A comprehensive review</div>
-        <div class="chap-book">in: Natural Polymers: Perspectives and Applications for a Green Approach</div>
-        <div class="chap-publisher">CRC Press · pp. 91–116 · 2022</div>
-        <div class="chap-chips">
-          <span class="chip chip-book">CRC Press</span>
-          <a class="chip chip-doi" href="https://doi.org/10.1201/9781003130765" target="_blank">DOI →</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="chap-card reveal" data-text="additive manufacturing composites biomedical implants high performance composite structures Springer">
-      <div class="chap-accent"></div>
-      <div class="chap-num">09</div>
-      <div class="chap-body">
-        <div class="chap-title">Additive Manufacturing of composites for Biomedical Implants</div>
-        <div class="chap-book">in: High Performance Composite Structures: Additive Manufacturing and Processing</div>
-        <div class="chap-publisher">Springer Nature · pp. 25–44 · 2021</div>
-        <div class="chap-chips">
-          <span class="chip chip-book">Springer</span>
-          <a class="chip chip-doi" href="https://doi.org/10.1007/978-981-16-7377-1_2" target="_blank">DOI →</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="chap-card reveal" data-text="laser metal additive manufacturing post processing review handbook Elsevier surface treatment">
-      <div class="chap-accent"></div>
-      <div class="chap-num">10</div>
-      <div class="chap-body">
-        <div class="chap-title">Laser aided metal additive manufacturing and post processing: A comprehensive review</div>
-        <div class="chap-book">in: Handbook in Additive Manufacturing and Surface Treatment</div>
-        <div class="chap-publisher">Elsevier · pp. 427–456 · 2021</div>
-        <div class="chap-chips">
-          <span class="chip chip-book">Elsevier</span>
-          <a class="chip chip-doi" href="https://doi.org/10.1016/B978-0-12-818411-0.00023-9" target="_blank">DOI →</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="chap-card reveal" data-text="additive processing biopolymers medical application handbook Elsevier surface treatment">
-      <div class="chap-accent"></div>
-      <div class="chap-num">11</div>
-      <div class="chap-body">
-        <div class="chap-title">Additive processing of biopolymers for medical application</div>
-        <div class="chap-book">in: Handbook in Additive Manufacturing and Surface Treatment</div>
-        <div class="chap-publisher">Elsevier · pp. 635–659 · 2021</div>
-        <div class="chap-chips">
-          <span class="chip chip-book">Elsevier</span>
-          <a class="chip chip-doi" href="https://doi.org/10.1016/B978-0-12-818411-0.00019-7" target="_blank">DOI →</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="chap-card reveal" data-text="3D printing technologies composite materials structural applications automotive green composites Woodhead Elsevier">
-      <div class="chap-accent"></div>
-      <div class="chap-num">12</div>
-      <div class="chap-body">
-        <div class="chap-title">3D printing technologies and composite materials for structural applications</div>
-        <div class="chap-book">in: Green Composites for Automotive Applications</div>
-        <div class="chap-publisher">Woodhead Publishing / Elsevier · pp. 171–196 · 2019</div>
-        <div class="chap-chips">
-          <span class="chip chip-book">Woodhead/Elsevier</span>
-          <a class="chip chip-doi" href="https://doi.org/10.1016/B978-0-08-102177-4.00008-2" target="_blank">DOI →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- 13 -->
+    <!-- 01 -->
 <div class="chap-card reveal">
   <div class="chap-accent"></div>
 
-  <div class="chap-num">13</div>
+  <div class="chap-num">01</div>
 
   <div class="chap-body">
     <div class="chap-title">
@@ -1806,15 +1870,18 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
     <div class="chap-chips">
       <span class="chip chip-year">2025</span>
       <span class="chip chip-book">Book Chapter</span>
+      <a class="chip chip-doi" href="https://www.sciencedirect.com/science/chapter/edited-volume/abs/pii/B9780443161445000077
+" target="_blank">DOI →</a>
     </div>
+ 
   </div>
 </div>
 
-<!-- 14 -->
+<!-- 02 -->
 <div class="chap-card reveal">
   <div class="chap-accent"></div>
 
-  <div class="chap-num">14</div>
+  <div class="chap-num">02</div>
 
   <div class="chap-body">
     <div class="chap-title">
@@ -1828,19 +1895,22 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
     <div class="chap-publisher">
       Elsevier · 2025
     </div>
+   
 
     <div class="chap-chips">
       <span class="chip chip-year">2025</span>
       <span class="chip chip-book">Book Chapter</span>
+      <a class="chip chip-doi" href="hhttps://www.sciencedirect.com/science/chapter/edited-volume/abs/pii/B9780443161445000053
+" target="_blank">DOI →</a>
     </div>
   </div>
 </div>
 
-<!-- 15 -->
+<!-- 03 -->
 <div class="chap-card reveal">
   <div class="chap-accent"></div>
 
-  <div class="chap-num">15</div>
+  <div class="chap-num">03</div>
 
   <div class="chap-body">
     <div class="chap-title">
@@ -1858,15 +1928,18 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
     <div class="chap-chips">
       <span class="chip chip-year">2025</span>
       <span class="chip chip-book">Book Chapter</span>
+      <a class="chip chip-doi" href="https://www.sciencedirect.com/science/chapter/edited-volume/abs/pii/B9780443161445000119
+
+" target="_blank">DOI →</a>
     </div>
   </div>
 </div>
 
-<!-- 16 -->
+<!-- 04 -->
 <div class="chap-card reveal">
   <div class="chap-accent"></div>
 
-  <div class="chap-num">16</div>
+  <div class="chap-num">04</div>
 
   <div class="chap-body">
     <div class="chap-title">
@@ -1884,15 +1957,18 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
     <div class="chap-chips">
       <span class="chip chip-year">2025</span>
       <span class="chip chip-book">Book Chapter</span>
+      <a class="chip chip-doi" href="https://www.sciencedirect.com/science/chapter/edited-volume/abs/pii/B9780443161445000144
+
+" target="_blank">DOI →</a>
     </div>
   </div>
 </div>
 
-<!-- 17 -->
+<!-- 05 -->
 <div class="chap-card reveal">
   <div class="chap-accent"></div>
 
-  <div class="chap-num">17</div>
+  <div class="chap-num">05</div>
 
   <div class="chap-body">
     <div class="chap-title">
@@ -1910,15 +1986,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
     <div class="chap-chips">
       <span class="chip chip-year">2025</span>
       <span class="chip chip-book">Book Chapter</span>
+      <a class="chip chip-doi" href="https://www.sciencedirect.com/science/chapter/edited-volume/abs/pii/B978044316144500020X
+" target="_blank">DOI →</a>
     </div>
   </div>
 </div>
 
-<!-- 18 -->
+<!-- 06 -->
 <div class="chap-card reveal">
   <div class="chap-accent"></div>
 
-  <div class="chap-num">18</div>
+  <div class="chap-num">06</div>
 
   <div class="chap-body">
     <div class="chap-title">
@@ -1936,15 +2014,18 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
     <div class="chap-chips">
       <span class="chip chip-year">2025</span>
       <span class="chip chip-book">Book Chapter</span>
+      <a class="chip chip-doi" href="https://www.sciencedirect.com/science/chapter/edited-volume/abs/pii/B9780443161445000090
+
+" target="_blank">DOI →</a>
     </div>
   </div>
 </div>
 
-<!-- 19 -->
+<!-- 07 -->
 <div class="chap-card reveal">
   <div class="chap-accent"></div>
 
-  <div class="chap-num">19</div>
+  <div class="chap-num">07</div>
 
   <div class="chap-body">
     <div class="chap-title">
@@ -1962,10 +2043,182 @@ body{font-family:'DM Sans',sans-serif;background:var(--offwhite);color:var(--tex
     <div class="chap-chips">
       <span class="chip chip-year">2025</span>
       <span class="chip chip-book">Book Chapter</span>
+      <a class="chip chip-doi" href="https://www.sciencedirect.com/science/chapter/edited-volume/abs/pii/B9780443161445000107" target="_blank">DOI →</a>
     </div>
   </div>
 </div>
 
+
+    <div class="chap-card reveal" data-text="metal additive manufacturing PEM fuel cell nanomaterials flow field plates Wiley">
+      <div class="chap-accent"></div>
+      <div class="chap-num">08</div>
+      <div class="chap-body">
+        <div class="chap-title">Metal Additive Manufacturing of PEM Fuel Cell Flow Field Plates and the Scope of Nanomaterials for Its Fabrication</div>
+        <div class="chap-book">in: Nanotechnology-Based Additive Manufacturing: Product Design, Properties and Applications</div>
+        <div class="chap-publisher">Wiley · Vol. 1, pp. 103–129 · 2023</div>
+        <div class="chap-chips">
+          <span class="chip chip-book">Wiley</span>
+          <a class="chip chip-doi" href="https://doi.org/10.1002/9783527835478.ch4" target="_blank">DOI →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="chap-card reveal" data-text="additive manufacturing overview trends opportunities limitations market Wiley nanotechnology">
+      <div class="chap-accent"></div>
+      <div class="chap-num">09</div>
+      <div class="chap-body">
+        <div class="chap-title">State of the Art Overview and Recent Trends in Additive Manufacturing: Opportunities, Limitations and Current Market</div>
+        <div class="chap-book">in: Nanotechnology Based Additive Manufacturing: Product Design, Properties and Applications</div>
+        <div class="chap-publisher">Wiley · Vol. 1, pp. 1–25 · 2023</div>
+        <div class="chap-chips">
+          <span class="chip chip-book">Wiley</span>
+          <a class="chip chip-doi" href="https://doi.org/10.1002/9783527835478.ch1" target="_blank">DOI →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="chap-card reveal" data-text="environmental impact industrial applications future perspectives additive manufacturing Wiley">
+      <div class="chap-accent"></div>
+      <div class="chap-num">10</div>
+      <div class="chap-body">
+        <div class="chap-title">Environmental Impact, Challenges for Industrial Applications and Future Perspectives of Additive Manufacturing</div>
+        <div class="chap-book">in: Nanotechnology Based Additive Manufacturing: Product Design, Properties and Applications</div>
+        <div class="chap-publisher">Wiley · Vol. 2, pp. 691–709 · 2023</div>
+        <div class="chap-chips">
+          <span class="chip chip-book">Wiley</span>
+          <a class="chip chip-doi" href="https://doi.org/10.1002/9783527835478.ch24" target="_blank">DOI →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="chap-card reveal" data-text="3D printing nanocomposites smart nanoprinting CRC Press">
+      <div class="chap-accent"></div>
+      <div class="chap-num">11</div>
+      <div class="chap-body">
+        <div class="chap-title">3D printing of Nanocomposites</div>
+        <div class="chap-book">in: Smart 3D Nanoprinting</div>
+        <div class="chap-publisher">CRC Press · pp. 149–164 · 2023</div>
+        <div class="chap-chips">
+          <span class="chip chip-book">CRC Press</span>
+          <a class="chip chip-doi" href="https://www.sciencedirect.com/science/article/pii/S2773207X23000520
+" target="_blank">DOI →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="chap-card reveal" data-text="single crystal alloys additive manufacturing process structure property challenges Elsevier">
+      <div class="chap-accent"></div>
+      <div class="chap-num">12</div>
+      <div class="chap-body">
+        <div class="chap-title">Processing Challenges in additively manufactured single crystal alloys: a process-structure-property relationship approach</div>
+        <div class="chap-book">in: Advances in Additive Manufacturing: Artificial Intelligence, Nature-Inspired, and Biomanufacturing</div>
+        <div class="chap-publisher">Elsevier · pp. 253–264 · 2023</div>
+        <div class="chap-chips">
+          <span class="chip chip-book">Elsevier</span>
+          <a class="chip chip-doi" href="https://doi.org/10.1016/B978-0-323-91834-3.00017-X" target="_blank">DOI →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="chap-card reveal" data-text="bio-inspired advancements additive manufacturing nature-inspired Elsevier biomanufacturing">
+      <div class="chap-accent"></div>
+      <div class="chap-num">13</div>
+      <div class="chap-body">
+        <div class="chap-title">Bio-inspired advancements in Additive Manufacturing</div>
+        <div class="chap-book">in: Advances in Additive Manufacturing: Artificial Intelligence, Nature-Inspired, and Biomanufacturing</div>
+        <div class="chap-publisher">Elsevier · pp. 313–324 · 2023</div>
+        <div class="chap-chips">
+          <span class="chip chip-book">Elsevier</span>
+          <a class="chip chip-doi" href="https://doi.org/10.1016/B978-0-323-91834-3.00008-9" target="_blank">DOI →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="chap-card reveal" data-text="multi-material 3D printing engineering applications IntechOpen">
+      <div class="chap-accent"></div>
+      <div class="chap-num">14</div>
+      <div class="chap-body">
+        <div class="chap-title">Multi-Material in 3D Printing for Engineering Applications</div>
+        <div class="chap-book">in: Advanced Additive Manufacturing</div>
+        <div class="chap-publisher">IntechOpen · 2022</div>
+        <div class="chap-chips">
+          <span class="chip chip-book">IntechOpen</span>
+          <a class="chip chip-doi" href="https://doi.org/10.5772/intechopen.102564" target="_blank">DOI →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="chap-card reveal" data-text="chitosan bio-polymer additive manufacturing characterization properties natural polymers CRC">
+      <div class="chap-accent"></div>
+      <div class="chap-num">15</div>
+      <div class="chap-body">
+        <div class="chap-title">Characterization and properties of Chitosan bio-polymer for Additive Manufacturing: A comprehensive review</div>
+        <div class="chap-book">in: Natural Polymers: Perspectives and Applications for a Green Approach</div>
+        <div class="chap-publisher">CRC Press · pp. 91–116 · 2022</div>
+        <div class="chap-chips">
+          <span class="chip chip-book">CRC Press</span>
+          <a class="chip chip-doi" href="https://doi.org/10.1201/9781003130765" target="_blank">DOI →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="chap-card reveal" data-text="additive manufacturing composites biomedical implants high performance composite structures Springer">
+      <div class="chap-accent"></div>
+      <div class="chap-num">16</div>
+      <div class="chap-body">
+        <div class="chap-title">Additive Manufacturing of composites for Biomedical Implants</div>
+        <div class="chap-book">in: High Performance Composite Structures: Additive Manufacturing and Processing</div>
+        <div class="chap-publisher">Springer Nature · pp. 25–44 · 2021</div>
+        <div class="chap-chips">
+          <span class="chip chip-book">Springer</span>
+          <a class="chip chip-doi" href="https://doi.org/10.1007/978-981-16-7377-1_2" target="_blank">DOI →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="chap-card reveal" data-text="laser metal additive manufacturing post processing review handbook Elsevier surface treatment">
+      <div class="chap-accent"></div>
+      <div class="chap-num">17</div>
+      <div class="chap-body">
+        <div class="chap-title">Laser aided metal additive manufacturing and post processing: A comprehensive review</div>
+        <div class="chap-book">in: Handbook in Additive Manufacturing and Surface Treatment</div>
+        <div class="chap-publisher">Elsevier · pp. 427–456 · 2021</div>
+        <div class="chap-chips">
+          <span class="chip chip-book">Elsevier</span>
+          <a class="chip chip-doi" href="https://doi.org/10.1016/B978-0-12-818411-0.00023-9" target="_blank">DOI →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="chap-card reveal" data-text="additive processing biopolymers medical application handbook Elsevier surface treatment">
+      <div class="chap-accent"></div>
+      <div class="chap-num">18</div>
+      <div class="chap-body">
+        <div class="chap-title">Additive processing of biopolymers for medical application</div>
+        <div class="chap-book">in: Handbook in Additive Manufacturing and Surface Treatment</div>
+        <div class="chap-publisher">Elsevier · pp. 635–659 · 2021</div>
+        <div class="chap-chips">
+          <span class="chip chip-book">Elsevier</span>
+          <a class="chip chip-doi" href="https://doi.org/10.1016/B978-0-12-818411-0.00019-7" target="_blank">DOI →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="chap-card reveal" data-text="3D printing technologies composite materials structural applications automotive green composites Woodhead Elsevier">
+      <div class="chap-accent"></div>
+      <div class="chap-num">19</div>
+      <div class="chap-body">
+        <div class="chap-title">3D printing technologies and composite materials for structural applications</div>
+        <div class="chap-book">in: Green Composites for Automotive Applications</div>
+        <div class="chap-publisher">Woodhead Publishing / Elsevier · pp. 171–196 · 2019</div>
+        <div class="chap-chips">
+          <span class="chip chip-book">Woodhead/Elsevier</span>
+          <a class="chip chip-doi" href="https://doi.org/10.1016/B978-0-08-102177-4.00008-2" target="_blank">DOI →</a>
+        </div>
+      </div>
+    </div>
+
+   
   </div><!-- /chap-grid -->
 </div>
 
