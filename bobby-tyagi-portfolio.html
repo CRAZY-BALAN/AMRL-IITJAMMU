@@ -434,6 +434,34 @@ h2.stitle{
 .skill-icon-wrap.teal{background:var(--teal-light);}
 .skill-icon-wrap.gold{background:var(--gold-light);}
 
+
+/* ========= SKILLS ========= */
+.skills-group{margin-bottom:2.2rem;}
+.skills-group-label{
+  font-size:11px;font-weight:700;color:var(--blue2);
+  text-transform:uppercase;letter-spacing:0.1em;
+  margin-bottom:1rem;display:flex;align-items:center;gap:10px;
+  font-family:'JetBrains Mono',monospace;
+}
+.skills-group-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:0.75rem;}
+.skill-chip{
+  background:#fff;border:1px solid var(--border);border-radius:12px;
+  padding:0.85rem 1rem;
+  display:flex;align-items:center;gap:11px;
+  font-size:12.5px;color:var(--text);font-weight:500;
+  box-shadow:var(--sh);transition:all 0.22s;
+}
+.skill-chip:hover{border-color:var(--blue-mid);transform:translateY(-3px);box-shadow:var(--sh2);color:var(--blue2);}
+.skill-icon{
+  width:33px;height:33px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.skill-icon.b{background:var(--blue-light);}
+.skill-icon.t{background:var(--teal-light);}
+.skill-icon.g{background:var(--gold-light);}
+
+
 /* ── EDU ── */
 .edu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1rem;}
 .edu-card{
@@ -910,110 +938,48 @@ footer{
     </div>
   </section>
 
-  <!-- ─── SKILLS ─── -->
+<!-- SKILLS -->
   <section class="reveal" id="skills">
-    <div class="section-eyebrow">Expertise</div>
-    <h2 class="stitle">Technical Skills</h2>
+    <div class="section-eyebrow">Technical Expertise</div>
+    <h2 class="stitle">Skills &amp; Instrumentation</h2>
 
     <div class="skills-group">
-      <div class="skills-group-label">Laboratory & Instrumentation</div>
+      <div class="skills-group-label">Additive Manufacturing Systems</div>
       <div class="skills-grid">
-        <div class="skill-chip">
-          <div class="skill-icon-wrap teal">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11m0 0H5a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-4m-5 0h5"/></svg>
-          </div>
-          Scanning Electron Microscopy
-        </div>
-        <div class="skill-chip">
-          <div class="skill-icon-wrap teal">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="12" x2="2" y2="12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><line x1="6" y1="16" x2="6.01" y2="16"/><line x1="10" y1="16" x2="10.01" y2="16"/></svg>
-          </div>
-          Tensile / Flexural / Impact Testing
-        </div>
-        <div class="skill-chip">
-          <div class="skill-icon-wrap teal">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.56 2.9A7 7 0 1 0 20.54 11"/><path d="M12 6v6l4 2"/></svg>
-          </div>
-          DSC &amp; TGA Thermal Analysis
-        </div>
-        <div class="skill-chip">
-          <div class="skill-icon-wrap teal">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16,3 21,3 21,8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21,16 21,21 16,21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
-          </div>
-          FDM / 3D Printer Operation
-        </div>
-        <div class="skill-chip">
-          <div class="skill-icon-wrap teal">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h.01M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg>
-          </div>
-          UTM Operation
-        </div>
-        <div class="skill-chip">
-          <div class="skill-icon-wrap teal">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          </div>
-          3D Laser Scanning
-        </div>
-        <div class="skill-chip">
-          <div class="skill-icon-wrap teal">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          </div>
-          Optical Microscopy
-        </div>
-        <div class="skill-chip">
-          <div class="skill-icon-wrap teal">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
-          </div>
-          ASTM Specimen Preparation
-        </div>
+        <div class="skill-chip tilt3d"><div class="skill-icon t"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0B8A7F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>SLS — Sinterit Lisa X + In-house Workcell</div>
+        <div class="skill-chip tilt3d"><div class="skill-icon t"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0B8A7F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16,3 21,3 21,8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21,16 21,21 16,21"/><line x1="15" y1="15" x2="21" y2="21"/></svg></div>FDM — Creality K2+, Snapmaker J1/J1s</div>
+        <div class="skill-chip tilt3d"><div class="skill-icon t"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0B8A7F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/></svg></div>DLP Vat Photo-polymerization</div>
+        <div class="skill-chip tilt3d"><div class="skill-icon t"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0B8A7F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11m0 0H5a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-4m-5 0h5"/></svg></div>Multi-Jet Printing — MJP 2500, 3D Systems</div>
       </div>
     </div>
 
     <div class="skills-group">
-      <div class="skills-group-label">Computational &amp; Software</div>
+      <div class="skills-group-label">Materials Characterization</div>
       <div class="skills-grid">
-        <div class="skill-chip">
-          <div class="skill-icon-wrap">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1C4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12,2 2,7 12,12 22,7"/><polyline points="2,17 12,22 22,17"/><polyline points="2,12 12,17 22,12"/></svg>
-          </div>
-          SolidWorks
-        </div>
-        <div class="skill-chip">
-          <div class="skill-icon-wrap">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1C4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/><path d="M12 8v4l3 3"/></svg>
-          </div>
-          Fusion 360
-        </div>
-        <div class="skill-chip">
-          <div class="skill-icon-wrap">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1C4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </div>
-          nTopology
-        </div>
-        <div class="skill-chip">
-          <div class="skill-icon-wrap">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1C4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          </div>
-          Minitab / Statistical Analysis
-        </div>
-        <div class="skill-chip">
-          <div class="skill-icon-wrap">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1C4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
-          </div>
-          Origin / ImageJ
-        </div>
-        <div class="skill-chip">
-          <div class="skill-icon-wrap">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1C4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/></svg>
-          </div>
-          Machine Learning (Predictive)
-        </div>
-        <div class="skill-chip">
-          <div class="skill-icon-wrap">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1C4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
-          </div>
-          MS Office / Excel
-        </div>
+        <div class="skill-chip tilt3d"><div class="skill-icon b"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1742C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>FE-SEM — JEOL JSM7900</div>
+        <div class="skill-chip tilt3d"><div class="skill-icon b"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1742C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></div>FTIR Spectroscopy — Nicolet iS50</div>
+        <div class="skill-chip tilt3d"><div class="skill-icon b"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1742C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></div>Thermal analysis - DSC/TGA </div>
+                <div class="skill-chip tilt3d"><div class="skill-icon b"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1742C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></div>Viscoelastic Properties - DMA/TMA</div>
+                        <div class="skill-chip tilt3d"><div class="skill-icon b"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1742C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></div>FMechanical Testing: Tensile, compression, Flexural, Impact, Hardness</div>
+                                <div class="skill-chip tilt3d"><div class="skill-icon b"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1742C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></div>Image Processing- Image J/Fiji/Dragon fly 3D</div>
+        <div class="skill-chip tilt3d"><div class="skill-icon b"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1742C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.56 2.9A7 7 0 1 0 20.54 11"/><path d="M12 6v6l4 2"/></svg></div>TGA / DSC / DMA / TMA — NETZSCH</div>
+        <div class="skill-chip tilt3d"><div class="skill-icon b"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1742C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h.01M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg></div>Synchrotron X-ray µCT</div>
+        <div class="skill-chip tilt3d"><div class="skill-icon b"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1742C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="12" x2="2" y2="12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div>UTM, Impact, Hardness Testing</div>
+        <div class="skill-chip tilt3d"><div class="skill-icon b"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1742C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>Digital Image Correlation (DIC/VIC)</div>
+        <div class="skill-chip tilt3d"><div class="skill-icon b"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1742C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/></svg></div>IR Thermography — Optrix PI640</div>
+        <div class="skill-chip tilt3d"><div class="skill-icon b"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1742C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>Optical Microscopy — Olympus DSX 510</div>
+      </div>
+    </div>
+
+    <div class="skills-group">
+      <div class="skills-group-label">Software and Computational Tools</div>
+      <div class="skills-grid">
+        <div class="skill-chip tilt3d"><div class="skill-icon g"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9A4A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12,2 2,7 12,12 22,7"/><polyline points="2,17 12,22 22,17"/><polyline points="2,12 12,17 22,12"/></svg></div>SolidWorks / CATIA V5 / Creo 4.0 / Blender</div>
+        <div class="skill-chip tilt3d"><div class="skill-icon g"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9A4A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg></div>ANSYS (Static and Thermal) / ABAQUS</div>
+        <div class="skill-chip tilt3d"><div class="skill-icon g"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9A4A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></div>MATLAB / C / C++</div>
+        <div class="skill-chip tilt3d"><div class="skill-icon g"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9A4A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>Minitab / OriginPro / ImageJ / Dragonfly</div>
+        <div class="skill-chip tilt3d"><div class="skill-icon g"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9A4A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/></svg></div>ChemDraw / GaussView</div>
+        <div class="skill-chip tilt3d"><div class="skill-icon g"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9A4A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/></svg></div>Ubuntu Linux / Windows</div>
       </div>
     </div>
   </section>
