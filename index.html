@@ -1882,7 +1882,7 @@
             </div>
             <div class="prof-body" style="padding:26px 28px 24px;">
               <div class="prof-name" style="font-size:19px;">Dr. Raj Kumar Velu</div>
-              <div class="prof-role" style="font-size:13.5px;margin-bottom:6px;">Department of Materials and Metallurgical Engineering<br>Assistant Professor, IIT Jammu</div>
+              <div class="prof-role" style="font-size:13.5px;margin-bottom:6px;">Assistant Professor Of Mechanical Engineering,<br>Dual Affiliated with Department of Materials and Metallurgical Engineering, IIT Jammu</div>
               <div class="prof-dept" style="margin-bottom:12px;">PhD · Auckland University of Technology , New Zealand&nbsp;|&nbsp; Postdoctoral Researcher · Singapore University of Technology and Design(SUTD), Singapore</div>
               <div style="font-size:13px;color:var(--text-med);line-height:1.72;margin-bottom:16px;">Dr. Raj Kumar Velu is the founder and Principal Investigator of AMRL. His research spans Additive Manufacturing (SLS, SLM, FDM, DED), functionally graded and TPMS lattice structures, polymer &amp; metal composite fabrication, topology optimisation, and patient-specific biomedical devices — including prosthetics and dental implants. He has authored 40+ peer-reviewed publications and leads high-value sponsored projects funded by ICMR, DST, SERB, and DRDO, with a cumulative funding of over ₹7 Crore.</div>
               <div class="prof-expertise" style="margin-bottom:18px;">
@@ -2435,10 +2435,10 @@ TPMS structures, biomedical implants, and smart manufacturing systems.</p>
     </div>
 
     <!-- ── 3D CAROUSEL SCENE ── -->
-    <div style="position:relative;width:100%;height:480px;perspective:1200px;margin-bottom:32px;overflow:visible;">
+    <div style="position:relative;width:100%;height:480px;perspective:1800px;margin-bottom:32px;overflow:visible;">
       <div id="carousel3d" style="position:absolute;width:100%;height:100%;transform-style:preserve-3d;transition:transform 0.9s cubic-bezier(0.4,0,0.2,1);"></div>
 
-      <!-- LEFT ARROW — flush against the left edge of the visible card area -->
+      <!-- LEFT ARROW — flush against the left edge of the visible card area --> 
       <button id="prevBtn"
         style="position:absolute;left:calc(50% - 390px);top:50%;transform:translateY(-50%);
                width:44px;height:44px;border-radius:50%;background:white;
@@ -2476,7 +2476,50 @@ TPMS structures, biomedical implants, and smart manufacturing systems.</p>
     </div>
 
     <!-- Dots only -->
-    <div id="facDots" style="display:flex;gap:7px;align-items:center;justify-content:center;flex-wrap:wrap;"></div>
+    <!-- Dots + Play/Pause -->
+<div style="display:flex;align-items:center;justify-content:center;gap:18px;margin-top:4px;">
+
+  <div id="facDots"
+       style="display:flex;gap:7px;align-items:center;justify-content:center;flex-wrap:wrap;">
+  </div>
+
+  <button id="playPauseBtn"
+    type="button"
+    aria-label="Pause carousel"
+    style="
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      border:1.5px solid var(--gray-light);
+      background:white;
+      color:var(--navy);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      box-shadow:0 4px 16px rgba(10,34,64,0.12);
+      transition:all 0.2s ease;
+      flex-shrink:0;
+    "
+    onmouseenter="this.style.background='var(--navy)';this.querySelector('svg').style.stroke='white'"
+    onmouseleave="this.style.background='white';this.querySelector('svg').style.stroke='var(--navy)'">
+
+    <!-- Pause icon -->
+    <svg id="playPauseIcon"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="var(--navy)"
+      stroke-width="2.5"
+      stroke-linecap="round">
+      <line x1="8" y1="6" x2="8" y2="18"/>
+      <line x1="16" y1="6" x2="16" y2="18"/>
+    </svg>
+
+  </button>
+
+</div>
   </div>
 </section>
   <!-- ══ CONTACT / FOOTER ══ -->
@@ -2635,18 +2678,113 @@ TPMS structures, biomedical implants, and smart manufacturing systems.</p>
 
     (function() {
   const machines = [
-    { name:"Vision Pro 3D Scanner",    img:"png_m/m1.png",  desc:"High-accuracy optical 3D scanning system for reverse engineering, dimensional inspection, surface reconstruction, and digital model acquisition of complex components.", tag:"3D Scanning / Metrology",     color:"#e8f4fd", stroke:"#1a7cc1", icon:`<polyline points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>` },
-    { name:"Multi-Extruder FGM 3D Printer",     img:"png_m/m2.png",  desc:"Multi-material fused deposition modeling system capable of fabricating complex polymer structures, functional prototypes, and support-intensive geometries with enhanced precision", tag:"Polymer AM",      color:"#fef3e2", stroke:"#f5a623", icon:`<circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/>` },
-    { name:"Compact MSLA resin printer",img:"png_m/m3.png", desc:"High-resolution stereolithography system for producing detailed prototypes, biomedical models, micro-scale parts, and smooth surface-finish components.", tag:"SLA Printing",           color:"#fff7ed", stroke:"#ea580c", icon:`<path d="M13 10V3L4 14h7v7l9-11h-7z"/>` },
-    { name:"Selective Laser Sintering System", img:"png_m/m4.png", desc:"Industrial-grade selective laser sintering platform for manufacturing strong and lightweight polymer parts using nylon and composite powder materials.", tag:"Powder Bed Fusion",           color:"#f0fdf4", stroke:"#16a34a", icon:`<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>` },
-    { name:"Handheld 3D scanner",  img:"png_m/m5.png",    desc:"Multi-camera intelligent vision system for real-time object recognition, dimensional analysis, defect detection, and automation-assisted manufacturing research.", tag:"AI Vision / Inspection",    color:"#fdf4ff", stroke:"#9333ea", icon:`<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>` },
-    { name:" Selective Laser Sintering (SLS)", img:"png_m/m6.png", desc:"Laser powder bed fusion (L-PBF) of polymers—also widely known as Selective Laser Sintering (SLS)—is an additive manufacturing process that builds 3D plastic parts from fine powder.", tag:"Powder Bed Fusion", color:"#fff1f2", stroke:"#e11d48", icon:`<line x1="12" y1="2" x2="12" y2="22"/><polyline points="17 7 12 2 7 7"/><polyline points="7 17 12 22 17 17"/>` },
-    { name:"Creality Ender-3 V3 SE", img:"png_m/m7.png", desc:"The Creality Ender-3 V3 SE is an affordable, FDM 3D printer known for its fast setup and reliable automated features.", tag:"Rapid Prototyping",    color:"#eff6ff", stroke:"#2563eb", icon:`<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>` },
-    { name:"Creality K2 Plus + CFS",   img:"png_m/m8.png",  desc:"The Creality K2 Plus + CFS is an advanced, large-format 3D printer designed for high-speed, multi-color, and multi-material 3D printing.", tag:"Multi-Material Printing", color:"#ecfdf5", stroke:"#059669", icon:`<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/>` },
-    { name:"Anycubic kobra",img:"png_m/m9.png", desc:"The Anycubic Kobra series is a highly popular line of entry-to-mid-level FDM (Fused Deposition Modeling) 3D printers renowned for their affordability.", tag:"Automatic Bed Leveling", color:"#fff7ed", stroke:"#c2410c", icon:`<path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"/>` },
-    { name:"Continuous Carbon-Fiber 3D Printer", img:"png_m/m10.png", desc:"Large-volume industrial additive manufacturing system for fabrication of full-scale engineering prototypes, tooling, and functional end-use parts.", tag:"Industrial AM",     color:"#f0f9ff", stroke:"#0284c7", icon:`<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>` },
-    { name:"Y-type Hot End",  img:"png_m/m11.png",    desc:"A Y-type hot end is a single-nozzle multi-filament convergence system enabling sequential or co-extrusion material blending through a unified thermal zone.", tag:"Research AM", color:"#faf5ff", stroke:"#7c3aed", icon:`<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>` },
-    { name:"Soft Material and Pellet based Printer",   img:"png_m/m12.png",   desc:"Dual-material intelligent 3D printing system supporting soluble supports, multi-material fabrication, and precision engineering applications.", tag:"Dual Extrusion", color:"#f8fafc", stroke:"#475569", icon:`<rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>` }
+    { name: "Selective Laser Sintering System",
+    img: "png_m/m1.png",
+    desc: "In-house polymer additive manufacturing system for SLS, enabling complex geometry fabrication and functional thermoplastic components for advanced research applications.",
+    tag: "In-House SLS",
+    color: "#e8f4fd",
+    stroke: "#1a7cc1", icon:`<polyline points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>` 
+  },
+    { name: "Compact Selective Laser Sintering System",
+    img: "png_m/m2.png",
+     desc: "Compact in-house SLS platform integrating a diode laser and gantry scanner for controlled polymer powder processing, research applications.",
+    tag: "Compact SLS",
+    color: "#fef3e2",
+    stroke: "#f5a623", icon:`<circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/>` 
+  },
+    { name: "Hybrid Mandrel CCF 3D Printer",
+    img: "png_m/m3.png",
+    desc: "Mandrel-assisted continuous carbon-fiber additive manufacturing system designed for composite fabrication, supporting large-format components with a 40 × 40 × 40 cm build volume.",
+    tag: "Hybrid Composite AM",
+    color: "#fff7ed",
+    stroke: "#ea580c", icon:`<path d="M13 10V3L4 14h7v7l9-11h-7z"/>` 
+  },
+    { name: "Y-Type Co-Extrusion 3D Printer",
+    img: "png_m/m4.png",
+    desc: "Research-oriented multi-material printing system supporting FGM fabrication through dual-material mixing and controlled co-extrusion within a 20 × 20 × 20 cm build volume.",
+    tag: "Multi-Material / FGM",
+    color: "#f0fdf4",
+    stroke: "#16a34a", icon:`<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>` 
+  },
+    { name: "Continuous Carbon-Fiber 3D Printer",
+    img: "png_m/m5.png",
+   desc: "Large-format composite additive manufacturing platform for continuous carbon-fiber fabrication and a 50 × 50 × 50 cm build volume.",
+   tag: "Continuous Fiber AM",
+    color: "#fdf4ff",
+    stroke: "#9333ea", icon:`<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>` 
+  },
+    { name: "Bio-Printer",
+    img: "png_m/m6.png",
+    desc: "Pneumatic extrusion-based bioprinting platform developed for controlled deposition of bio-compatible materials and fabrication of hydrogel-based structures for biomedical research.",
+    tag: "Bioprinting",
+    color: "#ecfdf5",
+    stroke: "#059669", icon:`<line x1="12" y1="2" x2="12" y2="22"/><polyline points="17 7 12 2 7 7"/><polyline points="7 17 12 22 17 17"/>` 
+  },
+    { name: "Prusa XL 5",
+    img: "png_m/m7.png",
+   desc: "Large-format multi-toolhead FFF platform with a 36 × 36 × 36 cm build volume and five toolheads for versatile thermoplastic and multi-material fabrication.",
+    tag: "Large-Format FFF",
+    color: "#eff6ff",
+    stroke: "#2563eb", icon:`<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>`
+  },
+    { name: "Anycubic Kobra",
+    img: "png_m/m8.png",
+    desc: "Desktop material-extrusion platform with a 22 × 22 × 25 cm build volume and single-nozzle configuration, suitable for thermoplastic prototyping and fabrication.",
+    tag: "Desktop FDM",
+    color: "#fff7ed",
+    stroke: "#c2410c", icon:`<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/>` 
+  },
+    { name: "Creality Ender-3 V3 SE",
+    img: "png_m/m9.png",
+    desc: "Desktop FDM additive manufacturing platform designed for reliable thermoplastic fabrication, rapid prototyping, experimental models, and laboratory-scale development.",
+    tag: "Desktop FDM",
+    color: "#e8f4fd",
+    stroke: "#1a7cc1", icon:`<path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"/>`
+   },
+    { name: "Creality K2 Plus + CFS",
+    img: "png_m/m10.png",
+    desc: "Enclosed multi-color FFF platform with a 35 × 35 × 35 cm build volume, supporting advanced thermoplastic fabrication and multi-material printing workflows.",
+    tag: "Multi-Color FFF",
+    color: "#ecfdf5",
+    stroke: "#059669",
+    icon:`<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>`
+   },
+    { name: "Bio-Printer",
+    img: "png_m/m11.png",
+    desc: "Compact pneumatic extrusion system with an 18 × 12 × 9 cm build volume, supporting hydrogel and UV-curable materials for biomedical research and fabrication.",
+    tag: "Bio-Printing",
+    color: "#fdf4ff",
+    stroke: "#9333ea",
+    icon:`<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>`
+   },
+    { name: "Creality Scan Otter",
+  img: "png_m/m12.png",
+  desc: "Professional handheld 3D scanning system featuring 4-lens vision and up to 0.02 mm accuracy for precise geometry capture, dimensional inspection, and digital reconstruction.",
+    tag: "Handheld 3D Scanning",
+  color: "#fdf4ff",
+  stroke: "#9333ea", icon:`<rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>` 
+  },
+  { name: "Shining 3D Medixa",
+    img: "png_m/m13.png",
+     desc: "Portable 3D digitization system providing less than 0.3 mm accuracy with a 5 MP texture camera for detailed geometry capture and digital reconstruction.",
+    tag: "3D Digitization",
+    color: "#f0f9ff",
+    stroke: "#0284c7", icon:`<polyline points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>` 
+  },
+    { name: "Elegoo Saturn 4 Ultra 16K",
+    img: "png_m/m14.png",
+    desc: "High-resolution MSLA resin printing system featuring a 16K monochrome display and large build volume for producing highly detailed prototypes and research components.",
+    tag: "16K MSLA",
+    color: "#fff1f2",
+    stroke: "#e11d48", icon:`<circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/>` 
+  },
+    { name: "Creality Halot R6",
+    img: "png_m/m15.png",
+    desc: "Compact MSLA resin printing platform offering 2560 × 1620 pixel resolution and a 13 × 8.2 × 16 cm build volume for detailed model fabrication.",
+    tag: "Compact MSLA",
+    color: "#faf5ff",
+    stroke: "#7c3aed", icon:`<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>` 
+  }
   ];
 
   const N        = machines.length;
@@ -2656,9 +2794,14 @@ TPMS structures, biomedical implants, and smart manufacturing systems.</p>
   const totNumEl = document.getElementById('totNum');
   const curNameEl= document.getElementById('curName');
   const progressBar = document.getElementById('progressBar');
-  const DURATION = 3500;
-  const RADIUS   = 520;
+  const DURATION = 3700;
+  const RADIUS   = 700;
   let current = 0;
+  let isPlaying = true;
+let autoPlayTimer = null;
+
+const playPauseBtn  = document.getElementById('playPauseBtn');
+const playPauseIcon = document.getElementById('playPauseIcon');
 
   totNumEl.textContent = N;
 
@@ -2729,9 +2872,52 @@ TPMS structures, biomedical implants, and smart manufacturing systems.</p>
   document.getElementById('nextBtn').addEventListener('click', next);
   document.getElementById('prevBtn').addEventListener('click', prev);
 
-  // Auto-play (no play/pause button — always running)
-  setInterval(next, DURATION);
-  updateCarousel();
+  // ── PLAY / PAUSE ──
+
+function startAutoPlay() {
+  clearInterval(autoPlayTimer);
+
+  autoPlayTimer = setInterval(() => {
+    next();
+  }, DURATION);
+
+  isPlaying = true;
+
+  playPauseBtn.setAttribute('aria-label', 'Pause carousel');
+
+  // Pause icon
+  playPauseIcon.innerHTML = `
+    <line x1="8" y1="6" x2="8" y2="18"/>
+    <line x1="16" y1="6" x2="16" y2="18"/>
+  `;
+}
+
+function pauseAutoPlay() {
+  clearInterval(autoPlayTimer);
+  autoPlayTimer = null;
+
+  isPlaying = false;
+
+  playPauseBtn.setAttribute('aria-label', 'Play carousel');
+
+  // Play icon
+  playPauseIcon.innerHTML = `
+    <polygon points="8 5 19 12 8 19"/>
+  `;
+}
+
+playPauseBtn.addEventListener('click', () => {
+
+  if (isPlaying) {
+    pauseAutoPlay();
+  } else {
+    startAutoPlay();
+  }
+
+});
+
+updateCarousel();
+startAutoPlay();
 })();
 
 // ── HERO SLIDE NAVIGATION ──
