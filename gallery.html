@@ -517,12 +517,68 @@
       to   { transform: translateY(-30px) scale(1.06); }
     }
 
-    /* ── Responsive ── */
     @media (max-width: 768px) {
-      .gallery { padding: 0 16px 60px; gap: 20px; }
-      header   { padding: 50px 20px 40px; }
-      :root    { --card-h: 340px; }
-    }
+  /* Navbar */
+  #navbar { padding: 10px 16px; }
+  #navbar.scrolled { padding: 8px 16px; }
+  .nav-logo img { height: 44px; }
+  #navbar.scrolled .nav-logo img { height: 38px; }
+  .nav-logo-divider { height: 30px; }
+  .nav-logo-text .lab-name { font-size: 12.5px; }
+  .nav-logo-text .dept-name { font-size: 9.5px; }
+  .nav-back { font-size: 11.5px; padding: 6px 12px; white-space: nowrap; }
+  .navbar-spacer { height: 74px; }
+
+  /* Header */
+  header { padding: 40px 16px 32px; }
+  .badge { font-size: 0.62rem; padding: 5px 14px; }
+  h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+  .subtitle { font-size: 0.9rem; padding: 0 6px; }
+
+  /* Filters — horizontal scroll strip on phones */
+  .filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 0 16px 36px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .filters::-webkit-scrollbar { display: none; }
+  .filter-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 8px 16px;
+    font-size: 0.78rem;
+  }
+
+  /* Gallery grid */
+  .gallery { grid-template-columns: 1fr; gap: 20px; padding: 0 16px 60px; }
+  :root { --card-h: 340px; }
+  .card-front img { height: 70%; }
+  .card-title { font-size: 0.85rem; }
+  .card-tag { font-size: 0.65rem; }
+  .back-title { font-size: 1.02rem; }
+  .back-desc { font-size: 0.8rem; line-height: 1.65; }
+  .card-back { padding: 24px 20px; }
+
+  /* Orbs shouldn't overflow small screens */
+  .orb-1 { width: 220px; height: 220px; }
+  .orb-2 { width: 160px; height: 160px; }
+  .orb-3 { display: none; }
+
+  /* Lightbox tighter on phones */
+  .lightbox-close { top: 16px; right: 20px; font-size: 1.7rem; }
+  .lightbox img { max-width: 94vw; max-height: 80vh; border-radius: 12px; }
+}
+
+@media (max-width: 400px) {
+  h1 { font-size: 1.7rem; }
+  .nav-logo-text { display: none; }
+  .nav-logo-divider { display: none; }
+  .filter-btn { font-size: 0.72rem; padding: 7px 14px; }
+}
 
     /* ── Lightbox ── */
     .lightbox {
@@ -828,7 +884,7 @@
           </div>
           <div class="back-title">Research Exhibition & Technology Showcase</div>
           <div class="back-divider"></div>
-          <p class="back-desc">Through participation in exhibitions and innovation fairs, AMRL demonstrates its commitment to translating research into real-world impact. The event enabled meaningful interactions with researchers, industry representatives, defense personnel, and students while showcasing the laboratory's contributions to additive manufacturing and next-generation technologies.</p>
+          <p class="back-desc">Through participation in exhibitions and innovation fairs, AMRL demonstrates its commitment to translating research into real-world impact. The event enabled meaningful interactions with researchers, industry representatives, defense personnel, and students.</p>
           <button class="back-close" onclick="flipBack(event)">✕ Close</button>
         </div>
       </div>
@@ -900,7 +956,7 @@
           </div>
           <div class="back-title">Collaborative Research Interaction with Army Personnel</div>
           <div class="back-divider"></div>
-          <p class="back-desc">AMRL regularly engages with defense and industry stakeholders to showcase innovative research and technological developments. This visit by Army personnel facilitated meaningful discussions on advanced engineering solutions, drone technologies, and additive manufacturing, highlighting the laboratory's commitment to addressing real-world challenges through research and innovation.</p>
+          <p class="back-desc">AMRL regularly engages with defense and industry stakeholders to showcase innovative research and technological developments. This visit by Army personnel facilitated meaningful discussions on advanced engineering solutions, drone technologies, highlighting the laboratory's commitment to addressing real-world challenges.</p>
           <button class="back-close" onclick="flipBack(event)">✕ Close</button>
         </div>
       </div>
@@ -927,7 +983,7 @@
           </div>
           <div class="back-title">International Delegation Visit – Italy</div>
           <div class="back-divider"></div>
-          <p class="back-desc">International collaborations are essential to advancing research excellence. The visit of delegates from Italy facilitated meaningful discussions on innovation, technology, and global research partnerships, further strengthening AMRL's commitment to international academic engagement and collaborative scientific advancement.</p>
+          <p class="back-desc">International collaborations are essential to advancing research excellence. The visit of delegates from Italy facilitated meaningful discussions on innovation, technology, and global research partnerships, further strengthening AMRL's commitment to international academic collaborative scientific advancement.</p>
           <button class="back-close" onclick="flipBack(event)">✕ Close</button>
         </div>
       </div>
