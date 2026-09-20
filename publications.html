@@ -669,7 +669,35 @@ img { max-width: 100%; }
   .hero-sub { font-size: 13.5px; }
   #hero { padding: 92px 16px 40px; }
 }
+/* ═══ COMPACT MOBILE NAVBAR ═══ */
+@media (max-width: 900px) {
+  #navbar {
+    height: 56px;
+    padding: 0 14px;
+    background: rgba(10,34,64,0.98);
+    backdrop-filter: none;                 /* lets the slide-in menu + dark overlay cover the whole screen */
+    -webkit-backdrop-filter: none;
+  }
+  .nav-logo { flex: 1; min-width: 0; gap: 9px; }
+  .nav-logo img { height: 34px; }
+  .nav-logo-text { min-width: 0; }
+  .nav-logo-text .lab-name { font-size: 13px; line-height: 1.2; letter-spacing: 0.06em; }
+  .nav-logo-text .dept-name {
+    font-size: 9.5px; line-height: 1.25; letter-spacing: 0.02em;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .lab-full { display: none; }
 
+  #hamburgerBtn { width: 30px; height: 30px; gap: 4.5px; margin-left: 10px; flex-shrink: 0; }
+  #hamburgerBtn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  #hamburgerBtn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .filter-bar { top: 56px; }               /* stick exactly under the new 56px bar */
+}
+
+@media (max-width: 768px) {
+  #hero { padding: 96px 16px 40px; }       /* was 92px → hero content sits lower, clear of the bar */
+}
 
 </style>
 </head>
@@ -680,7 +708,7 @@ img { max-width: 100%; }
   <a href="index.html" class="nav-logo">
     <img src="assests/iit/iitjlogo.png" alt="IIT Jammu Logo" onerror="this.style.display='none'">
     <div class="nav-logo-text">
-      <span class="lab-name">AMRL — Additive Manufacturing &amp; Research Lab</span>
+      <span class="lab-name">AMRL<span class="lab-full"> — Additive Manufacturing &amp; Research Lab</span></span>
       <span class="dept-name">IIT Jammu · Mechanical Engineering</span>
     </div>
   </a>
@@ -2949,7 +2977,8 @@ tabs.forEach(tab => {
     tab.classList.add('active');
     const el = document.getElementById(secs[tab.dataset.section]);
     if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 140;
+      const top = el.getBoundingClientRect().top + window.scrollY
+          - (document.getElementById('navbar').offsetHeight + document.querySelector('.filter-bar').offsetHeight + 12);
       window.scrollTo({ top, behavior: 'smooth' });
     }
   });
