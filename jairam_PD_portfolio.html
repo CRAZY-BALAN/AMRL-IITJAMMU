@@ -620,18 +620,212 @@ footer{
 /* 3D tilt utility */
 .tilt3d{transform-style:preserve-3d;transition:transform 0.2s ease;}
 
-@media(max-width:1000px){.hero-right{display:none;}}
-@media(max-width:768px){
-  .tl-item{grid-template-columns:1fr;}
-  .tl-left{text-align:left;padding-bottom:0.3rem;}
-  .tl-right{margin-left:12px;}
+/* =====================================================
+   RESPONSIVE / MOBILE
+   ===================================================== */
+
+/* ---------- base rules (all screens) ---------- */
+.particles-canvas{width:100%;height:100%;pointer-events:none;} /* canvas was stuck at 300x150 */
+.profile-wrap{position:relative;display:inline-block;}
+section[id]{scroll-margin-top:68px;}
+
+#hamburgerBtn,#navOverlay{display:none;}
+#hamburgerBtn span{
+  display:block;height:2.5px;width:100%;
+  background:var(--navy);border-radius:2px;
+  transition:transform .3s,opacity .3s;
 }
-@media(max-width:600px){
-  .hero{padding:2.5rem 5vw;}
-  main{padding:0 5vw;}
-  .hero h1{font-size:2.8rem;}
-  .nav-links{display:none;}
+#hamburgerBtn.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+#hamburgerBtn.open span:nth-child(2){opacity:0;}
+#hamburgerBtn.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+
+/* ---------- NAVBAR → hamburger drawer (≤1100px) ---------- */
+@media (max-width:1100px){
+  /* backdrop-filter would trap the fixed drawer inside the 68px bar, so remove it here */
+  #nav{
+    padding:0 20px;
+    background:rgba(240,243,250,0.97);
+    backdrop-filter:none;-webkit-backdrop-filter:none;
+  }
+  .nav-logo{font-size:1.05rem;}
+
+  #hamburgerBtn{
+    display:flex;flex-direction:column;justify-content:center;gap:5px;
+    width:36px;height:36px;padding:7px;
+    background:none;border:none;cursor:pointer;
+    position:relative;z-index:1100;flex-shrink:0;
+  }
+
+  .nav-links{
+    display:flex;                       /* beats any old display:none */
+    flex-direction:column;align-items:stretch;gap:4px;
+    position:fixed;top:0;right:0;
+    width:78%;max-width:320px;
+    height:100vh;height:100dvh;
+    padding:84px 20px 28px;
+    overflow-y:auto;
+    background:#fff;
+    box-shadow:-10px 0 40px rgba(7,17,42,0.18);
+    transform:translateX(105%);visibility:hidden;
+    transition:transform .35s ease,visibility 0s linear .35s;
+    z-index:1050;
+  }
+  .nav-links.open{
+    transform:translateX(0);visibility:visible;
+    transition:transform .35s ease,visibility 0s;
+  }
+  .nav-link{display:block;padding:12px 14px;font-size:15px;}
+  .nav-links .nav-cta{margin:8px 0 0;text-align:center;}
+
+  #navOverlay{
+    display:block;position:fixed;inset:0;
+    background:rgba(7,17,42,0.45);
+    z-index:990;opacity:0;pointer-events:none;
+    transition:opacity .3s;
+  }
+  #navOverlay.open{opacity:1;pointer-events:auto;}
+  body.menu-open{overflow:hidden;}
 }
+
+/* ---------- HERO → badge / card / text (≤1000px) ---------- */
+@media (max-width:1000px){
+  .hero{
+    flex-direction:column;
+    align-items:stretch;justify-content:flex-start;
+    min-height:auto;
+    padding:2.5rem 6vw 3.5rem;
+  }
+  /* unwrap .hero-content so badge, card and text can be re-ordered */
+  .hero-content{display:contents;}
+  .hero-badge,.hero h1,.hero-designation,
+  .hero-desc,.hero-tags,.hero-btns{position:relative;z-index:2;}
+
+  .hero-badge{order:1;align-self:flex-start;margin-bottom:1.4rem;}
+  .hero-right{
+    order:2;display:block;
+    width:100%;max-width:340px;
+    margin:0 auto 2rem;
+  }
+  .hero h1{order:3;}
+  .hero-designation{order:4;}
+  .hero-desc{order:5;}
+  .hero-tags{order:6;}
+  .hero-btns{order:7;}
+
+  .profile-wrap{display:block;}
+  .profile-card{width:100%;}
+  .profile-img-area{height:260px;}
+  .scroll-cue{display:none;}
+}
+
+/* ---------- PHONES / SMALL TABLETS (≤768px) ---------- */
+@media (max-width:768px){
+  body{padding-top:60px;}
+  #nav{height:60px;}
+  section[id]{scroll-margin-top:60px;}
+
+  /* lighter background effects */
+  .orb{filter:blur(40px);}
+  .orb1{width:380px;height:380px;right:-140px;top:-120px;}
+  .orb2{width:300px;height:300px;left:-100px;bottom:-80px;}
+  .orb3,.orb4{display:none;}
+
+  /* hero text */
+  .hero{padding:2rem 6vw 3rem;}
+  .hero-badge{font-size:10.5px;padding:6px 13px;letter-spacing:.05em;}
+  .hero h1{font-size:clamp(2.4rem,11vw,3.2rem);}
+  .hero-designation{font-size:.78rem;line-height:1.55;}
+  .hero-desc{font-size:.93rem;}
+  .hero-tags{gap:6px;}
+  .htag{font-size:11px;padding:4px 11px;}
+  .hero-btns{flex-direction:column;align-items:stretch;}
+  .btn{justify-content:center;width:100%;}
+
+  /* layout */
+  main{padding:0 6vw;}
+  section{padding:3.2rem 0;}
+  h2.stitle{font-size:clamp(1.7rem,7vw,2.2rem);margin-bottom:1.6rem;}
+
+  .metrics{grid-template-columns:repeat(2,1fr);gap:.75rem;}
+  .metric{padding:1.2rem .8rem;}
+  .metric-val{font-size:2.2rem;}
+  .metric-lbl{font-size:10px;}
+
+  /* research cards */
+  .res-card{padding:1.3rem;}
+  .res-tag{border-radius:12px;line-height:1.45;font-size:10px;}
+  .res-tag svg{flex-shrink:0;}
+  .res-title{font-size:1.12rem;}
+  .res-card div[style*="min-width:260px"]{min-width:0 !important;}
+  .res-meta-box{width:100%;min-width:0;}
+
+  /* education / awards / contact */
+  .edu-grid,.award-grid,.contact-grid{grid-template-columns:1fr;}
+  .edu-card{padding:1.4rem 1.3rem 1.4rem 1.6rem;}
+  .edu-degree{font-size:1.9rem;line-height:1.1;}
+  .contact-card{padding:1rem 1.1rem;}
+  .contact-card > div:last-child{min-width:0;}
+  .contact-val{font-size:12.5px;overflow-wrap:anywhere;}
+
+  /* publications & patents */
+  .pub-item,.patent-item{grid-template-columns:38px 1fr;gap:.75rem;padding:1rem;}
+  .pub-item > div:last-child,.patent-item > div:last-child{min-width:0;}
+  .pub-num,.patent-num{width:34px;height:34px;font-size:10px;}
+  .pub-title{font-size:13.5px;}
+  .pub-meta{font-size:11.5px;overflow-wrap:anywhere;}
+  .pub-section-header{font-size:10.5px;padding:.7rem 1rem;}
+
+  /* timeline: one continuous line with dots */
+  .tl-item{
+    grid-template-columns:1fr;gap:0;
+    margin-left:8px;padding-left:1.6rem;
+    border-left:2px solid var(--border2);
+  }
+  .tl-item:last-child{border-left-color:transparent;}
+  .tl-item::before{
+    content:'';position:absolute;left:-8px;top:4px;
+    width:14px;height:14px;border-radius:50%;
+    background:var(--blue2);border:3px solid var(--bg);
+    box-shadow:0 0 0 3px rgba(36,87,232,.2);
+  }
+  .tl-left{text-align:left;padding-bottom:.3rem;}
+  .tl-right{border-left:0;padding-left:0;padding-bottom:2rem;}
+  .tl-right::before{display:none;}
+
+  /* skills */
+  .skills-grid{grid-template-columns:repeat(2,1fr);gap:.6rem;}
+  .skill-chip{padding:.75rem .9rem;font-size:12.5px;}
+
+  /* memberships / reviewer */
+  .member-item{flex-wrap:wrap;gap:4px 12px;padding:.9rem 1.1rem;}
+  .member-name{flex:1 1 calc(100% - 30px);font-size:13px;}
+  .member-id{margin-left:22px;}
+  .member-id:empty{display:none;}
+  .member-period{margin-left:0;}
+  .member-id:empty + .member-period{margin-left:22px;}
+
+  footer{padding:2.5rem 1.2rem;}
+  .footer-links{flex-wrap:wrap;gap:1.1rem;}
+}
+
+/* ---------- SMALL PHONES (≤600px) ---------- */
+@media (max-width:600px){
+  .skills-grid{grid-template-columns:1fr;}
+  .res-card div[style*="grid-template-columns"]{grid-template-columns:1fr !important;}
+}
+
+@media (max-width:380px){
+  .nav-logo{font-size:.95rem;}
+  .hero h1{font-size:2.2rem;}
+}
+
+/* ---------- touch devices: no sticky hover shifts ---------- */
+@media (hover:none){
+  .metric:hover,.res-card:hover,.edu-card:hover,.award-card:hover,
+  .skill-chip:hover,.contact-card:hover,.pub-item:hover,
+  .patent-item:hover,.member-item:hover{transform:none;}
+}
+
 </style>
 </head>
 <body>
@@ -642,17 +836,23 @@ footer{
     <div class="nav-logo-mark">JR</div>
     Dr. Jairam Raigar
   </div>
-  <ul class="nav-links">
-    <li><a href="#Overview"     class="nav-link">Overview</a></li>
+
+  <button id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <ul class="nav-links" id="navMenu">
+    <li><a href="#research"      class="nav-link">Overview</a></li>
     <li><a href="#experience"    class="nav-link">Experience</a></li>
-    <li><a href="#education" class="nav-link">Education</a></li>
-    <li><a href="#publications"   class="nav-link">Publications</a></li>
-    <li><a href="#skills"       class="nav-link">Skills</a></li>
-    <li><a href="#awards"       class="nav-link">Awards</a></li>
-    <li><a href="#contact" class="nav-link nav-cta">Contact</a></li>
-    <li><a href="index.html"      class="nav-link nav-cta">Back to Main Site</a></li>
+    <li><a href="#education"     class="nav-link">Education</a></li>
+    <li><a href="#publications"  class="nav-link">Publications</a></li>
+    <li><a href="#skills"        class="nav-link">Skills</a></li>
+    <li><a href="#awards"        class="nav-link">Awards</a></li>
+    <li><a href="#contact"       class="nav-link nav-cta">Contact</a></li>
+    <li><a href="index.html"     class="nav-link nav-cta">Back to Main Site</a></li>
   </ul>
 </nav>
+<div id="navOverlay"></div>
 
 <!-- HERO -->
 <header class="hero">
@@ -699,7 +899,7 @@ footer{
 
   <!-- Profile Card -->
   <div class="hero-right">
-    <div style="position:relative;display:inline-block;">
+    <div class="profile-wrap">
      
      
       <div class="profile-card tilt3d">
@@ -1317,13 +1517,14 @@ footer{
   if(!canvas) return;
   const ctx = canvas.getContext('2d');
   let W, H, particles = [], mouse = {x:null,y:null};
-  const N = 80;
+  const N = window.innerWidth < 700 ? 35 : 80;
 
   function resize(){
     W = canvas.width = canvas.offsetWidth;
     H = canvas.height = canvas.offsetHeight;
   }
-  window.addEventListener('resize', resize);
+  if('ResizeObserver' in window){ new ResizeObserver(resize).observe(canvas); }
+else { window.addEventListener('resize', resize); }
   resize();
 
   function rand(min,max){return Math.random()*(max-min)+min;}
@@ -1404,15 +1605,30 @@ window.addEventListener('scroll',()=>{
 });
 
 /* ──────── 3D Tilt ──────── */
-document.querySelectorAll('.tilt3d').forEach(el=>{
-  el.addEventListener('mousemove',e=>{
-    const r=el.getBoundingClientRect();
-    const x=(e.clientX-r.left)/r.width-0.5;
-    const y=(e.clientY-r.top)/r.height-0.5;
-    el.style.transform=`perspective(700px) rotateY(${x*7}deg) rotateX(${-y*7}deg) translateY(-3px)`;
+/* ──────── 3D Tilt (mouse devices only) ──────── */
+const canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+if(canHover){
+  document.querySelectorAll('.tilt3d').forEach(el=>{
+    el.addEventListener('mousemove',e=>{
+      const r=el.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-0.5;
+      const y=(e.clientY-r.top)/r.height-0.5;
+      el.style.transform=`perspective(700px) rotateY(${x*7}deg) rotateX(${-y*7}deg) translateY(-3px)`;
+    });
+    el.addEventListener('mouseleave',()=>{el.style.transform='';});
   });
-  el.addEventListener('mouseleave',()=>{el.style.transform='';});
-});
+
+  const pcard = document.querySelector('.profile-card');
+  if(pcard){
+    pcard.addEventListener('mousemove',e=>{
+      const r=pcard.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-0.5;
+      const y=(e.clientY-r.top)/r.height-0.5;
+      pcard.style.transform=`perspective(900px) rotateY(${x*12}deg) rotateX(${-y*12}deg) scale(1.03)`;
+    });
+    pcard.addEventListener('mouseleave',()=>{pcard.style.transform='';});
+  }
+}
 
 /* ──────── Counter Animation ──────── */
 const counterObs = new IntersectionObserver(entries=>{
@@ -1438,17 +1654,30 @@ const counterObs = new IntersectionObserver(entries=>{
 },{threshold:0.5});
 document.querySelectorAll('.metric-val[data-target]').forEach(c=>counterObs.observe(c));
 
-/* ──────── Profile card 3D on mouse ──────── */
-const pcard = document.querySelector('.profile-card');
-if(pcard){
-  pcard.addEventListener('mousemove',e=>{
-    const r=pcard.getBoundingClientRect();
-    const x=(e.clientX-r.left)/r.width-0.5;
-    const y=(e.clientY-r.top)/r.height-0.5;
-    pcard.style.transform=`perspective(900px) rotateY(${x*12}deg) rotateX(${-y*12}deg) scale(1.03)`;
-  });
-  pcard.addEventListener('mouseleave',()=>{pcard.style.transform='';});
-}
+
+
+/* ──────── Mobile drawer ──────── */
+(function(){
+  const btn = document.getElementById('hamburgerBtn');
+  const menu = document.getElementById('navMenu');
+  const overlay = document.getElementById('navOverlay');
+  if(!btn || !menu || !overlay) return;
+
+  function setMenu(open){
+    btn.classList.toggle('open', open);
+    menu.classList.toggle('open', open);
+    overlay.classList.toggle('open', open);
+    document.body.classList.toggle('menu-open', open);
+    btn.setAttribute('aria-expanded', open);
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  btn.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+  overlay.addEventListener('click', () => setMenu(false));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') setMenu(false); });
+  window.addEventListener('resize', () => { if(window.innerWidth > 1100) setMenu(false); });
+})();
+
 </script>
 </body>
 </html>
