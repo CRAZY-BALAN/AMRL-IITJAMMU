@@ -1618,6 +1618,46 @@ img, video { max-width: 100%; }
 
 
 
+/* stop sideways overflow → no zoomed-out page / stretched navbar */
+html, body { overflow-x: hidden; max-width: 100%; }
+#facilities { overflow: hidden; }          /* 3D carousel side-cards no longer poke out */
+
+@media (max-width: 900px) {
+  /* closed menu panel must not count as page width */
+  .nav-links { visibility: hidden; transition: right 0.35s ease, visibility 0.35s; }
+  .nav-links.open { visibility: visible; }
+
+  /* grid children can't force the page wider than the screen */
+  .postdoc-column, .phd-grid { grid-template-columns: minmax(0, 1fr); }
+
+  /* hamburger stays visible even when the navbar is transparent over a white section */
+  #navbar:not(.scrolled) #hamburgerBtn { background: rgba(10,34,64,0.55); border-radius: 8px; padding: 0 7px; }
+  #navbar #hamburgerBtn.open { background: none; }   /* must come after the line above */
+
+  /* 3D sections can't paint over the fixed navbar */
+  #facilities, #people { isolation: isolate; }
+}
+
+
+/* push counter + progress bar + dots below the 3D cards */
+@media (min-width: 769px) {
+  section#facilities div[style*="height:480px"] {
+    margin-bottom: 115px !important;    /* laptop */
+  }
+}
+@media (max-width: 768px) {
+  section#facilities div[style*="height:480px"] {
+    margin-bottom: 40px !important;     /* phones */
+  }
+}
+
+/* keep counter, progress bar and dots on top of the cards */
+#facilities .container > div:nth-child(n+3) {
+  position: relative;
+  z-index: 5;
+}
+
+
   </style>
 </head>
 <body>
@@ -3023,15 +3063,14 @@ TPMS structures, biomedical implants, and smart manufacturing systems.</p>
     const navbar = document.getElementById('navbar');
     const hero = document.getElementById('hero');
 
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      const heroH = hero.offsetHeight;
-      if (scrollY > heroH * 0.6) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    }, { passive: true });
+    function updateNavbar() {
+  const limit = window.innerWidth <= 900 ? 40 : hero.offsetHeight * 0.6;
+  navbar.classList.toggle('scrolled', window.scrollY > limit);
+}
+window.addEventListener('scroll', updateNavbar, { passive: true });
+window.addEventListener('resize', updateNavbar);
+window.addEventListener('pageshow', updateNavbar);
+updateNavbar();   // runs once on load, so a reload mid-page is correct
 
     // ── SCROLL REVEAL ──
     const reveals = document.querySelectorAll('.reveal');
