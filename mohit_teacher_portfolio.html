@@ -183,25 +183,228 @@ footer{text-align:center;padding:3rem 2rem;border-top:1px solid var(--border);ba
 .reveal.visible{opacity:1;transform:translateY(0);}
 .tilt{transform-style:preserve-3d;}
 
-@media(max-width:960px){.hero-card-wrap{display:none;}.tl-item{grid-template-columns:1fr;}.tl-left{text-align:left;padding-bottom:0.3rem;}.tl-right{margin-left:12px;}}
-@media(max-width:600px){.hero{padding:3rem 5vw;}main{padding:0 5vw;}.hero h1{font-size:2.6rem;}.nav-links{display:none;}}
+/* =====================================================
+   RESPONSIVE / MOBILE
+   ===================================================== */
+
+/* ---------- base rules (all screens) ---------- */
+section[id]{scroll-margin-top:66px;}
+.hero-eyebrow-pulse{flex-shrink:0;}
+
+/* fix: hovering a blue CTA turned its text blue on blue */
+.nav-links .nav-cta,.nav-links .nav-cta:hover{color:#fff;}
+
+#hamburgerBtn,#navOverlay{display:none;}
+#hamburgerBtn span{
+  display:block;height:2.5px;width:100%;
+  background:var(--navy);border-radius:2px;
+  transition:transform .3s,opacity .3s;
+}
+#hamburgerBtn.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+#hamburgerBtn.open span:nth-child(2){opacity:0;}
+#hamburgerBtn.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+
+/* ---------- NAVBAR → hamburger drawer (≤1200px) ---------- */
+@media (max-width:1200px){
+  /* backdrop-filter would trap the fixed drawer inside the 66px bar, so remove it here */
+  #nav{
+    padding:0 20px;
+    background:rgba(255,255,255,0.97);
+    backdrop-filter:none;-webkit-backdrop-filter:none;
+  }
+  .nav-logo{font-size:1.05rem;}
+
+  #hamburgerBtn{
+    display:flex;flex-direction:column;justify-content:center;gap:5px;
+    width:36px;height:36px;padding:7px;
+    background:none;border:none;cursor:pointer;
+    position:relative;z-index:1100;flex-shrink:0;
+  }
+
+  .nav-links{
+    display:flex;
+    flex-direction:column;align-items:stretch;gap:4px;
+    position:fixed;top:0;right:0;
+    width:78%;max-width:320px;
+    height:100vh;height:100dvh;
+    padding:84px 20px 28px;
+    overflow-y:auto;
+    background:#fff;
+    box-shadow:-10px 0 40px rgba(10,22,40,0.18);
+    transform:translateX(105%);visibility:hidden;
+    transition:transform .35s ease,visibility 0s linear .35s;
+    z-index:1050;
+  }
+  .nav-links.open{
+    transform:translateX(0);visibility:visible;
+    transition:transform .35s ease,visibility 0s;
+  }
+  .nav-link{display:block;padding:12px 14px;font-size:15px;}
+  .nav-links .nav-cta{margin:8px 0 0;text-align:center;}
+
+  #navOverlay{
+    display:block;position:fixed;inset:0;
+    background:rgba(10,22,40,0.45);
+    z-index:990;opacity:0;pointer-events:none;
+    transition:opacity .3s;
+  }
+  #navOverlay.open{opacity:1;pointer-events:auto;}
+  body.menu-open{overflow:hidden;}
+}
+
+/* ---------- HERO → badge / card / text (≤960px) ---------- */
+@media (max-width:960px){
+  .hero{
+    flex-direction:column;
+    align-items:stretch;justify-content:flex-start;
+    min-height:auto;
+    padding:2.5rem 6vw 3.5rem;
+  }
+  /* unwrap .hero-content so badge, card and text can be re-ordered */
+  .hero-content{display:contents;}
+  .hero-eyebrow,.hero h1,.hero-role,
+  .hero-desc,.hero-tags,.hero-btns{position:relative;z-index:2;}
+
+  .hero-eyebrow{order:1;align-self:flex-start;margin-bottom:1.4rem;}
+  .hero-card-wrap{
+    order:2;
+    width:100%;max-width:340px;
+    margin:0 auto 2rem;
+  }
+  .hero h1{order:3;}
+  .hero-role{order:4;}
+  .hero-desc{order:5;}
+  .hero-tags{order:6;}
+  .hero-btns{order:7;}
+
+  .hero-card{width:100%;}
+  .scroll-hint{display:none;}
+}
+
+/* ---------- PHONES / SMALL TABLETS (≤768px) ---------- */
+@media (max-width:768px){
+  body{padding-top:60px;}
+  #nav{height:60px;}
+  section[id]{scroll-margin-top:60px;}
+
+  /* lighter background effects */
+  .hero-orb1{width:380px;height:380px;right:-140px;top:-120px;}
+  .hero-orb2{width:300px;height:300px;left:-100px;bottom:-80px;}
+
+  /* hero text */
+  .hero{padding:2rem 6vw 3rem;}
+  .hero-eyebrow{
+    font-size:10.5px;padding:6px 13px;letter-spacing:.05em;
+    border-radius:16px;line-height:1.45;max-width:100%;
+  }
+  .hero h1{font-size:clamp(2.4rem,11vw,3.2rem);}
+  .hero-role{font-size:.9rem;line-height:1.5;}
+  .hero-desc{font-size:.93rem;}
+  .hero-tags{gap:6px;}
+  .htag{font-size:11px;padding:4px 11px;}
+  .hero-btns{flex-direction:column;align-items:stretch;}
+  .btn{justify-content:center;width:100%;}
+
+  /* layout */
+  main{padding:0 6vw;}
+  section{padding:3.2rem 0;}
+  h2.stitle{font-size:clamp(1.7rem,7vw,2.2rem);margin-bottom:1.6rem;}
+
+  .metrics{grid-template-columns:repeat(2,1fr);gap:.75rem;}
+  .metric:last-child:nth-child(odd){grid-column:1 / -1;}  /* 5th card spans full width */
+  .metric{padding:1.2rem .8rem;}
+  .metric-val{font-size:2.2rem;}
+  .metric-lbl{font-size:10px;}
+
+  /* research cards: stack text + supervisor box */
+  .res-card{padding:1.3rem;}
+  .res-card > div[style*="flex-wrap:wrap"]{flex-direction:column;align-items:stretch !important;}
+  .res-card div[style*="min-width:260px"],
+  .res-card div[style*="min-width:190px"]{min-width:0 !important;}
+  .res-tag{border-radius:12px;line-height:1.45;font-size:10px;}
+  .res-tag svg{flex-shrink:0;}
+
+  /* education / patents / awards / contact */
+  .edu-grid,.patent-grid,.award-grid,.contact-grid{grid-template-columns:1fr;}
+  .edu-card{padding:1.4rem 1.3rem 1.4rem 1.6rem;}
+  .edu-degree{font-size:1.9rem;line-height:1.1;}
+  .patent-card{padding:1.1rem 1.2rem 1.1rem 1.4rem;}
+  .patent-num,.patent-title{overflow-wrap:anywhere;}
+  .contact-card{padding:1rem 1.1rem;}
+  .contact-card > div:last-child{min-width:0;}
+  .contact-val{font-size:12.5px;overflow-wrap:anywhere;}
+
+  /* publications */
+  .pub-item{grid-template-columns:38px 1fr;gap:.75rem;padding:1rem;}
+  .pub-item > div:last-child{min-width:0;}
+  .pub-num{width:34px;height:34px;font-size:10px;}
+  .pub-title{font-size:13.5px;}
+  .pub-meta{font-size:11.5px;overflow-wrap:anywhere;}
+
+  /* timeline: one continuous line with dots */
+  .tl-item{
+    grid-template-columns:1fr;gap:0;
+    margin-left:8px;padding-left:1.6rem;
+    border-left:2px solid var(--border2);
+  }
+  .tl-item:last-child{border-left-color:transparent;}
+  .tl-item::before{
+    content:'';position:absolute;left:-8px;top:4px;
+    width:14px;height:14px;border-radius:50%;
+    background:var(--blue2);border:3px solid var(--bg);
+    box-shadow:0 0 0 3px rgba(37,99,235,.2);
+  }
+  .tl-left{text-align:left;padding-bottom:.3rem;}
+  .tl-right{border-left:0;padding-left:0;padding-bottom:2rem;}
+  .tl-right::before{display:none;}
+
+  /* skills */
+  .skills-grid{grid-template-columns:repeat(2,1fr);gap:.6rem;}
+  .skill-chip{padding:.75rem .9rem;font-size:12.5px;}
+
+  footer{padding:2.5rem 1.2rem;}
+}
+
+/* ---------- SMALL PHONES (≤600px) ---------- */
+@media (max-width:600px){
+  .skills-grid{grid-template-columns:1fr;}   /* long skill names need full width */
+}
+
+@media (max-width:380px){
+  .nav-logo{font-size:.95rem;}
+  .hero h1{font-size:2.2rem;}
+}
+
+/* ---------- touch devices: no sticky hover shifts ---------- */
+@media (hover:none){
+  .metric:hover,.res-card:hover,.edu-card:hover,.award-card:hover,
+  .skill-chip:hover,.contact-card:hover,.pub-item:hover,
+  .patent-card:hover,.hero-card:hover,.card:hover{transform:none;}
+}
 </style>
 </head>
 <body>
 
 <nav id="nav">
   <div class="nav-logo"><div class="nav-logo-dot"></div>Mohit Teacher</div>
-  <ul class="nav-links">
+
+  <button id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <ul class="nav-links" id="navMenu">
     <li><a href="#research"      class="nav-link">Research</a></li>
     <li><a href="#education"     class="nav-link">Education</a></li>
     <li><a href="#experience"    class="nav-link">Experience</a></li>
     <li><a href="#publications"  class="nav-link">Publications</a></li>
     <li><a href="#patents"       class="nav-link">Patents</a></li>
     <li><a href="#skills"        class="nav-link">Skills</a></li>
+    <li><a href="#awards"        class="nav-link">Awards</a></li>
     <li><a href="#contact"       class="nav-link nav-cta">Contact</a></li>
-    <li><a href="index.html"      class="nav-link nav-cta">Back to Main Site</a></li>
+    <li><a href="index.html"     class="nav-link nav-cta">Back to Main Site</a></li>
   </ul>
 </nav>
+<div id="navOverlay"></div>
 
 <header class="hero">
   <div class="hero-grid-bg"></div>
@@ -766,15 +969,18 @@ window.addEventListener('scroll', () => {
   });
 });
 
-document.querySelectorAll('.tilt').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
-    card.style.transform = `perspective(600px) rotateY(${x*8}deg) rotateX(${-y*8}deg) translateY(-4px)`;
+/* 3D tilt (mouse devices only) */
+if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+  document.querySelectorAll('.tilt').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = `perspective(600px) rotateY(${x*8}deg) rotateX(${-y*8}deg) translateY(-4px)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
   });
-  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
-});
+}
 
 const counters = document.querySelectorAll('.metric-val');
 const counterObs = new IntersectionObserver(entries => {
@@ -792,13 +998,36 @@ const counterObs = new IntersectionObserver(entries => {
         if(start >= target){ start = target; clearInterval(timer); }
         el.textContent = Number.isInteger(target)
           ? Math.floor(start) + (isPlus?'+':'')
-          : start.toFixed(2);
+          : start.toFixed((raw.split('.')[1] || '').length);
       }, step);
       counterObs.unobserve(el);
     }
   });
 }, {threshold:0.5});
 counters.forEach(c => counterObs.observe(c));
+
+/* Mobile drawer */
+(function(){
+  const btn = document.getElementById('hamburgerBtn');
+  const menu = document.getElementById('navMenu');
+  const overlay = document.getElementById('navOverlay');
+  if(!btn || !menu || !overlay) return;
+
+  function setMenu(open){
+    btn.classList.toggle('open', open);
+    menu.classList.toggle('open', open);
+    overlay.classList.toggle('open', open);
+    document.body.classList.toggle('menu-open', open);
+    btn.setAttribute('aria-expanded', open);
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  btn.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+  overlay.addEventListener('click', () => setMenu(false));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') setMenu(false); });
+  window.addEventListener('resize', () => { if(window.innerWidth > 1200) setMenu(false); });
+})();
+
 </script>
 </body>
 </html>
